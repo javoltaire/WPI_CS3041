@@ -1,4 +1,5 @@
 *.class
-.idea/*
+bin/
+.idea/
 *.iml
-out/*
+out/
