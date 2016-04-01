@@ -1,2 +1,4 @@
 How to write to an xml file: http://www.mkyong.com/java/how-to-create-xml-file-in-java-dom/
 How to read from an xml file: http://www.mkyong.com/java/how-to-read-xml-file-in-java-dom-parser/
+Lis of Commands: http://www.tutorialspoint.com/unix/unix-useful-commands.htm
+                 https://en.wikipedia.org/wiki/List_of_Unix_commands
