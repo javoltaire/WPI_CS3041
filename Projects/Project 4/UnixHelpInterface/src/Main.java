@@ -1,4 +1,5 @@
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import javafx.application.Application;
@@ -17,7 +18,7 @@ import Model.Command;
 import Model.Enums.CATEGORIES;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
-
+import org.xml.sax.SAXException;
 
 
 /**
@@ -123,6 +124,23 @@ public class Main extends Application {
         } catch (TransformerConfigurationException e) {
             e.printStackTrace();
         } catch (TransformerException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void readXMLFile(String path){
+        try {
+            File xmlFile = new File(path);
+            DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
+            Document document = documentBuilder.parse(xmlFile);
+            document.getDocumentElement().normalize();
+
+        } catch (SAXException e) {
+            e.printStackTrace();
+        } catch (ParserConfigurationException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
