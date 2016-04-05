@@ -1,21 +1,22 @@
 package Model;
 
 import javafx.beans.property.*;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 import java.util.*;
 
 /**
  * @Author Jules Voltaire on 3/31/2016.
- * This class represent a Command, e.g ls or mkdir
+ * This class represent a Command and what the command does.
+ * In addition, the command has is part of category
+ * For example, ls
+ * code wise it is represented as
+ * Command ls = new Command("ls", "list	directory contents", fileAndFolderCat);
  */
 public class Command {
 
     //region Variables
-    /**
-     * Unique identifier of a command
-     */
-    private UUID id = UUID.randomUUID();
-
     /**
      * String property to hold the name.
      */
@@ -28,15 +29,20 @@ public class Command {
     private StringProperty description = new SimpleStringProperty(this, "description", "");
 
     /**
-     * The category that the command is part of
-     */
-    private Category parentCategory;
-
-    /**
      * String property to hold the details.
      * A more detailed description
      */
     private StringProperty details = new SimpleStringProperty(this, "details", "");
+
+    /**
+     * List to hold all the Options of the command
+     */
+    private ObservableList<Option> options = FXCollections.emptyObservableList();
+
+    /**
+     * String property to hold the format of the command
+     */
+    private StringProperty format = new SimpleStringProperty(this, "format", "");
 
     /**
      * String property to hold the examples.
@@ -47,12 +53,17 @@ public class Command {
     /**
      * A list of other relevant commands related
      */
-    private List<Command> seeAlso = new ArrayList<>();
+    private ObservableList<Command> seeAlso = FXCollections.emptyObservableList();
 
     /**
      * String property to hold the sourceLink.
      */
     private StringProperty sourceLink = new SimpleStringProperty(this, "sourceLink", "");
+
+    /**
+     * Boolean indicating wheter the command was recently used
+     */
+    private boolean isRecentlyUsed = false;
     //endregion
 
     //region Constructors
@@ -60,158 +71,154 @@ public class Command {
      * Initializes a new instance of this class with the given values
      * @param name The name of the Command
      * @param description A short description of what the command does
-     * @param parentCategory The category that this command will be part of
      */
-    public Command(String name, String description, Category parentCategory){
+    public Command(String name, String description){
         this.name.setValue(name);
         this.description.setValue(description);
-        this.parentCategory = parentCategory;
     }
 
     /**
      * Initializes a new instance of this class with the given values
-     * @param id The id of the command
      * @param name The name of the Command
      * @param description A short description of what the command does
-     * @param parentCategory The category that the command will be part of
      * @param details A more detailed description
+     * @param format The format of the command
      * @param example An example of how the command is used
      * @param sourceLink A link to read more about the command
+     * @param isRecentlyUsed Boolean indicating wheter this command was recently used
      */
-    public Command(String id, String name, String description, Category parentCategory, String details, String example, String sourceLink) {
-        this.id = UUID.fromString(id);
+    public Command(String name, String description, String details, String format, String example, String sourceLink, boolean isRecentlyUsed) {
         this.name.setValue(name);
         this.description.setValue(description);
-        this.parentCategory = parentCategory;
         this.details.setValue(details);
+        this.format.setValue(format);
         this.example.setValue(example);
         this.sourceLink.setValue(sourceLink);
+        this.isRecentlyUsed = isRecentlyUsed;
     }
     //endregion
 
-    //region Getters
-
-    /**
-     * Gets the value of the name property
-     * @return The name of the command
-     */
-    public String getName() {
-        return name.get();
-    }
-
-    /**
-     * Gets the id of the command
-     * @return The id of the command
-     */
-    public UUID getId() {
-        return id;
-    }
-
-    /**
-     * Gets the value of the short description Property of the command
-     * @return The short description of the command
-     */
-    public String getDescription() {
-        return description.get();
-    }
-
-    /**
-     * Gets the value of the detailed description Property of the command
-     * @return The more detailed description of the command
-     */
-    public String getDetails() {
-        return details.get();
-    }
-
-    /**
-     * Gets the value of the example Property of the command
-     * @return The example of the command
-     */
-    public String getExample() {
-        return example.get();
-    }
-
-    /**
-     * Gets the list of see also commands relevant to this command
-     * @return The list of seeAlso relevant commands
-     */
-    public List<Command> getSeeAlso() {
-        return seeAlso;
-    }
-
-    /**
-     * Gets the value of source link Property of the command
-     * @return The source link where the user can read more about the command
-     */
-    public String getSourceLink() {
-        return sourceLink.get();
-    }
-    //endregion
-
-
-
-
-
-
-
-
-
-
-
+    //region Getters and Setters
+    //region Name
     public StringProperty nameProperty() {
         return name;
+    }
+
+    public String getName() {
+        return name.get();
     }
 
     public void setName(String name) {
         this.name.set(name);
     }
+    //endregion
 
-
-
+    //region Description
     public StringProperty descriptionProperty() {
         return description;
+    }
+
+    public String getDescription() {
+        return description.get();
     }
 
     public void setDescription(String description) {
         this.description.set(description);
     }
+    //endregion
 
-    public Category getParentCategory() {
-        return parentCategory;
-    }
-
-    public void setParentCategory(Category parentCategory) {
-        this.parentCategory = parentCategory;
-    }
-
-
-
+    //region Details
     public StringProperty detailsProperty() {
         return details;
+    }
+
+    public String getDetails() {
+        return details.get();
     }
 
     public void setDetails(String details) {
         this.details.set(details);
     }
+    //endregion
 
+    //region Options
+    public ObservableList<Option> getOptions() {
+        return options;
+    }
+    //endregion
 
+    //region Format
+    public StringProperty formatProperty() {
+        return format;
+    }
 
+    public String getFormat() {
+        return format.get();
+    }
+
+    public void setFormat(String format) {
+        this.format.set(format);
+    }
+    //endregion
+
+    //region Example
     public StringProperty exampleProperty() {
         return example;
+    }
+
+    public String getExample() {
+        return example.get();
     }
 
     public void setExample(String example) {
         this.example.set(example);
     }
+    //endregion
 
+    //region See also
+    public ObservableList<Command> getSeeAlso() {
+        return seeAlso;
+    }
+    //endregion
 
-
+    //region Source Link
     public StringProperty sourceLinkProperty() {
         return sourceLink;
+    }
+
+    public String getSourceLink() {
+        return sourceLink.get();
     }
 
     public void setSourceLink(String sourceLink) {
         this.sourceLink.set(sourceLink);
     }
+    //endregion
+
+    //region RecentlyUsed
+    public boolean isRecentlyUsed() {
+        return isRecentlyUsed;
+    }
+
+    public void setRecentlyUsed(boolean recentlyUsed) {
+        isRecentlyUsed = recentlyUsed;
+    }
+    //endregion
+    //endregion
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 }

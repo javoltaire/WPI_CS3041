@@ -2,19 +2,22 @@ package Model;
 
 import Model.Enums.CATEGORIES;
 import javafx.beans.property.*;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 import java.util.*;
 
 /**
  * @Author Jules Voltaire on 3/31/2016.
- * This class represent a Category for commands, e.g. Files and Folders or System Calls
+ * This class represent a Category of commands
+ * For example, for files and folders related commands
+ * We would create a new category and add commands to the list of commands in the category
+ * Code wise
+ * Category fileAndFolder = new Category("Files & Folders");
+ * fileAndFolder.getCommands().add(new Command("ls", "list	directory contents", fileAndFolder));
  */
 public class Category {
     //region Variables
-    /**
-     * Unique identifier of a category
-     */
-    private UUID id = UUID.randomUUID();
-
     /**
      * String property to hold the name.
      */
@@ -23,7 +26,7 @@ public class Category {
     /**
      * Observable list to hold the commands that are part of this category
      */
-    private List<Command> commands = new ArrayList<>();
+    private ObservableList<Command> commands = FXCollections.emptyObservableList();
     //endregion
 
     //region Constructors
@@ -34,36 +37,38 @@ public class Category {
     public Category (String name){
         this.name.setValue(name);
     }
-
-    /**
-     * Initializes a new instance of a category with the given value
-     * @param id The id for the category
-     * @param name The name for this new Category
-     */
-    public Category (String id, String name){
-        this.id = UUID.fromString(id);
-        this.name.setValue(name);
-    }
     //endregion
 
-    //region Getters
+    //region Getters and Setters
+    //region Name
 
     /**
-     * Gets the value of the name property
-     * @return The name of the Category
+     * Gets the name property
+     * @return the name property object
+     */
+    public StringProperty nameProperty() {
+        return name;
+    }
+
+    /**
+     * Gets the name of the category
+     * @return The value of the name property
      */
     public String getName() {
         return name.get();
     }
 
     /**
-     * Gets the id of the category
-     * @return The id of the category
+     * Sets the value of the name property to a new one
+     * @param name the new value for the name
      */
-    public UUID getId() {
-        return id;
+    public void setName(String name) {
+        this.name.set(name);
     }
 
+    //endregion
+
+    //region Commands
     /**
      * Gets the list of commands in this category
      * @return The list of commands in this category
@@ -73,16 +78,7 @@ public class Category {
     }
     //endregion
 
+    //endregion
 
-
-
-
-    public StringProperty nameProperty() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name.set(name);
-    }
 }
 
