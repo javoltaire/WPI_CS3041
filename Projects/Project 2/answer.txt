@@ -1,0 +1,59 @@
+Michael Tessalari
+Wide: 27.59
+
+half: 27.86
+
+quarter: 26.68
+
+Mario Zila
+wide: 27.85
+answered correctly
+the field has grown
+half
+20.87
+talked about all the studies that took place in the field
+
+quarter
+25.64
+all the data taken from the study are being used for something.
+
+Anthony Dresser
+wide: 38.31
+answered correctly
+-Talked about what HCI is
+half:39.28
+there are some poeple who are against HCI, what HCI is
+quarter:47.56
+talked about where the need came from, why it became a thing.
+
+Isiah Perry
+wide: 47.52
+dont remember
+could be used to integrate new something.
+half: 31.98
+a lot of people argue pc are not user friendly and hci can help
+quarter:50.50
+1970 computers started to make a switch to more advanced user friendly systems.
+
+
+Bo pierce
+wide: 26.42
+correctly
+talked about what it was when it first started and how it changed over the last 30 years
+half:22.70
+was about ease of use. has shift in computer design to make them easier to use. argument that designer need to do 
+better but they aregue that computers are hard to design.
+quarter:26.85
+about what people were designing became easier to design and make systems more user friendly graphics wise.
+
+Julie
+wide: 33.71
+correctly
+talked HCI is an upcoming thing. it is developping more as time goes on.
+half:32.05
+what is HCI. school are implemting in courses, companies need to focus more on HCI
+qurter:
+46.74
+before the 70 theres a lack of focus on HCI and to make things better they should focus on HCI.
+
+

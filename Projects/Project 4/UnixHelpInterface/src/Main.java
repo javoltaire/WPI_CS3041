@@ -119,8 +119,7 @@ public class Main extends Application {
             transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "2");
             transformer.transform(source, result);
 
-        } catch (ParserConfigurationException e){
-            e.printStackTrace();
+
         } catch (TransformerConfigurationException e) {
             e.printStackTrace();
         } catch (TransformerException e) {
