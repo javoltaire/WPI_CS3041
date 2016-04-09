@@ -3,6 +3,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import Controller.SettingsPages.*?>
+<?import Controller.ContentPages.*?>
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.MainPageController">
     <children>
         <BorderPane prefHeight="45.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -21,8 +22,8 @@
         </BorderPane>
         <StackPane fx:id="ContentRoot" alignment="CENTER_RIGHT" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="45.0">
             <children>
-                <AnchorPane fx:id="mainContentRootPane" prefWidth="Infinity" prefHeight="Infinity"/>
-                <SettingsPage fx:id="settingsPage" visible="false" maxWidth="300"/>
+                <CategoriesView />
+                <SettingsPage fx:id="settingsPage" style="-fx-background-color: #ecf0f1;" visible="false" maxWidth="300"/>
             </children>
         </StackPane>
     </children>
