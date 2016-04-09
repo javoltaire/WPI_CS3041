@@ -1,6 +1,7 @@
 package Controller;
 
 import Controller.CustomControls.CommandControl;
+import Controller.SettingsPages.SettingsPage;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -16,25 +17,28 @@ import java.util.ResourceBundle;
  * Created by jules on 3/31/2016.
  */
 public class MainPageController implements Initializable {
+    //region FXML variables
+    @FXML private ToggleButton settingsToggleButton;
+    @FXML private SettingsPage settingsPage;
+    //endregion
+
     //Methods
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        addListeneers();
     }
 
     /**
      * This method just add listeners to all the required controls
      */
     private void addListeneers(){
-
+        settingsToggleButton.selectedProperty().addListener((v, oldValue, newValue) -> {
+            settingsPage.setVisible(newValue);
+        });
     }
 
     private void bindAll(){
 
     }
-
-
-
-
-
     //endregion
 }

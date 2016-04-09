@@ -22,7 +22,7 @@
         <StackPane fx:id="ContentRoot" alignment="CENTER_RIGHT" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="45.0">
             <children>
                 <AnchorPane fx:id="mainContentRootPane" prefWidth="Infinity" prefHeight="Infinity"/>
-                <SettingsPage fx:id="settingsPage" maxWidth="300"/>
+                <SettingsPage fx:id="settingsPage" visible="false" maxWidth="300"/>
             </children>
         </StackPane>
     </children>
