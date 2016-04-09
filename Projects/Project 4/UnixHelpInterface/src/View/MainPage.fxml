@@ -2,7 +2,7 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import Controller.SettingsPagesController.SettingsPage?>
+<?import Controller.SettingsPages.*?>
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.MainPageController">
     <children>
         <BorderPane prefHeight="45.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -22,8 +22,7 @@
         <StackPane fx:id="ContentRoot" alignment="CENTER_RIGHT" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="45.0">
             <children>
                 <AnchorPane fx:id="mainContentRootPane" prefWidth="Infinity" prefHeight="Infinity"/>
-                <!--<AnchorPane fx:id="settingsRootPane" prefWidth="300.0" minWidth="0.0"  maxWidth="300.0"/>-->
-                <SettingsPage> </SettingsPage>
+                <SettingsPage fx:id="settingsPage" maxWidth="300"/>
             </children>
         </StackPane>
     </children>

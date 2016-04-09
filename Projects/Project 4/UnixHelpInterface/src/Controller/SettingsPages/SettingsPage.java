@@ -1,4 +1,4 @@
-package Controller.SettingsPagesController;
+package Controller.SettingsPages;
 
 import javafx.beans.property.*;
 import javafx.fxml.*;
@@ -7,8 +7,6 @@ import javafx.scene.control.*;
 import javafx.scene.layout.*;
 
 import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
 
 /**
  * Created by jules on 4/5/2016.
