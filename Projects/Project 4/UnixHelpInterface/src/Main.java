@@ -3,6 +3,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import Controller.MainPage;
 import Model.Option;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
@@ -37,9 +38,10 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception {
         initialize();
         printData();
-        Parent root = FXMLLoader.load(getClass().getResource("View/MainPage.fxml"));
+        //Parent root = FXMLLoader.load(getClass().getResource("View/MainPage.fxml"));
+        MainPage mainPage = new MainPage(categories);
         primaryStage.setTitle("Hello World");
-        primaryStage.setScene(new Scene(root, 1920, 1080));
+        primaryStage.setScene(new Scene(mainPage, 1920, 1080));
         primaryStage.show();
     }
 

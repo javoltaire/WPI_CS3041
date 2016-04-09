@@ -1,5 +1,6 @@
 package Controller.ContentPages;
 
+import Controller.CustomControls.CategoryListCell;
 import Model.Category;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.ListProperty;
@@ -11,10 +12,11 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
-import javafx.scene.layout.Border;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
+import javafx.util.Callback;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -27,7 +29,7 @@ public class CategoriesView extends StackPane {
     //region FXML variables
     @FXML private Label emptyListLabel;
     @FXML private BorderPane contentPane;
-    @FXML private ListView categoriesListView;
+    @FXML private ListView<Category> categoriesListView;
     //endregion
 
     //region Variables and properties
@@ -39,6 +41,7 @@ public class CategoriesView extends StackPane {
     //region Constructor
     public CategoriesView (){
         loadFXMLFile();
+        customizeControls();
         setListeners();
 
         Category cat = new Category("SomeCategory");
@@ -78,6 +81,15 @@ public class CategoriesView extends StackPane {
         catch(IOException excpt){
             throw new RuntimeException(excpt);
         }
+    }
+
+    private void customizeControls(){
+        categoriesListView.setCellFactory(new Callback<ListView<Category>, ListCell<Category>>() {
+            @Override
+            public ListCell call(ListView<Category> param) {
+                return new CategoryListCell();
+            }
+        });
     }
 
     private void bind(){
