@@ -26,7 +26,7 @@ public class Category {
     /**
      * Observable list to hold the commands that are part of this category
      */
-    private ObservableList<Command> commands = FXCollections.emptyObservableList();
+    private ObservableList<Command> commands = FXCollections.observableArrayList();
     //endregion
 
     //region Constructors
@@ -78,6 +78,24 @@ public class Category {
     }
     //endregion
 
+    //endregion
+
+    //region Methods
+
+    /**
+     * Creates a formatted String with all the data in this class including all the commands
+     * @return The formatted String with all data in this class.
+     */
+    public String toPrintableString(){
+        StringBuilder result = new StringBuilder();
+
+        result.append("Category: " + this.getName() + "\n");
+        for(Command command : this.commands){
+            result.append(command.toPrintableString());
+        }
+
+        return result.toString();
+    }
     //endregion
 
 }

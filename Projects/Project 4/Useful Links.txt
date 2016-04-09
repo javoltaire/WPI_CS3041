@@ -3,3 +3,5 @@ How to read from an xml file: http://www.mkyong.com/java/how-to-read-xml-file-in
 Lis of Commands: http://www.tutorialspoint.com/unix/unix-useful-commands.htm
                  https://en.wikipedia.org/wiki/List_of_Unix_commands
                  https://www.freebsd.org/cgi/man.cgi
+Flat colors: https://flatuicolors.com/
+             http://flatcolors.net/

@@ -1,6 +1,30 @@
-<?import javafx.scene.layout.GridPane?>
+<?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<GridPane fx:controller="Controller.MainPageController"
-          xmlns:fx="http://javafx.com/fxml" alignment="center" hgap="10" vgap="10">
-</GridPane>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import Controller.SettingsPagesController.SettingsPage?>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.MainPageController">
+    <children>
+        <BorderPane prefHeight="45.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <left>
+                <Button mnemonicParsing="false" prefHeight="45.0" prefWidth="45.0" text="Back" BorderPane.alignment="CENTER" />
+            </left>
+            <center>
+                <HBox alignment="CENTER">
+                    <TextField prefHeight="35" prefWidth="250.0" promptText="Search" />
+                    <Button prefHeight="35.0" prefWidth="35.0" text="Q"/>
+                </HBox>
+            </center>
+            <right>
+                <ToggleButton fx:id="settingsToggleButton" mnemonicParsing="false" prefHeight="45.0" prefWidth="45.0" text="Settings" BorderPane.alignment="CENTER" />
+            </right>
+        </BorderPane>
+        <StackPane fx:id="ContentRoot" alignment="CENTER_RIGHT" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="45.0">
+            <children>
+                <AnchorPane fx:id="mainContentRootPane" prefWidth="Infinity" prefHeight="Infinity"/>
+                <!--<AnchorPane fx:id="settingsRootPane" prefWidth="300.0" minWidth="0.0"  maxWidth="300.0"/>-->
+                <SettingsPage> </SettingsPage>
+            </children>
+        </StackPane>
+    </children>
+</AnchorPane>

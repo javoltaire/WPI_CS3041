@@ -1,57 +1,36 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<Categories>
-  <Recent id="99e09d67-db92-401f-b12b-7ef4e166824c">
-    <id>e720bcc6-9258-42f6-8d6e-9de65360d508</id>
-  </Recent>
-  <FileSystem id="43125e9f-ee88-40ef-929b-77e9d333d93a">
-    <ls id="e720bcc6-9258-42f6-8d6e-9de65360d508">
-      <Description>list directory contents</Description>
-      <Details>For each operand that names a file of a type other than directory, ls      displays its name as well as any requested, associated information.  For     each operand that names a file of type directory, ls displays the names     of files contained within that directory, as well as any requested, asso     ciated information.     If no operands are given, the contents of the current directory are dis-     played.  If more than one operand is given, non-directory operands are     displayed first; directory and non-directory operands are sorted sepa-     rately and in lexicographical order.</Details>
-      <Example/>
-      <Source>https://www.freebsd.org/cgi/man.cgi?query=ls&amp;apropos=0&amp;sektion=0&amp;manpath=FreeBSD+10.2-RELEASE&amp;arch=default&amp;format=html</Source>
-    </ls>
-    <cp id="a966c651-0afe-4f47-9011-2da0dcf85df7">
-      <Description>copy files</Description>
-      <Details/>
-      <Example/>
-      <Source/>
-    </cp>
-    <touch id="e7a3e688-e334-4614-9bdf-22ab893498a5">
-      <Description>change file access and modification times</Description>
-      <Details/>
-      <Example/>
-      <Source/>
-    </touch>
-  </FileSystem>
-  <Compressing id="e2c66ee7-cf17-4a9a-a5c7-3f6da506eda7">
-    <compress id="cb97990e-f666-447f-a301-ef0c34196a38">
-      <Description>compress data</Description>
-      <Details/>
-      <Example/>
-      <Source/>
-    </compress>
-    <uncompress id="02bc00ef-e349-4ef2-a7ba-13ff20eb67a8">
-      <Description>expand data</Description>
-      <Details/>
-      <Example/>
-      <Source/>
-    </uncompress>
-  </Compressing>
-  <ProcessManagement id="785a6094-d07b-45ed-a2ae-6c76f7669f29">
-    <kill id="1866dff2-689a-4b80-aab9-6523f6c7851d">
-      <Description>terminate or signal a process</Description>
-      <Details/>
-      <Example/>
-      <Source/>
-    </kill>
-  </ProcessManagement>
-  <Network id="cea03198-dc57-4663-b774-5f406ad4db9b">
-    <rcp id="d7bd5001-bb5f-4088-9069-e6bb466c967c">
-      <Description>remote file copy</Description>
-      <Details/>
-      <Example/>
-      <Source/>
-    </rcp>
-  </Network>
-  <Custom id="b042ea4f-e912-4e64-b443-e04efeac3da6"/>
-</Categories>
+<categories>
+    <fileanddirectory>
+        <ls recentlyused="true">
+            <description>List directory contents.</description>
+            <details>For each operand that names a file	of a type other	than directory,	ls displays its name as well as any requested, associated information. For each operand that names a file of type directory, ls displays the names of files contained within that directory, as well as any requested, associated information.
+                If	no operands are	given, the contents of the current directory are displayed. If more than one operand is given, non-directory operands are displayed first; directory and non-directory operands are sorted separately and in lexicographical order.</details>
+            <options>
+                <A>Include directory entries whose names begin with a dot (`.') except for . and ... Automatically set for the super-user unless -I is specified.</A>
+                <B>Force printing of non-printable characters (as defined by ctype(3) and current locale settings) in file names as \xxx, where xxx is the numeric value of the character in octal.</B>
+                <C>Force multi-column output; this is the default when output is to a terminal.</C>
+                <D>When printing in the long (-l) format, use format to format the date and time output. The argument format is a string used by strftime(3). Depending on the choice of format string, this may result in a different number of columns in the output. This option overrides the -T option.</D>
+            </options>
+            <format>ls	[-option] [-D format] [file ...]</format>
+            <example>ls -l or ls -lt /var/log</example>
+            <sourcelink><![CDATA[https://www.freebsd.org/cgi/man.cgi?query=ls&apropos=0&sektion=0&manpath=FreeBSD+10.2-RELEASE&arch=default&format=html]]></sourcelink>
+        </ls>
+    </fileanddirectory>
+    <network>
+
+    </network>
+    <processmanagement>
+        <kill recentlyused="false">
+            <description>Terminate or signal a process.</description>
+            <details>The kill utility sends a signal to	the processes specified	by the pid operands.
+                Only the super-user may send signals to other users' processes.</details>
+            <options>
+                <s>A symbolic signal name specifying the signal to be sent instead of the default TERM.</s>
+                <l>If no operand is given, list the signal names; otherwise, write the signal name corresponding to exit_status.</l>
+            </options>
+            <format>kill [-s signal_name] pid ...</format>
+            <example>kill 142 157</example>
+            <sourcelink><![CDATA[https://www.freebsd.org/cgi/man.cgi?query=kill&apropos=0&sektion=0&manpath=FreeBSD+10.2-RELEASE&arch=default&format=html]]></sourcelink>
+        </kill>
+    </processmanagement>
+</categories>

@@ -2,7 +2,11 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
+import Model.Option;
 import javafx.application.Application;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -10,14 +14,12 @@ import javafx.stage.Stage;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.transform.*;
-import javax.xml.transform.dom.DOMSource;
-import javax.xml.transform.stream.StreamResult;
 import Model.Category;
 import Model.Command;
 import Model.Enums.CATEGORIES;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
+import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 
@@ -28,20 +30,120 @@ import org.xml.sax.SAXException;
  */
 public class Main extends Application {
 
-    private List<Category> categories = new ArrayList<>();
+    private ObservableList<Category> categories = FXCollections.observableArrayList();
+    private Category recent = new Category(CATEGORIES.RECENT.getFormalName());
 
     @Override
     public void start(Stage primaryStage) throws Exception {
+        initialize();
+        printData();
         Parent root = FXMLLoader.load(getClass().getResource("View/MainPage.fxml"));
         primaryStage.setTitle("Hello World");
-        primaryStage.setScene(new Scene(root, 300, 275));
+        primaryStage.setScene(new Scene(root, 1920, 1080));
         primaryStage.show();
     }
 
 
     public static void main(String[] args) {
         launch(args);
+    }
 
+    private void readData(String filePath){
+        try{
+            File file = new File(filePath);                 // Create a file object with the given path
+
+            // Creating a document to read the data;
+            DocumentBuilder documentBuilder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
+            Document document = documentBuilder.parse(file);
+
+            // Get the root element;
+            Element rootElement = document.getDocumentElement();
+
+            // Reading the document
+            if (rootElement.hasChildNodes()){                                                                   // If the root element has children
+                NodeList catNodeList = rootElement.getChildNodes();                                                 // Get the list of child Nodes (Should be a list of categories)
+                for(int cti = 0; cti< catNodeList.getLength(); cti++){                                                    // Loop through the list of Node Elements
+                    org.w3c.dom.Node currentCatNode = catNodeList.item(cti);                                       // Get the current Node
+                    if(currentCatNode.getNodeType() == org.w3c.dom.Node.ELEMENT_NODE){                           // If the node is an Element
+                        Category currentCategory = new Category(getFormalName(currentCatNode.getNodeName()));        // Create a new Category type
+                        if(currentCatNode.hasChildNodes()){                                                          // if the current category node has child nodes
+                            NodeList commandNodeList = currentCatNode.getChildNodes();                                   // Get a list of the command nodes
+                            for(int cmi = 0; cmi < commandNodeList.getLength(); cmi++){                                               // Loop through the list of command nodes
+                                org.w3c.dom.Node currentCommandNode = commandNodeList.item(cmi);                               // Get the current command node element
+                                if(currentCommandNode.getNodeType() == org.w3c.dom.Node.ELEMENT_NODE){                       // Check if the node is an actual element
+                                    Element currentCommandElement = (Element)currentCommandNode;
+                                    String commandName = currentCommandElement.getTagName();
+                                    String commandDescription = currentCommandElement.getElementsByTagName("description").item(0).getTextContent();
+                                    String commandDetails = currentCommandElement.getElementsByTagName("details").item(0).getTextContent();
+                                    String commandFormat = currentCommandElement.getElementsByTagName("format").item(0).getTextContent();
+                                    String commandExample = currentCommandElement.getElementsByTagName("example").item(0).getTextContent();
+                                    String commandSourceLink = currentCommandElement.getElementsByTagName("sourcelink").item(0).getTextContent();
+                                    boolean commandIsRecentlyUsed = Boolean.parseBoolean(currentCommandElement.getAttribute("recentlyused"));
+                                    Command currentCommand = new Command(commandName, commandDescription, commandDetails,commandFormat, commandExample,commandSourceLink,commandIsRecentlyUsed);
+
+                                    org.w3c.dom.Node commandOptionNode = currentCommandElement.getElementsByTagName("options").item(0);
+                                    if (commandOptionNode.hasChildNodes()){
+                                        NodeList commandOptions = commandOptionNode.getChildNodes();
+                                        for (int cmoi = 0; cmoi < commandOptions.getLength(); cmoi++){
+                                            org.w3c.dom.Node currentOptionNode = commandOptions.item(cmoi);
+                                            if(currentOptionNode.getNodeType() == org.w3c.dom.Node.ELEMENT_NODE){
+                                                String optionName = currentOptionNode.getNodeName();
+                                                String optionDescription = currentOptionNode.getTextContent();
+                                                Option currentOption = new Option(optionName, optionDescription);
+                                                currentCommand.getOptions().add(currentOption);
+                                            }
+                                        }
+                                    }
+                                    currentCategory.getCommands().add(currentCommand);
+                                    if(commandIsRecentlyUsed){
+                                        recent.getCommands().add(currentCommand);
+                                    }
+                                }
+                            }
+                        }
+                        categories.add(currentCategory);                                                                    // Add the category to the list of categories
+                    }
+                }
+            }
+        } catch (ParserConfigurationException e) {
+            e.printStackTrace();
+        } catch (SAXException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private String getFormalName(String name){
+        String formalName = "Category name Enum bot found";
+        if (CATEGORIES.RECENT.isEqualTo(name)){
+            formalName = CATEGORIES.RECENT.getFormalName();
+        }
+        else if (CATEGORIES.FILEANDFOLDER.isEqualTo(name)){
+            formalName = CATEGORIES.FILEANDFOLDER.getFormalName();
+        }
+        else if (CATEGORIES.PROCESSMANAGEMENT.isEqualTo(name)){
+            formalName = CATEGORIES.PROCESSMANAGEMENT.getFormalName();
+        }
+        else if (CATEGORIES.NETWORK.isEqualTo(name)){
+            formalName = CATEGORIES.NETWORK.getFormalName();
+        }
+        else if (CATEGORIES.CUSTOM.isEqualTo(name)){
+            formalName = CATEGORIES.CUSTOM.getFormalName();
+        }
+        return formalName;
+    }
+
+    private void initialize(){
+        categories.add(recent);
+        readData("src/Resources/CommandsList.xml");
+    }
+
+    private void printData(){
+        System.out.println("All Categories");
+        for(Category cat : categories){
+            System.out.println("\t" + cat.toPrintableString());
+        }
     }
 
  //region to be fixed

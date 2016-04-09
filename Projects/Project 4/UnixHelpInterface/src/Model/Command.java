@@ -37,7 +37,7 @@ public class Command {
     /**
      * List to hold all the Options of the command
      */
-    private ObservableList<Option> options = FXCollections.emptyObservableList();
+    private ObservableList<Option> options = FXCollections.observableArrayList();
 
     /**
      * String property to hold the format of the command
@@ -53,7 +53,7 @@ public class Command {
     /**
      * A list of other relevant commands related
      */
-    private ObservableList<Command> seeAlso = FXCollections.emptyObservableList();
+    private ObservableList<Command> seeAlso = FXCollections.observableArrayList();
 
     /**
      * String property to hold the sourceLink.
@@ -204,6 +204,34 @@ public class Command {
         isRecentlyUsed = recentlyUsed;
     }
     //endregion
+    //endregion
+
+    //region Methods
+
+    /**
+     * Creates a formatted String with the data in this class
+     * @return The formatted string to be printed out
+     */
+    public String toPrintableString(){
+        StringBuilder result = new StringBuilder();
+
+        result.append("\t\tCommand: " + this.getName() + "\n");
+        result.append("\t\tDescription: " + this.getDescription() + "\n");
+        result.append("\t\tDetails: " + this.getDetails() + "\n");
+        for(Option option : this.options){
+            result.append("\t\t\t" + option.toPrintableString());
+        }
+        result.append("\t\tFormat: " + this.getFormat() + "\n");
+        result.append("\t\tExamples: " + this.getExample() + "\n");
+        for(Command command : this.seeAlso){
+            result.append("\t\tSee Also: " + command.getName() + "\n");
+        }
+        result.append("\t\tSource Link: " + this.getSourceLink() + "\n");
+        result.append("\t\tRecently Used?: " + this.isRecentlyUsed + "\n");
+
+        return result.toString();
+
+    }
     //endregion
 
 

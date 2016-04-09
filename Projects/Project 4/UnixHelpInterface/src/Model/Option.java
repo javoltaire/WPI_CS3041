@@ -91,5 +91,16 @@ public class Option {
     //endregion
     //endregion
 
+    //Region Methods
+
+    /**
+     * Gets this.name + " - " + this.description
+     * @return The name of the option separated by a -
+     */
+    public String toPrintableString(){
+        return this.getName() + " - " + this.getDescription() + "\n";
+    }
+    //endregion
+
 
 }

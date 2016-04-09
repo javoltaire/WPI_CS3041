@@ -5,37 +5,50 @@ package Model.Enums;
  */
 public enum CATEGORIES {
     //region Enum Declarations
-    RECENT("Recent"),
-    FILEANDFOLDER("File System"),
-    COMPRESSING("Compressing"),
-    PROCESSMANAGEMENT("Process Management"),
-    NETWORK("Network"),
-    CUSTOM("Custom");
+    RECENT("Recent", "recent"),
+    FILEANDFOLDER("File System", "fileanddirectory"),
+    PROCESSMANAGEMENT("Process Management", "processmanagement"),
+    NETWORK("Network", "network"),
+    CUSTOM("Custom", "custom");
     //endregion
 
     //region variables
-    private final String catName;
+    private final String formalName;
+
+    private final String xmlName;
     //endregion
 
     //region Constructors
 
     /**
      * Inistializes a new Category enum with the given value
-     * @param catName The name of the category
+     * @param formalName The nicely formatted name of the category
+     * @param xmlName The formatted name to be save as an xml tag
      */
-    CATEGORIES(final String catName){
-        this.catName = catName;
+    CATEGORIES(final String formalName, final String xmlName){
+        this.formalName = formalName;
+        this.xmlName = xmlName;
+    }
+    //endregion
+
+    //region Getters
+    public String getFormalName(){
+        return formalName;
+    }
+
+    public String getXmlName(){
+        return xmlName;
     }
     //endregion
 
     //region Methods
-
     /**
-     * Converts this enum class to a string
-     * @return The name of the category
+     * Compares the given string to the xml name or the formal name
+     * @param value The string to compare
+     * @return true if the value mathches the xml name of the formal name, false otherwise
      */
-    @Override public String toString(){
-        return catName;
+    public boolean isEqualTo(String value){
+        return formalName.equals(value) || xmlName.equals(value);
     }
     //endregion
 
