@@ -4,6 +4,7 @@ import Controller.CustomControls.CategoryListCell;
 import Controller.CustomControls.CommandListCell;
 import Model.Category;
 import Model.Command;
+import Model.Enums.CATEGORIES;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.ListProperty;
 import javafx.beans.property.SimpleBooleanProperty;
@@ -16,6 +17,7 @@ import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
@@ -39,6 +41,7 @@ public class CategoriesView extends AnchorPane {
     @FXML private ListView<Command> commandsListView;
     @FXML private Label noCatSelectedLabel;
     @FXML private Label emptyCategoryLabel;
+    @FXML private Button addNewButton;
     //endregion
 
     //region Variables and properties
@@ -49,6 +52,8 @@ public class CategoriesView extends AnchorPane {
     private BooleanProperty noCatSelected = new SimpleBooleanProperty(this, "noCatSelected", true);
 
     private BooleanProperty isCommandsListEmpty = new SimpleBooleanProperty(this, "isCommandsListEmpty", false);
+
+    private BooleanProperty canAddNew = new SimpleBooleanProperty(this, "canAddNew", false);
 
     //endregion
 
@@ -124,6 +129,7 @@ public class CategoriesView extends AnchorPane {
         commandsListView.visibleProperty().bind(noCatSelected.not().and(isCommandsListEmpty.not()));
         noCatSelectedLabel.visibleProperty().bind(noCatSelected);
         emptyCategoryLabel.visibleProperty().bind(isCommandsListEmpty);
+        addNewButton.visibleProperty().bind(canAddNew);
     }
 
     private void setListeners(){
@@ -139,6 +145,11 @@ public class CategoriesView extends AnchorPane {
 
         categoriesListView.getSelectionModel().selectedItemProperty().addListener((v, oldValue, newValue) -> {
             if(newValue != null) {
+                if(CATEGORIES.CUSTOM.isEqualTo(newValue.getName()))
+                    canAddNew.setValue(true);
+                else
+                    canAddNew.setValue(false);
+                
                 if (newValue.getCommands().size() > 0) {                                                    // Note: Without this the listview freaks out not sure why
                     commandsListView.setItems(newValue.getCommands());
                     isCommandsListEmpty.set(false);

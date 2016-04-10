@@ -33,6 +33,7 @@ public class Main extends Application {
 
     private ObservableList<Category> categories = FXCollections.observableArrayList();
     private Category recent = new Category(CATEGORIES.RECENT.getFormalName());
+    private Category custom = new Category(CATEGORIES.CUSTOM.getFormalName());
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -139,6 +140,7 @@ public class Main extends Application {
     private void initialize(){
         categories.add(recent);
         readData("src/Resources/CommandsList.xml");
+        categories.add(custom);
     }
 
     private void printData(){
