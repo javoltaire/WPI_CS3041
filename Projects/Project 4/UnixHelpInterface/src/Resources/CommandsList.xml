@@ -15,6 +15,21 @@
             <example>ls -l or ls -lt /var/log</example>
             <sourcelink><![CDATA[https://www.freebsd.org/cgi/man.cgi?query=ls&apropos=0&sektion=0&manpath=FreeBSD+10.2-RELEASE&arch=default&format=html]]></sourcelink>
         </ls>
+        <cp>
+            <description>Copy files</description>
+            <details>In	the first synopsis form, the cp	utility	copies the contents of the source_file to the target_file. In the second synopsis form, the contents of each named source_file is copied to the destination target_directory. The names of the files themselves are not changed. If cp detects an attempt to copy a file to itself, the copy will fail.</details>
+            <options>
+                <H>If the -R option is specified, symbolic links on the	command	line are followed. (Symbolic links encountered in the tree traversal are not followed.).</H>
+                <L>If the -R option is specified, all symbolic links are followed.</L>
+                <P>If the -R option is specified, no symbolic links are	followed. This is the default.</P>
+                <R>If source_file designates a directory, cp copies the	directory and the entire subtree connected at that point. If the source_file ends in a /, the contents of the directory are copied rather than the directory itself. This option also causes symbolic links to be copied, rather than indirected through, and for cp to create special files rather than copying them as normal files. Created directories have the same mode as the corresponding source directory, unmodified by the process' umask.
+                    Note that cp copies hard linked files as separate files. If you need to preserve hard links, consider using tar(1), cpio(1), or pax(1) instead.</R>
+                <a>Archive mode. Same as -RpP</a>
+            </options>
+            <format>cp	[-R [-H	| -L | -P]] [-f	| -i | -n] [-alpsvx] source_file target_file</format>
+            <example>$ cp	foo bar</example>
+            <sourcelink><![CDATA[https://www.freebsd.org/cgi/man.cgi?query=cp&apropos=0&sektion=1&manpath=FreeBSD+10.3-RELEASE&arch=default&format=html#end]]></sourcelink>
+        </cp>
     </fileanddirectory>
     <network>
 

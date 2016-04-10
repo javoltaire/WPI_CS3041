@@ -24,6 +24,10 @@ public class CommandListCell extends ListCell<Command> {
     @FXML private Button deleteButton;
     //endregion
 
+    //region Variables
+    private Command command = null;
+    //endregion
+
     //region Constructors
     public CommandListCell(){
         loadFXMLFile();
@@ -39,12 +43,17 @@ public class CommandListCell extends ListCell<Command> {
     @FXML private void onMouseExited(){
         this.deleteButton.setVisible(false);
     }
+
+    @FXML private void onMouseClicked(){
+        if(command != null)
+            //TODO Implement navigation to proper page.
+            System.out.println(command.toPrintableString());
+    }
     //endregion
 
     //region Helper Methods
     private void loadFXMLFile(){
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../../View/CustomControls/CommandListCell.fxml"));
-//        loader.setRoot(this);
         loader.setController(this);
         try{
             loader.load();
@@ -60,14 +69,16 @@ public class CommandListCell extends ListCell<Command> {
         super.updateItem(command,empty);
         if(command != null)
         {
+            this.command = command;
             nameLabel.setText(command.getName());
             descriptionLabel.setText(command.getDescription());
             setGraphic(root);
-
         }
     }
 
     private void setEventHandlers(){
+        this.setOnMouseClicked(e -> onMouseClicked());
+
         this.setOnMouseEntered(e -> onMouseEntered());
 
         this.setOnMouseExited(e -> onMouseExited());

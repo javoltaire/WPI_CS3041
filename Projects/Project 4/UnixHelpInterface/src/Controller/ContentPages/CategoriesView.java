@@ -24,6 +24,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.GridPane;
 import javafx.util.Callback;
 
 import java.io.IOException;
@@ -38,7 +39,8 @@ public class CategoriesView extends AnchorPane {
     @FXML private Label emptyListLabel;
     @FXML private BorderPane contentPane;
     @FXML private ListView<Category> categoriesListView;
-    @FXML private ListView<Command> commandsListView;
+    @FXML private GridPane categoryDetailsContainer;
+   private ListView<Command> commandsListView;
     @FXML private Label noCatSelectedLabel;
     @FXML private Label emptyCategoryLabel;
     @FXML private Button addNewButton;
@@ -114,19 +116,18 @@ public class CategoriesView extends AnchorPane {
             }
         });
 
-        commandsListView.setCellFactory(new Callback<ListView<Command>, ListCell<Command>>() {
-            @Override
-            public ListCell call(ListView<Command> param) {
-                return new CommandListCell();
-            }
-        });
+//        commandsListView.setCellFactory(new Callback<ListView<Command>, ListCell<Command>>() {
+//            @Override
+//            public ListCell call(ListView<Command> param) {
+//                return new CommandListCell();
+//            }
+//        });
     }
 
     private void bind(){
         emptyListLabel.visibleProperty().bind(isListEmpty);
         contentPane.visibleProperty().bind(isListEmpty.not());
         categoriesListView.itemsProperty().bind(categories);
-        commandsListView.visibleProperty().bind(noCatSelected.not().and(isCommandsListEmpty.not()));
         noCatSelectedLabel.visibleProperty().bind(noCatSelected);
         emptyCategoryLabel.visibleProperty().bind(isCommandsListEmpty);
         addNewButton.visibleProperty().bind(canAddNew);
@@ -149,9 +150,24 @@ public class CategoriesView extends AnchorPane {
                     canAddNew.setValue(true);
                 else
                     canAddNew.setValue(false);
-                
-                if (newValue.getCommands().size() > 0) {                                                    // Note: Without this the listview freaks out not sure why
-                    commandsListView.setItems(newValue.getCommands());
+
+                if (newValue.getCommands().size() > 0) {
+                    if(commandsListView != null) {
+                        categoryDetailsContainer.getChildren().remove(commandsListView);
+                        commandsListView.visibleProperty().unbind();
+                    }
+                    commandsListView = new ListView<Command>(newValue.getCommands());
+                    commandsListView.setCellFactory(new Callback<ListView<Command>, ListCell<Command>>() {
+                        @Override
+                        public ListCell call(ListView<Command> param) {
+                            return new CommandListCell();
+                        }
+                    });
+                    commandsListView.visibleProperty().bind(noCatSelected.not().and(isCommandsListEmpty.not()));
+                    categoryDetailsContainer.getChildren().add(commandsListView);
+
+
+
                     isCommandsListEmpty.set(false);
                 }
                 else{
