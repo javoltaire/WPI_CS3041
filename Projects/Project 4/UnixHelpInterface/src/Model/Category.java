@@ -24,9 +24,9 @@ public class Category {
     private StringProperty name = new SimpleStringProperty(this, "name", "");
 
     /**
-     * Observable list to hold the commands that are part of this category
+     * list property to hold the commands that are part of this category
      */
-    private ObservableList<Command> commands = FXCollections.observableArrayList();
+    private ListProperty<Command> commands = new SimpleListProperty<>(this, "commands", FXCollections.observableArrayList());
     //endregion
 
     //region Constructors
@@ -73,7 +73,7 @@ public class Category {
      * Gets the list of commands in this category
      * @return The list of commands in this category
      */
-    public List<Command> getCommands() {
+    public ListProperty<Command> getCommands() {
         return commands;
     }
     //endregion

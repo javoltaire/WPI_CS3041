@@ -1,8 +1,13 @@
 package Controller.CustomControls;
+import Model.Category;
+import Model.Command;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.Labeled;
+import javafx.scene.control.ListCell;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 
@@ -11,13 +16,16 @@ import java.io.IOException;
 /**
  * Created by jules on 4/7/2016.
  */
-public class CommandControl extends GridPane {
+public class CommandListCell extends ListCell<Command> {
     //region FXML Variables
+    @FXML private GridPane root;
+    @FXML private Label nameLabel;
+    @FXML private Label descriptionLabel;
     @FXML private Button deleteButton;
     //endregion
 
     //region Constructors
-    public CommandControl(){
+    public CommandListCell(){
         loadFXMLFile();
         setEventHandlers();
     }
@@ -35,8 +43,8 @@ public class CommandControl extends GridPane {
 
     //region Helper Methods
     private void loadFXMLFile(){
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../../View/CustomControls/CommandControl.fxml"));
-        loader.setRoot(this);
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../../View/CustomControls/CommandListCell.fxml"));
+//        loader.setRoot(this);
         loader.setController(this);
         try{
             loader.load();
@@ -46,20 +54,23 @@ public class CommandControl extends GridPane {
         }
     }
 
-    private void setEventHandlers(){
-        this.setOnMouseEntered(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                deleteButton.setVisible(true);
-            }
-        });
+    @Override
+    public void updateItem(Command command, boolean empty)
+    {
+        super.updateItem(command,empty);
+        if(command != null)
+        {
+            nameLabel.setText(command.getName());
+            descriptionLabel.setText(command.getDescription());
+            setGraphic(root);
 
-        this.setOnMouseExited(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                deleteButton.setVisible(false);
-            }
-        });
+        }
+    }
+
+    private void setEventHandlers(){
+        this.setOnMouseEntered(e -> onMouseEntered());
+
+        this.setOnMouseExited(e -> onMouseExited());
     }
     //endregion
 

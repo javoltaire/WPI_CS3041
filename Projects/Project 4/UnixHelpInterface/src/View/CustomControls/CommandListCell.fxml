@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<GridPane fx:id="root" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+  <columnConstraints>
+    <ColumnConstraints hgrow="SOMETIMES" percentWidth="15.0" />
+      <ColumnConstraints hgrow="SOMETIMES" percentWidth="80.0" />
+    <ColumnConstraints hgrow="SOMETIMES" minWidth="30.0" percentWidth="5.0" />
+  </columnConstraints>
+  <rowConstraints>
+    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+  </rowConstraints>
+   <children>
+      <Label fx:id="nameLabel" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="0.0" onMouseEntered="#onMouseEntered" onMouseExited="#onMouseExited" text="CommandName" />
+      <Label fx:id="descriptionLabel" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="0.0" onMouseEntered="#onMouseEntered" onMouseExited="#onMouseExited" text="Description" GridPane.columnIndex="1" />
+      <Button fx:id="deleteButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="0.0" mnemonicParsing="false" onMouseEntered="#onMouseEntered" onMouseExited="#onMouseExited" text="X" visible="false" GridPane.columnIndex="2" />
+   </children>
+</GridPane>

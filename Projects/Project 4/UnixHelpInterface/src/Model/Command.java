@@ -1,7 +1,11 @@
 package Model;
 
+import javafx.beans.InvalidationListener;
 import javafx.beans.property.*;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 
 import java.util.*;
@@ -37,7 +41,7 @@ public class Command {
     /**
      * List to hold all the Options of the command
      */
-    private ObservableList<Option> options = FXCollections.observableArrayList();
+    private ListProperty<Option> options = new SimpleListProperty<>(this, "options", FXCollections.observableArrayList());
 
     /**
      * String property to hold the format of the command

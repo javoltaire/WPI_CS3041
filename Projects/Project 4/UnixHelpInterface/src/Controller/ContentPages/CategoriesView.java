@@ -1,22 +1,27 @@
 package Controller.ContentPages;
 
 import Controller.CustomControls.CategoryListCell;
+import Controller.CustomControls.CommandListCell;
 import Model.Category;
+import Model.Command;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.ListProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleListProperty;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.StackPane;
 import javafx.util.Callback;
 
 import java.io.IOException;
@@ -31,12 +36,20 @@ public class CategoriesView extends AnchorPane {
     @FXML private Label emptyListLabel;
     @FXML private BorderPane contentPane;
     @FXML private ListView<Category> categoriesListView;
+    @FXML private ListView<Command> commandsListView;
+    @FXML private Label noCatSelectedLabel;
+    @FXML private Label emptyCategoryLabel;
     //endregion
 
     //region Variables and properties
     private ListProperty<Category> categories = new SimpleListProperty<>();
 
     private BooleanProperty isListEmpty = new SimpleBooleanProperty(this, "isListEmpty", true);
+
+    private BooleanProperty noCatSelected = new SimpleBooleanProperty(this, "noCatSelected", true);
+
+    private BooleanProperty isCommandsListEmpty = new SimpleBooleanProperty(this, "isCommandsListEmpty", false);
+
     //endregion
 
     //region Constructor
@@ -66,6 +79,10 @@ public class CategoriesView extends AnchorPane {
         isListEmpty.set(newValue);
     }
 
+    public void setIsCommandsListEmpty(boolean isCommandsListEmpty) {
+        this.isCommandsListEmpty.set(isCommandsListEmpty);
+    }
+
     //endregion
 
     //region Helper Methods
@@ -91,12 +108,22 @@ public class CategoriesView extends AnchorPane {
                 return new CategoryListCell();
             }
         });
+
+        commandsListView.setCellFactory(new Callback<ListView<Command>, ListCell<Command>>() {
+            @Override
+            public ListCell call(ListView<Command> param) {
+                return new CommandListCell();
+            }
+        });
     }
 
     private void bind(){
         emptyListLabel.visibleProperty().bind(isListEmpty);
         contentPane.visibleProperty().bind(isListEmpty.not());
         categoriesListView.itemsProperty().bind(categories);
+        commandsListView.visibleProperty().bind(noCatSelected.not().and(isCommandsListEmpty.not()));
+        noCatSelectedLabel.visibleProperty().bind(noCatSelected);
+        emptyCategoryLabel.visibleProperty().bind(isCommandsListEmpty);
     }
 
     private void setListeners(){
@@ -109,10 +136,28 @@ public class CategoriesView extends AnchorPane {
                     setIsListEmpty(true);
             }
         });
+
+        categoriesListView.getSelectionModel().selectedItemProperty().addListener((v, oldValue, newValue) -> {
+            if(newValue != null) {
+                if (newValue.getCommands().size() > 0) {                                                    // Note: Without this the listview freaks out not sure why
+                    commandsListView.setItems(newValue.getCommands());
+                    isCommandsListEmpty.set(false);
+                }
+                else{
+                    isCommandsListEmpty.setValue(true);
+                }
+                noCatSelected.set(false);
+            }
+            else{
+                noCatSelected.set(true);
+            }
+
+        });
     }
 
     public void setCategoriesList(ObservableList<Category> categories){
         this.categories.set(categories);
+
     }
     //endregion
 
