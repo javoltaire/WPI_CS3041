@@ -1,27 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<fx:root type="StackPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
-    <Label fx:id="emptyListLabel" text="List of Categories Empty"/>
-    <BorderPane fx:id="contentPane">
+<fx:root type="AnchorPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <Label fx:id="emptyListLabel" text="No categories found." textAlignment="CENTER" AnchorPane.leftAnchor="0" AnchorPane.topAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.bottomAnchor="0"/>
+    <BorderPane fx:id="contentPane" AnchorPane.leftAnchor="0" AnchorPane.topAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.bottomAnchor="0">
         <left>
             <ListView fx:id="categoriesListView" prefWidth="400.0" BorderPane.alignment="CENTER" />
         </left>
         <center>
-            <GridPane alignment="CENTER" BorderPane.alignment="CENTER">
-                <columnConstraints>
-                    <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" percentWidth="80.0" prefWidth="100.0" />
-                </columnConstraints>
-                <rowConstraints>
-                    <RowConstraints minHeight="10.0" percentHeight="95.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
-                </rowConstraints>
+            <StackPane prefHeight="150.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                 <children>
-                    <ListView  />
+                    <GridPane alignment="CENTER">
+                        <columnConstraints>
+                            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" percentWidth="80.0" prefWidth="100.0" />
+                        </columnConstraints>
+                        <rowConstraints>
+                            <RowConstraints minHeight="10.0" percentHeight="95.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
+                        </rowConstraints>
+                        <children>
+                            <ListView />
+                        </children>
+                    </GridPane>
+                    <Button alignment="CENTER" mnemonicParsing="false" text="+" prefHeight="40" prefWidth="40" StackPane.alignment="BOTTOM_RIGHT">
+                        <StackPane.margin>
+                            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                        </StackPane.margin>
+                    </Button>
                 </children>
-            </GridPane>
+            </StackPane>
         </center>
     </BorderPane>
 </fx:root>

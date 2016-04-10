@@ -14,6 +14,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
 import javafx.util.Callback;
@@ -25,7 +26,7 @@ import java.util.List;
 /**
  * Created by jules on 4/9/2016.
  */
-public class CategoriesView extends StackPane {
+public class CategoriesView extends AnchorPane {
     //region FXML variables
     @FXML private Label emptyListLabel;
     @FXML private BorderPane contentPane;
