@@ -3,6 +3,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import Controller.ControllerSingleton;
 import Controller.MainPage;
 import Model.Option;
 import javafx.application.Application;
@@ -31,7 +32,7 @@ import org.xml.sax.SAXException;
  */
 public class Main extends Application {
 
-    private ObservableList<Category> categories = FXCollections.observableArrayList();
+    public static ObservableList<Category> categories = FXCollections.observableArrayList();
     private Category recent = new Category(CATEGORIES.RECENT.getFormalName());
     private Category custom = new Category(CATEGORIES.CUSTOM.getFormalName());
 
@@ -40,9 +41,10 @@ public class Main extends Application {
         initialize();
         printData();
         //Parent root = FXMLLoader.load(getClass().getResource("View/MainPage.fxml"));
-        MainPage mainPage = new MainPage(categories);
+        //MainPage mainPage = new MainPage(categories);
+        ControllerSingleton.getInstace().getMainPage().setCategoriesList(categories);
         primaryStage.setTitle("Hello World");
-        primaryStage.setScene(new Scene(mainPage, 1920, 1080));
+        primaryStage.setScene(new Scene(ControllerSingleton.getInstace().getMainPage(), 1920, 1080));
         primaryStage.show();
     }
 

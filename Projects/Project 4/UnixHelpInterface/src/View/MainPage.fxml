@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import Controller.SettingsPages.*?>
-<?import Controller.ContentPages.*?>
+<?import Controller.Settings.*?>
+<?import Controller.Content.*?>
 
 <fx:root type="AnchorPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
     <children>
@@ -28,5 +30,13 @@
                 <SettingsPage fx:id="settingsPage" maxWidth="300" style="-fx-background-color: #ecf0f1;" visible="false" />
             </children>
         </StackPane>
+        <GridPane fx:id="dialogRoot" visible="false" alignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <columnConstraints>
+                <ColumnConstraints fillWidth="true" halignment="CENTER" hgrow="SOMETIMES" percentWidth="80.0" />
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints fillHeight="true" vgrow="SOMETIMES" />
+            </rowConstraints>
+        </GridPane>
     </children>
 </fx:root>

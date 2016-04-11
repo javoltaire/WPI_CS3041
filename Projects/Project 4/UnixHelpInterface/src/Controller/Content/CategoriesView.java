@@ -1,7 +1,8 @@
-package Controller.ContentPages;
+package Controller.Content;
 
 import Controller.CustomControls.CategoryListCell;
 import Controller.CustomControls.CommandListCell;
+import Controller.Dialogs.DetailedCommandDialog;
 import Model.Category;
 import Model.Command;
 import Model.Enums.CATEGORIES;
@@ -9,16 +10,12 @@ import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.ListProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleListProperty;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
@@ -32,15 +29,18 @@ import java.util.List;
  * Created by jules on 4/9/2016.
  */
 public class CategoriesView extends AnchorPane {
-    //region FXML variables
+    //region FXML Controls
     @FXML private Label emptyListLabel;
     @FXML private BorderPane contentPane;
     @FXML private ListView<Category> categoriesListView;
     @FXML private GridPane categoryDetailsContainer;
-   private ListView<Command> commandsListView;
     @FXML private Label noCatSelectedLabel;
     @FXML private Label emptyCategoryLabel;
     @FXML private Button addNewButton;
+    //endregion
+
+    //region Other Controls
+    private ListView<Command> commandsListView;
     //endregion
 
     //region Variables and properties
@@ -68,7 +68,7 @@ public class CategoriesView extends AnchorPane {
         setCategoriesList(FXCollections.observableArrayList(list));
         bind();
     }
-    //endregion
+    //endregionss
 
     //region Getters and Setters
     public BooleanProperty isListEmptyProperty(){
@@ -89,12 +89,19 @@ public class CategoriesView extends AnchorPane {
 
     //endregion
 
+    //region FXML Methods
+    @FXML private void onAddNewButtonClick(){
+        DetailedCommandDialog detailedCommandDialog = new DetailedCommandDialog();
+        detailedCommandDialog.showDialog();
+    }
+    //endregion
+
     //region Helper Methods
     /**
      * Loads the view portion(fxml file) for this class
      */
     private void loadFXMLFile(){
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../../View/ContentPages/CategoriesView.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../../View/Contents/CategoriesView.fxml"));
         loader.setRoot(this);
         loader.setController(this);
         try{
@@ -112,13 +119,6 @@ public class CategoriesView extends AnchorPane {
                 return new CategoryListCell();
             }
         });
-
-//        commandsListView.setCellFactory(new Callback<ListView<Command>, ListCell<Command>>() {
-//            @Override
-//            public ListCell call(ListView<Command> param) {
-//                return new CommandListCell();
-//            }
-//        });
     }
 
     private void bind(){

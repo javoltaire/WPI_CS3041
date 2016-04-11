@@ -1,13 +1,17 @@
 package Controller;
 
-import Controller.ContentPages.CategoriesView;
-import Controller.SettingsPages.SettingsPage;
+import Controller.Content.CategoriesView;
+import Controller.Dialogs.Dialog;
+import Controller.Settings.SettingsPage;
 import Model.Category;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Label;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.StackPane;
 
 import java.io.IOException;
 
@@ -15,17 +19,28 @@ import java.io.IOException;
  * Created by jules on 3/31/2016.
  */
 public class MainPage extends AnchorPane {
-    //region FXML variables
+    //region FXML Controls
+    @FXML private GridPane dialogRoot;
     @FXML private ToggleButton settingsToggleButton;
     @FXML private CategoriesView categoriesView;
     @FXML private SettingsPage settingsPage;
-
     //endregion
 
     //region Constructors
     public MainPage(ObservableList<Category> categories){
         loadFXMLFile();
         addListeneers();
+        categoriesView.setCategoriesList(categories);
+    }
+
+    public MainPage(){
+        loadFXMLFile();
+        addListeneers();
+    }
+    //endregion
+
+    //region Getters and Setters
+    public void setCategoriesList(ObservableList<Category> categories){
         categoriesView.setCategoriesList(categories);
     }
     //endregion
@@ -55,8 +70,15 @@ public class MainPage extends AnchorPane {
         });
     }
 
-    private void bindAll(){
+    public void showDialog(Dialog dialog){
+        dialogRoot.getChildren().add(dialog);
+        dialogRoot.setVisible(true);
 
+    }
+
+    public void exitDialog(Dialog dialog){
+        dialogRoot.getChildren().remove(dialog);
+        dialogRoot.setVisible(false);
     }
     //endregion
 }

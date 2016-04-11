@@ -1,4 +1,4 @@
-package Controller.SettingsPages;
+package Controller.Settings;
 
 import javafx.beans.property.*;
 import javafx.fxml.*;
@@ -88,7 +88,7 @@ public class SettingsPage extends VBox{
      * Loads the view portion(fxml file) for this class
      */
     private void loadFXMLFile(){
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../../View/SettingsPages/SettingsPage.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../../View/Settings/SettingsPage.fxml"));
         loader.setRoot(this);
         loader.setController(this);
         try{
