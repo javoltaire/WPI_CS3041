@@ -5,16 +5,26 @@
 <?import java.lang.*?>
 <?import javafx.scene.control.*?>
 
+<fx:root type="AnchorPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+    <Label fx:id="emptyListLabel" alignment="CENTER" text="No Commands found." AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0" />
+    <BorderPane fx:id="contentPane" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0">
+        <left>
+            <ListView fx:id="commandsListView" prefWidth="400.0" BorderPane.alignment="CENTER" />
+        </left>
+        <center>
+            <GridPane fx:id="categoryDetailsContainer" alignment="CENTER">
+                <columnConstraints>
+                    <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" percentWidth="80.0" prefWidth="100.0" />
+                </columnConstraints>
+                <rowConstraints>
+                    <RowConstraints minHeight="10.0" percentHeight="95.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
+                </rowConstraints>
+                <children>
+                    <Label fx:id="noCatSelectedLabel" text="No categories Selected"/>
+                    <Label fx:id="emptyCategoryLabel" visible="false" text="No commands in this category"/>
+                </children>
+            </GridPane>
+        </center>
+    </BorderPane>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
-   <left>
-      <ListView prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
-   </left>
-   <center>
-      <ScrollPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-        <content>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" />
-        </content>
-      </ScrollPane>
-   </center>
-</BorderPane>
+</fx:root>

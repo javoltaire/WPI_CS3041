@@ -24,9 +24,8 @@
                 <ToggleButton fx:id="settingsToggleButton" mnemonicParsing="false" prefHeight="45.0" prefWidth="45.0" text="Settings" BorderPane.alignment="CENTER" />
             </right>
         </BorderPane>
-        <StackPane fx:id="ContentRoot" alignment="CENTER_RIGHT" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="45.0">
+        <StackPane fx:id="contentRoot" alignment="CENTER_RIGHT" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="45.0">
             <children>
-                <CategoriesView fx:id="categoriesView" />
                 <SettingsPage fx:id="settingsPage" maxWidth="300" style="-fx-background-color: #ecf0f1;" visible="false" />
             </children>
         </StackPane>

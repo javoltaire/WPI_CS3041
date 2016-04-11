@@ -42,7 +42,7 @@ public class Main extends Application {
         printData();
         //Parent root = FXMLLoader.load(getClass().getResource("View/MainPage.fxml"));
         //MainPage mainPage = new MainPage(categories);
-        ControllerSingleton.getInstace().getMainPage().setCategoriesList(categories);
+        ControllerSingleton.getInstace().getMainPage().navigateToCategoriesView(categories);
         primaryStage.setTitle("Hello World");
         primaryStage.setScene(new Scene(ControllerSingleton.getInstace().getMainPage(), 1920, 1080));
         primaryStage.show();

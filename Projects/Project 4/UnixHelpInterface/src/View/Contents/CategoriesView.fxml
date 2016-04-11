@@ -6,13 +6,13 @@
 <?import javafx.scene.layout.*?>
 
 <fx:root type="AnchorPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
-   <Label fx:id="emptyListLabel" text="No categories found." alignment="CENTER" AnchorPane.leftAnchor="0" AnchorPane.topAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.bottomAnchor="0"/>
+    <Label fx:id="emptyListLabel" text="No categories found." alignment="CENTER" AnchorPane.leftAnchor="0" AnchorPane.topAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.bottomAnchor="0"/>
     <BorderPane fx:id="contentPane" AnchorPane.leftAnchor="0" AnchorPane.topAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.bottomAnchor="0">
         <left>
             <ListView fx:id="categoriesListView" prefWidth="400.0" BorderPane.alignment="CENTER" />
         </left>
         <center>
-            <StackPane prefHeight="150.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+            <StackPane BorderPane.alignment="CENTER">
                 <children>
                     <GridPane fx:id="categoryDetailsContainer" alignment="CENTER">
                         <columnConstraints>
@@ -22,7 +22,6 @@
                             <RowConstraints minHeight="10.0" percentHeight="95.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
                         </rowConstraints>
                         <children>
-                            <!--<ListView fx:id="commandsListView" focusTraversable="false"/>-->
                             <Label fx:id="noCatSelectedLabel" text="No categories Selected"/>
                             <Label fx:id="emptyCategoryLabel" visible="false" text="No commands in this category"/>
                         </children>

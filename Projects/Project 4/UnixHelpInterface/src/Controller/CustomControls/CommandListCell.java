@@ -1,4 +1,5 @@
 package Controller.CustomControls;
+import Controller.ControllerSingleton;
 import Model.Category;
 import Model.Command;
 import javafx.event.EventHandler;
@@ -47,6 +48,7 @@ public class CommandListCell extends ListCell<Command> {
     @FXML private void onMouseClicked(){
         if(command != null)
             //TODO Implement navigation to proper page.
+            ControllerSingleton.getInstace().getMainPage().navigateToCommandsView(command);
             System.out.println(command.toPrintableString());
     }
     //endregion

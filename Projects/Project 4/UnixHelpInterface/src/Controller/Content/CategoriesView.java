@@ -61,11 +61,6 @@ public class CategoriesView extends AnchorPane {
         loadFXMLFile();
         customizeControls();
         setListeners();
-
-        Category cat = new Category("SomeCategory");
-        List<Category> list = new ArrayList<>();
-        list.add(cat);
-        setCategoriesList(FXCollections.observableArrayList(list));
         bind();
     }
     //endregionss
@@ -92,6 +87,7 @@ public class CategoriesView extends AnchorPane {
     //region FXML Methods
     @FXML private void onAddNewButtonClick(){
         DetailedCommandDialog detailedCommandDialog = new DetailedCommandDialog();
+        detailedCommandDialog.setTitle("Add new Command");
         detailedCommandDialog.showDialog();
     }
     //endregion
