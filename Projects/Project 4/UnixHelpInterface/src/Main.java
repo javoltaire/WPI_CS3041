@@ -4,15 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import Controller.ControllerSingleton;
-import Controller.MainPage;
-import Model.Option;
+import Model.Item;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
@@ -84,7 +82,7 @@ public class Main extends Application {
                                     String commandExample = currentCommandElement.getElementsByTagName("example").item(0).getTextContent();
                                     String commandSourceLink = currentCommandElement.getElementsByTagName("sourcelink").item(0).getTextContent();
                                     boolean commandIsRecentlyUsed = Boolean.parseBoolean(currentCommandElement.getAttribute("recentlyused"));
-                                    Command currentCommand = new Command(commandName, commandDescription, commandDetails,commandFormat, commandExample,commandSourceLink,commandIsRecentlyUsed);
+                                    Command currentCommand = new Command(commandName, commandDescription, currentCategory, commandDetails,commandSourceLink,commandIsRecentlyUsed);
 
                                     org.w3c.dom.Node commandOptionNode = currentCommandElement.getElementsByTagName("options").item(0);
                                     if (commandOptionNode.hasChildNodes()){
@@ -94,8 +92,8 @@ public class Main extends Application {
                                             if(currentOptionNode.getNodeType() == org.w3c.dom.Node.ELEMENT_NODE){
                                                 String optionName = currentOptionNode.getNodeName();
                                                 String optionDescription = currentOptionNode.getTextContent();
-                                                Option currentOption = new Option(optionName, optionDescription);
-                                                currentCommand.getOptions().add(currentOption);
+                                                Item currentOption = new Item(optionName, optionDescription);
+                                                currentCommand.optionsProperty().add(currentOption);
                                             }
                                         }
                                     }

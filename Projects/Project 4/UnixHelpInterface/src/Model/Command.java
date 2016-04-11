@@ -1,12 +1,8 @@
 package Model;
-
-import javafx.beans.InvalidationListener;
 import javafx.beans.property.*;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
-import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
+import Model.*;
 
 import java.util.*;
 
@@ -41,28 +37,28 @@ public class Command {
     /**
      * List to hold all the Options of the command
      */
-    private ListProperty<Option> options = new SimpleListProperty<>(this, "options", FXCollections.observableArrayList());
+    private ListProperty<Item> options = new SimpleListProperty<>(this, "options", FXCollections.observableArrayList());
 
     /**
-     * String property to hold the format of the command
+     * List to hold the different formats of the command
      */
-    private StringProperty format = new SimpleStringProperty(this, "format", "");
+    private ListProperty<Item> formats = new SimpleListProperty<>(this, "formats", FXCollections.observableArrayList());
 
     /**
-     * String property to hold the examples.
+     * List property to hold the different examples.
      * An example of how the command is used
      */
-    private StringProperty example = new SimpleStringProperty(this, "example", "");
-
-    /**
-     * A list of other relevant commands related
-     */
-    private ObservableList<Command> seeAlso = FXCollections.observableArrayList();
+    private ListProperty<Item> examples = new SimpleListProperty(this, "examples", FXCollections.observableArrayList());
 
     /**
      * String property to hold the sourceLink.
      */
     private StringProperty sourceLink = new SimpleStringProperty(this, "sourceLink", "");
+
+    /**
+     * The parent category of this command
+     */
+    private Category parentCategory;
 
     /**
      * Boolean indicating wheter the command was recently used
@@ -75,10 +71,12 @@ public class Command {
      * Initializes a new instance of this class with the given values
      * @param name The name of the Command
      * @param description A short description of what the command does
+     * @param parentCategory The parent category of this command
      */
-    public Command(String name, String description){
+    public Command(String name, String description, Category parentCategory){
         this.name.setValue(name);
         this.description.setValue(description);
+        this.parentCategory = parentCategory;
     }
 
     /**
@@ -86,17 +84,15 @@ public class Command {
      * @param name The name of the Command
      * @param description A short description of what the command does
      * @param details A more detailed description
-     * @param format The format of the command
-     * @param example An example of how the command is used
      * @param sourceLink A link to read more about the command
      * @param isRecentlyUsed Boolean indicating wheter this command was recently used
      */
-    public Command(String name, String description, String details, String format, String example, String sourceLink, boolean isRecentlyUsed) {
+    public Command(String name, String description, Category parentCategory, String details, String sourceLink, boolean isRecentlyUsed) {
         this.name.setValue(name);
         this.description.setValue(description);
+        this.parentCategory = parentCategory;
+
         this.details.setValue(details);
-        this.format.setValue(format);
-        this.example.setValue(example);
         this.sourceLink.setValue(sourceLink);
         this.isRecentlyUsed = isRecentlyUsed;
     }
@@ -146,42 +142,20 @@ public class Command {
     //endregion
 
     //region Options
-    public ObservableList<Option> getOptions() {
+    public ListProperty<Item> optionsProperty() {
         return options;
     }
     //endregion
 
-    //region Format
-    public StringProperty formatProperty() {
-        return format;
-    }
-
-    public String getFormat() {
-        return format.get();
-    }
-
-    public void setFormat(String format) {
-        this.format.set(format);
+    //region Formats
+    public ListProperty<Item> formatsProperty() {
+        return formats;
     }
     //endregion
 
-    //region Example
-    public StringProperty exampleProperty() {
-        return example;
-    }
-
-    public String getExample() {
-        return example.get();
-    }
-
-    public void setExample(String example) {
-        this.example.set(example);
-    }
-    //endregion
-
-    //region See also
-    public ObservableList<Command> getSeeAlso() {
-        return seeAlso;
+    //region Examples
+    public ListProperty<Item> examplesProperty() {
+        return examples;
     }
     //endregion
 
@@ -196,6 +170,16 @@ public class Command {
 
     public void setSourceLink(String sourceLink) {
         this.sourceLink.set(sourceLink);
+    }
+    //endregion
+
+    //region Parent category
+    public Category getParentCategory() {
+        return parentCategory;
+    }
+
+    public void setParentCategory(Category parentCategory) {
+        this.parentCategory = parentCategory;
     }
     //endregion
 
@@ -222,13 +206,17 @@ public class Command {
         result.append("\t\tCommand: " + this.getName() + "\n");
         result.append("\t\tDescription: " + this.getDescription() + "\n");
         result.append("\t\tDetails: " + this.getDetails() + "\n");
-        for(Option option : this.options){
+        result.append("\t\tOptions: " + "\n");
+        for(Item option : this.options){
             result.append("\t\t\t" + option.toPrintableString());
         }
-        result.append("\t\tFormat: " + this.getFormat() + "\n");
-        result.append("\t\tExamples: " + this.getExample() + "\n");
-        for(Command command : this.seeAlso){
-            result.append("\t\tSee Also: " + command.getName() + "\n");
+        result.append("\t\tFormats: " + "\n");
+        for(Item format : this.formats){
+            result.append("\t\t\t" + format.toPrintableString());
+        }
+        result.append("\t\tExamples: " + "\n");
+        for(Item example : this.examples){
+            result.append("\t\t\t" + example.toPrintableString());
         }
         result.append("\t\tSource Link: " + this.getSourceLink() + "\n");
         result.append("\t\tRecently Used?: " + this.isRecentlyUsed + "\n");

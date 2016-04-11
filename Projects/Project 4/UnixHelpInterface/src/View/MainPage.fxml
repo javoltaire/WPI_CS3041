@@ -10,7 +10,7 @@
     <children>
         <BorderPane prefHeight="45.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <left>
-                <Button mnemonicParsing="false" prefHeight="45.0" prefWidth="45.0" text="Back" BorderPane.alignment="CENTER" />
+                <Button fx:id="backButton" mnemonicParsing="false" prefHeight="45.0" prefWidth="45.0" text="Back" BorderPane.alignment="CENTER" onAction="#onBackButtonClicked" />
             </left>
             <center>
                 <HBox alignment="CENTER">

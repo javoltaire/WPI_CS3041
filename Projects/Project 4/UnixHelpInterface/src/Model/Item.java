@@ -9,17 +9,17 @@ import javafx.beans.property.StringProperty;
  * For example, for ls, an option is
  * -r : reverses the order of the sort.
  * Code wise, that would be represented as
- * Option lsr = new Option("r", "reverses the order of the sort");
+ * Item lsr = new Item("r", "reverses the order of the sort");
  */
-public class Option {
+public class Item {
     //region Variable
     /**
-     * String property to hold the name of the Option
+     * String property to hold the name of the Item
      */
     private StringProperty name = new SimpleStringProperty(this, "name", "");
 
     /**
-     * String property to hold the description of the Option
+     * String property to hold the description of the Item
      */
     private StringProperty description = new SimpleStringProperty(this, "description", "");
     //endregion
@@ -31,7 +31,7 @@ public class Option {
      * @param name The name of the option i.e. r
      * @param description The description of what the command does i.e. reverses the order of the sort
      */
-    public Option(String name, String description){
+    public Item(String name, String description){
         this.name.setValue(name);
         this.description.setValue(description);
     }

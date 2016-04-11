@@ -6,11 +6,13 @@ import Controller.Dialogs.Dialog;
 import Controller.Settings.SettingsPage;
 import Model.Category;
 import Model.Command;
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.control.Label;
+import javafx.scene.control.Button;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
@@ -18,12 +20,16 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 
 import java.io.IOException;
+import java.util.LinkedList;
+import java.util.Queue;
+import java.util.Stack;
 
 /**
  * Created by jules on 3/31/2016.
  */
 public class MainPage extends AnchorPane {
     //region FXML Controls
+    @FXML private Button backButton;
     @FXML private ToggleButton settingsToggleButton;
     @FXML private StackPane contentRoot;
     @FXML private CategoriesView categoriesView;
@@ -31,14 +37,47 @@ public class MainPage extends AnchorPane {
     @FXML private GridPane dialogRoot;
     //endregion
 
-    //region Variables
+    //region Variables and Properties
     private Pane currentPage = null;
+    private Stack<Pane> history = new Stack<>();
+    private BooleanProperty canShowBackButton = new SimpleBooleanProperty(this, "canShowBackButton", false);
     //endregion
 
     //region Constructors
     public MainPage(){
         loadFXMLFile();
+        bind();
         addListeneers();
+    }
+    //endregion
+
+    //region Getters and Setters
+    public boolean getCanShowBackButton() {
+        return canShowBackButton.get();
+    }
+
+    public BooleanProperty canShowBackButtonProperty() {
+        return canShowBackButton;
+    }
+
+    public void setCanShowBackButton(boolean canShowBackButton) {
+        this.canShowBackButton.set(canShowBackButton);
+    }
+    //endregion
+
+    //region FXML Methods
+    @FXML private void onBackButtonClicked(){
+        if(!history.empty()) {
+            Pane pane = history.pop();
+            canShowBackButton.setValue(!history.empty());
+            if(currentPage != pane) {
+                if(currentPage != null) {
+                    contentRoot.getChildren().remove(currentPage);
+                }
+                contentRoot.getChildren().add(0,pane);
+                currentPage = pane;
+            }
+        }
     }
     //endregion
 
@@ -56,6 +95,10 @@ public class MainPage extends AnchorPane {
         catch(IOException excpt){
             throw new RuntimeException(excpt);
         }
+    }
+
+    private void bind(){
+        backButton.visibleProperty().bind(canShowBackButton);
     }
 
     /**
@@ -79,25 +122,32 @@ public class MainPage extends AnchorPane {
     }
 
     public void navigateToCategoriesView(ObservableList<Category> categories){
-        if(currentPage != null)
-            contentRoot.getChildren().remove(currentPage);
         CategoriesView categoriesView = new CategoriesView();
         categoriesView.setCategoriesList(categories);
-        contentRoot.getChildren().add(0,categoriesView);
-        currentPage = categoriesView;
+        navigate(categoriesView);
     }
 
     public void navigateToCommandsView(Command command){
-        if(currentPage != null)
-            contentRoot.getChildren().remove(currentPage);
         CommandsView commandsView = new CommandsView();
+        commandsView.setCommandsList(command.getParentCategory().getCommands());
+        navigate(commandsView);
 
-        contentRoot.getChildren().add(0,commandsView);
-        currentPage = commandsView;
     }
 
     public void navigateToSearchResult(){
 
+    }
+
+    private void navigate(Pane pane){
+        if(pane != null){
+            if(currentPage != null) {
+                history.push(currentPage);
+                canShowBackButton.setValue(!history.empty());
+                contentRoot.getChildren().remove(currentPage);
+            }
+            contentRoot.getChildren().add(0,pane);
+            currentPage = pane;
+        }
     }
     //endregion
 }
