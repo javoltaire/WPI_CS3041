@@ -4,7 +4,7 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<GridPane fx:id="root" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<GridPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:id="root">
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" percentWidth="15.0" />
       <ColumnConstraints hgrow="SOMETIMES" percentWidth="80.0" />

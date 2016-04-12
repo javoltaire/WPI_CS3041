@@ -130,6 +130,7 @@ public class MainPage extends AnchorPane {
     public void navigateToCommandsView(Command command){
         CommandsView commandsView = new CommandsView();
         commandsView.setCommandsList(command.getParentCategory().getCommands());
+        commandsView.select(command);
         navigate(commandsView);
 
     }

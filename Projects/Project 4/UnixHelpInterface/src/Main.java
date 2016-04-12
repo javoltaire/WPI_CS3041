@@ -139,7 +139,7 @@ public class Main extends Application {
 
     private void initialize(){
         categories.add(recent);
-        readData("src/Resources/CommandsList.xml");
+        readData("src/Resources/Data/CommandsList.xml");
         categories.add(custom);
     }
 

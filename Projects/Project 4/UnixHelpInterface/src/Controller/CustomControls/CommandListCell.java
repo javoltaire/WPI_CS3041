@@ -49,7 +49,7 @@ public class CommandListCell extends ListCell<Command> {
         if(command != null)
             //TODO Implement navigation to proper page.
             ControllerSingleton.getInstace().getMainPage().navigateToCommandsView(command);
-            System.out.println(command.toPrintableString());
+//            System.out.println(command.toPrintableString());
     }
     //endregion
 

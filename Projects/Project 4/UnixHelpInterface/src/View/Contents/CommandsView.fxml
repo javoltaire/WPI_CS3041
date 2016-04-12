@@ -5,6 +5,7 @@
 <?import java.lang.*?>
 <?import javafx.scene.control.*?>
 
+<?import javafx.geometry.Insets?>
 <fx:root type="AnchorPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
     <Label fx:id="emptyListLabel" alignment="CENTER" text="No Commands found." AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0" />
     <BorderPane fx:id="contentPane" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0">
@@ -12,17 +13,39 @@
             <ListView fx:id="commandsListView" prefWidth="400.0" BorderPane.alignment="CENTER" />
         </left>
         <center>
-            <GridPane fx:id="categoryDetailsContainer" alignment="CENTER">
+            <GridPane fx:id="categoryDetailsContainer" hgap="10.0" vgap="10.0">
                 <columnConstraints>
-                    <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" percentWidth="80.0" prefWidth="100.0" />
+                    <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="100.0" minWidth="100.0" prefWidth="100.0" />
+                    <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" />
                 </columnConstraints>
                 <rowConstraints>
-                    <RowConstraints minHeight="10.0" percentHeight="95.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
+                    <RowConstraints minHeight="35.0" prefHeight="35.0" maxHeight="35.0" valignment="TOP" vgrow="SOMETIMES" />
+                    <RowConstraints minHeight="35.0" prefHeight="35.0" maxHeight="35.0"  valignment="TOP" vgrow="SOMETIMES" />
+                    <RowConstraints minHeight="35.0" prefHeight="35.0" valignment="TOP" vgrow="SOMETIMES" />
+                    <RowConstraints minHeight="35.0" prefHeight="35.0" valignment="TOP" vgrow="SOMETIMES" />
+                    <RowConstraints minHeight="35.0" prefHeight="35.0" valignment="TOP" vgrow="SOMETIMES" />
+                    <RowConstraints minHeight="35.0" prefHeight="35.0" valignment="TOP" vgrow="SOMETIMES" />
+                    <RowConstraints minHeight="35.0" prefHeight="35.0" maxHeight="35.0" valignment="CENTER" vgrow="SOMETIMES" />
                 </rowConstraints>
                 <children>
-                    <Label fx:id="noCatSelectedLabel" text="No categories Selected"/>
-                    <Label fx:id="emptyCategoryLabel" visible="false" text="No commands in this category"/>
+                    <Label text="Name:" />
+                    <Label text="Description:" GridPane.rowIndex="1" />
+                    <Label text="Details:" GridPane.rowIndex="2" />
+                    <Label text="Options:" GridPane.rowIndex="3" />
+                    <Label text="Formats:" GridPane.rowIndex="4" />
+                    <Label text="Examples:" GridPane.rowIndex="5" />
+                    <Label text="Source:" GridPane.rowIndex="6" />
+                    <Label fx:id="commandNameLabel" GridPane.columnIndex="1" />
+                    <Label fx:id="commandDescriptionLabel"  GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                    <Label fx:id="commandDetailsLabel" GridPane.columnIndex="1" GridPane.rowIndex="2" wrapText="true" alignment="TOP_LEFT" />
+                    <ListView fx:id="optionsListView" mouseTransparent="true" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                    <ListView fx:id="formatsListView" mouseTransparent="true" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                    <ListView fx:id="examplesListView" mouseTransparent="true" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                    <Hyperlink fx:id="commandSourceLink" alignment="TOP_LEFT" text="Hyperlink" GridPane.columnIndex="1" GridPane.rowIndex="6" />
                 </children>
+                <padding>
+                    <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                </padding>
             </GridPane>
         </center>
     </BorderPane>
