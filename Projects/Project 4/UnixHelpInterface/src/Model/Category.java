@@ -5,6 +5,7 @@ import javafx.beans.property.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+import javax.xml.bind.annotation.*;
 import java.util.*;
 
 /**
@@ -16,6 +17,8 @@ import java.util.*;
  * Category fileAndFolder = new Category("Files & Folders");
  * fileAndFolder.getCommands().add(new Command("ls", "list	directory contents", fileAndFolder));
  */
+@XmlRootElement
+@XmlType(propOrder = { "name", "commands"})
 public class Category {
     //region Variables
     /**
@@ -37,11 +40,12 @@ public class Category {
     public Category (String name){
         this.name.setValue(name);
     }
+
+    private Category(){}
     //endregion
 
     //region Getters and Setters
     //region Name
-
     /**
      * Gets the name property
      * @return the name property object
@@ -62,6 +66,7 @@ public class Category {
      * Sets the value of the name property to a new one
      * @param name the new value for the name
      */
+    @XmlElement (name = "Category_Name")
     public void setName(String name) {
         this.name.set(name);
     }
@@ -69,12 +74,23 @@ public class Category {
     //endregion
 
     //region Commands
+
+    public ListProperty<Command> commandsProperty() {
+        return commands;
+    }
+
     /**
      * Gets the list of commands in this category
      * @return The list of commands in this category
      */
-    public ListProperty<Command> getCommands() {
-        return commands;
+    public ObservableList<Command> getCommands() {
+        return commands.get();
+    }
+
+    @XmlElementWrapper(name = "Category_Commands")
+    @XmlElement (name = "Category_Command")
+    public void setCommands(ObservableList<Command> commands) {
+        this.commands.set(commands);
     }
     //endregion
 

@@ -1,41 +1,86 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<categories>
-    <fileanddirectory>
-        <ls recentlyused="true">
-            <description>List directory contents</description>
-            <details>For each operand that names a file	of a type other	than directory,	ls
-                displays its name as well as any requested, associated information. For
-                each operand that names a file of type directory, ls displays the names
-                of files contained within that directory, as well as any requested,
-                associated information.
-
-                If	no operands are	given, the contents of the current directory are displayed.
-                If more than one operand is given, non-directory operands are displayed first;
-                directory and non-directory operands are sorted separately and in lexicographical order.</details>
-            <options>
-                <A>Include directory entries whose names begin with a	dot (`.')
-                    except for . and ... Automatically set for the super-user unless
-                    -I	is specified.</A>
-                <B>Force printing of non-printable characters (as defined by
-                    ctype(3) and current locale settings) in file names as \xxx,
-                    where xxx is the numeric value of the character in	octal.</B>
-                <C>Force multi-column output; this is the default when output is to
-                    a terminal.</C>
-                <D>When printing in the long (-l) format, use format to format the
-                    date and time output. The argument format is a string used by
-                    strftime(3). Depending on the choice of format string, this may
-                    result in a different number of columns in the output. This
-                    option overrides the -T option.</D>
-            </options>
-            <format>ls	[-option] [-D format] [file ...]</format>
-            <example>ls -l or ls -lt /var/log</example>
-            <sourcelink><![CDATA[https://www.freebsd.org/cgi/man.cgi?query=ls&apropos=0&sektion=0&manpath=FreeBSD+10.2-RELEASE&arch=default&format=html]]></sourcelink>
-        </ls>
-    </fileanddirectory>
-    <network>
-
-    </network>
-    <processmanagement>
-
-    </processmanagement>
-</categories>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Categories>
+    <Category>
+        <Category_Name>Category 1</Category_Name>
+        <Category_Commands>
+            <Category_Command isRecentlyUsed="false">
+                <Command_Name>Command 1</Command_Name>
+                <Command_Description>Description of Command 1</Command_Description>
+                <Command_Details>This is a more detailed description of what Command 1 does. It does this and that</Command_Details>
+                <Command_Options>
+                    <Command_Option>
+                        <Item_Name>Item 1</Item_Name>
+                        <Item_Description>Desctription of Item 1</Item_Description>
+                    </Command_Option>
+                    <Command_Option>
+                        <Item_Name>Item 2</Item_Name>
+                        <Item_Description>Desctription of Item 2</Item_Description>
+                    </Command_Option>
+                    <Command_Option>
+                        <Item_Name>Item 2</Item_Name>
+                        <Item_Description>Desctription of Item 1</Item_Description>
+                    </Command_Option>
+                </Command_Options>
+                <Command_Formats>
+                    <Command_Format>Format 1</Command_Format>
+                    <Command_Format>Format 2</Command_Format>
+                    <Command_Format>Format 3</Command_Format>
+                </Command_Formats>
+                <Command_Examples>
+                    <Command_Example>
+                        <Item_Name>Item 2</Item_Name>
+                        <Item_Description>Desctription of Item 1</Item_Description>
+                    </Command_Example>
+                    <Command_Example>
+                        <Item_Name>Item 2</Item_Name>
+                        <Item_Description>Desctription of Item 1</Item_Description>
+                    </Command_Example>
+                </Command_Examples>
+                <Command_Source_Link>https://link/to/command1_page</Command_Source_Link>
+            </Category_Command>
+            <Category_Command isRecentlyUsed="true">
+                <Command_Name>Command 2</Command_Name>
+                <Command_Description>Description of Command 2</Command_Description>
+                <Command_Details>This is a more detailed description of what Command 2 does. It does this and that</Command_Details>
+                <Command_Options>
+                    <Command_Option>
+                        <Item_Name>Item 2</Item_Name>
+                        <Item_Description>Desctription of Item 1</Item_Description>
+                    </Command_Option>
+                    <Command_Option>
+                        <Item_Name>Item 2</Item_Name>
+                        <Item_Description>Desctription of Item 1</Item_Description>
+                    </Command_Option>
+                </Command_Options>
+                <Command_Formats>
+                    <Command_Format>Format 4</Command_Format>
+                    <Command_Format>Format 5</Command_Format>
+                    <Command_Format>Format 6</Command_Format>
+                </Command_Formats>
+                <Command_Examples>
+                    <Command_Example>
+                        <Item_Name>Item 2</Item_Name>
+                        <Item_Description>Desctription of Item 1</Item_Description>
+                    </Command_Example>
+                    <Command_Example>
+                        <Item_Name>Item 2</Item_Name>
+                        <Item_Description>Desctription of Item 1</Item_Description>
+                    </Command_Example>
+                    <Command_Example>
+                        <Item_Name>Item 2</Item_Name>
+                        <Item_Description>Desctription of Item 1</Item_Description>
+                    </Command_Example>
+                </Command_Examples>
+                <Command_Source_Link>https://link/to/command2_page</Command_Source_Link>
+            </Category_Command>
+        </Category_Commands>
+    </Category>
+    <Category>
+        <Category_Name>Category 2</Category_Name>
+        <Category_Commands/>
+    </Category>
+    <Category>
+        <Category_Name>Custom</Category_Name>
+        <Category_Commands/>
+    </Category>
+</Categories>

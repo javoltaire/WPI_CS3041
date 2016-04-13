@@ -27,7 +27,7 @@ public class CommandsView extends AnchorPane {
     @FXML private Label commandDescriptionLabel;
     @FXML private Label commandDetailsLabel;
     @FXML private ListView<Item> optionsListView;
-    @FXML private ListView<Item> formatsListView;
+    @FXML private ListView<String> formatsListView;
     @FXML private ListView<Item> examplesListView;
     @FXML private Hyperlink commandSourceLink;
 

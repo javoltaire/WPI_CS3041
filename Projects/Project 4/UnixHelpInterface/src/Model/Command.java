@@ -2,9 +2,9 @@ package Model;
 import javafx.beans.property.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import Model.*;
 
-import java.util.*;
+import javax.xml.bind.annotation.*;
+import java.util.UUID;
 
 /**
  * @Author Jules Voltaire on 3/31/2016.
@@ -14,6 +14,7 @@ import java.util.*;
  * code wise it is represented as
  * Command ls = new Command("ls", "list	directory contents", fileAndFolderCat);
  */
+@XmlType(propOrder = { "name", "description", "details", "options", "formats", "examples", "sourceLink"})
 public class Command {
 
     //region Variables
@@ -42,7 +43,7 @@ public class Command {
     /**
      * List to hold the different formats of the command
      */
-    private ListProperty<Item> formats = new SimpleListProperty<>(this, "formats", FXCollections.observableArrayList());
+    private ListProperty<String> formats = new SimpleListProperty<>(this, "formats", FXCollections.observableArrayList());
 
     /**
      * List property to hold the different examples.
@@ -61,7 +62,7 @@ public class Command {
     private Category parentCategory;
 
     /**
-     * Boolean indicating wheter the command was recently used
+     * Boolean indicating whether the command was recently used
      */
     private boolean isRecentlyUsed = false;
     //endregion
@@ -91,14 +92,16 @@ public class Command {
         this.name.setValue(name);
         this.description.setValue(description);
         this.parentCategory = parentCategory;
-
         this.details.setValue(details);
         this.sourceLink.setValue(sourceLink);
         this.isRecentlyUsed = isRecentlyUsed;
     }
+
+    private Command(){}
     //endregion
 
     //region Getters and Setters
+
     //region Name
     public StringProperty nameProperty() {
         return name;
@@ -108,12 +111,14 @@ public class Command {
         return name.get();
     }
 
+    @XmlElement (name = "Command_Name")
     public void setName(String name) {
         this.name.set(name);
     }
     //endregion
 
     //region Description
+
     public StringProperty descriptionProperty() {
         return description;
     }
@@ -122,6 +127,7 @@ public class Command {
         return description.get();
     }
 
+    @XmlElement (name = "Command_Description")
     public void setDescription(String description) {
         this.description.set(description);
     }
@@ -136,6 +142,7 @@ public class Command {
         return details.get();
     }
 
+    @XmlElement (name = "Command_Details")
     public void setDetails(String details) {
         this.details.set(details);
     }
@@ -145,17 +152,45 @@ public class Command {
     public ListProperty<Item> optionsProperty() {
         return options;
     }
+
+    public ObservableList<Item> getOptions() {
+        return options.get();
+    }
+    @XmlElementWrapper(name = "Command_Options")
+    @XmlElement (name = "Command_Option")
+    public void setOptions(ObservableList<Item> options) {
+        this.options.set(options);
+    }
     //endregion
 
     //region Formats
-    public ListProperty<Item> formatsProperty() {
+    public ListProperty<String> formatsProperty() {
         return formats;
+    }
+
+    public ObservableList<String> getFormats() {
+        return formats.get();
+    }
+    @XmlElementWrapper(name = "Command_Formats")
+    @XmlElement (name = "Command_Format")
+    public void setFormats(ObservableList<String> formats) {
+        this.formats.set(formats);
     }
     //endregion
 
     //region Examples
     public ListProperty<Item> examplesProperty() {
         return examples;
+    }
+
+    public ObservableList<Item> getExamples() {
+        return examples.get();
+    }
+
+    @XmlElementWrapper(name = "Command_Examples")
+    @XmlElement (name = "Command_Example")
+    public void setExamples(ObservableList<Item> examples) {
+        this.examples.set(examples);
     }
     //endregion
 
@@ -168,6 +203,7 @@ public class Command {
         return sourceLink.get();
     }
 
+    @XmlElement (name = "Command_Source_Link")
     public void setSourceLink(String sourceLink) {
         this.sourceLink.set(sourceLink);
     }
@@ -178,6 +214,7 @@ public class Command {
         return parentCategory;
     }
 
+    @XmlTransient
     public void setParentCategory(Category parentCategory) {
         this.parentCategory = parentCategory;
     }
@@ -188,6 +225,7 @@ public class Command {
         return isRecentlyUsed;
     }
 
+    @XmlAttribute(name = "isRecentlyUsed")
     public void setRecentlyUsed(boolean recentlyUsed) {
         isRecentlyUsed = recentlyUsed;
     }
@@ -211,8 +249,8 @@ public class Command {
             result.append("\t\t\t" + option.toPrintableString());
         }
         result.append("\t\tFormats: " + "\n");
-        for(Item format : this.formats){
-            result.append("\t\t\t" + format.toPrintableString());
+        for(String format : this.formats){
+            result.append("\t\t\t" + format + "\n");
         }
         result.append("\t\tExamples: " + "\n");
         for(Item example : this.examples){

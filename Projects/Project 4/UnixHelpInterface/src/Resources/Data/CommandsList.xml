@@ -10,9 +10,13 @@
                 <B>Force printing of non-printable characters (as defined by ctype(3) and current locale settings) in file names as \xxx, where xxx is the numeric value of the character in octal.</B>
                 <C>Force multi-column output; this is the default when output is to a terminal.</C>
                 <D>When printing in the long (-l) format, use format to format the date and time output. The argument format is a string used by strftime(3). Depending on the choice of format string, this may result in a different number of columns in the output. This option overrides the -T option.</D>
+                <l>(The lowercase letter ``ell''.) List files in the long format, as described in the The Long Format subsection below.</l>
             </options>
             <format>ls	[-option] [-D format] [file ...]</format>
-            <example>ls -l or ls -lt /var/log</example>
+            <example>
+                <exName>$ ls -l</exName>
+                <exDescription>List the contents of the current working directory in long format.</exDescription>
+            </example>
             <sourcelink><![CDATA[https://www.freebsd.org/cgi/man.cgi?query=ls&apropos=0&sektion=0&manpath=FreeBSD+10.2-RELEASE&arch=default&format=html]]></sourcelink>
         </ls>
         <cp>

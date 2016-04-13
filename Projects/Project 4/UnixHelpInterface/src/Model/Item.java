@@ -3,6 +3,10 @@ package Model;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlType;
+
 /**
  * @Author Jules Voltaire on 4/2/2016.
  * This class represent an option for a command and a short description of what that option does to the command.
@@ -11,6 +15,7 @@ import javafx.beans.property.StringProperty;
  * Code wise, that would be represented as
  * Item lsr = new Item("r", "reverses the order of the sort");
  */
+@XmlType(propOrder = { "name", "description"})
 public class Item {
     //region Variable
     /**
@@ -35,6 +40,8 @@ public class Item {
         this.name.setValue(name);
         this.description.setValue(description);
     }
+
+    private Item(){}
     //endregion
 
     //region Getters and Setters
@@ -59,6 +66,7 @@ public class Item {
      * Sets the name of the option
      * @param name The new value for the name of the option
      */
+    @XmlElement (name = "Item_Name")
     public void setName(String name) {
         this.name.set(name);
     }
@@ -85,6 +93,7 @@ public class Item {
      * Sets the description of the option
      * @param description The new value for the description of the option
      */
+    @XmlElement (name = "Item_Description")
     public void setDescription(String description) {
         this.description.set(description);
     }
