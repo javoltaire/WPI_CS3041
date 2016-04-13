@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.layout.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+
+<AnchorPane fx:id="root" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <BorderPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+          <left>
+              <Label fx:id="nameLabel" alignment="CENTER_RIGHT" prefWidth="120" BorderPane.alignment="CENTER"/>
+          </left>
+         <center>
+             <Label fx:id="descriptionLabel" alignment="CENTER_LEFT" maxWidth="Infinity" BorderPane.alignment="CENTER"/>
+         </center>
+      </BorderPane>
+   </children>
+</AnchorPane>

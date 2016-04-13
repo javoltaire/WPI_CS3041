@@ -1,7 +1,7 @@
 package Controller.CustomControls;
 
-import Model.Category;
 import Model.Command;
+import Model.Item;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
@@ -11,23 +11,24 @@ import javafx.scene.layout.AnchorPane;
 import java.io.IOException;
 
 /**
- * Created by jules on 4/11/2016.
+ * Created by jules on 4/13/2016.
  */
-public class SimpleCommandListCell extends ListCell<Command> {
+public class ItemListCell extends ListCell<Item> {
     //region FXML variables
     @FXML private AnchorPane root;
-    @FXML private Label label;
+    @FXML private Label nameLabel;
+    @FXML private Label descriptionLabel;
     //endregion
 
     //region Constructor
-    public SimpleCommandListCell(){
+    public ItemListCell(){
         loadFXMLFile();
     }
     //endregion
 
 
     private void loadFXMLFile(){
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../../View/CustomControls/SimpleCommandListCell.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../../View/CustomControls/ItemListCell.fxml"));
         loader.setController(this);
         try{
             loader.load();
@@ -38,12 +39,13 @@ public class SimpleCommandListCell extends ListCell<Command> {
     }
 
     @Override
-    public void updateItem(Command command, boolean empty)
+    public void updateItem(Item item, boolean empty)
     {
-        super.updateItem(command,empty);
-        if(command != null)
+        super.updateItem(item,empty);
+        if(item != null)
         {
-            label.setText(command.getName());
+            nameLabel.setText(item.getName() + ":");
+            descriptionLabel.setText(item.getDescription());
             setGraphic(root);
 
         }

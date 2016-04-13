@@ -1,6 +1,7 @@
 package Controller.Content;
 
 import Controller.CustomControls.CategoryListCell;
+import Controller.CustomControls.ItemListCell;
 import Controller.CustomControls.SimpleCommandListCell;
 import Model.Category;
 import Model.Command;
@@ -61,6 +62,20 @@ public class CommandsView extends AnchorPane {
             @Override
             public ListCell<Command> call(ListView<Command> param) {
                 return new SimpleCommandListCell();
+            }
+        });
+
+        optionsListView.setCellFactory(new Callback<ListView<Item>, ListCell<Item>>() {
+            @Override
+            public ListCell<Item> call(ListView<Item> param) {
+                return new ItemListCell();
+            }
+        });
+
+        examplesListView.setCellFactory(new Callback<ListView<Item>, ListCell<Item>>() {
+            @Override
+            public ListCell<Item> call(ListView<Item> param) {
+                return new ItemListCell();
             }
         });
     }
