@@ -1,55 +1,159 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<categories>
-    <fileanddirectory>
-        <ls recentlyused="true">
-            <description>List directory contents.</description>
-            <details>For each operand that names a file	of a type other	than directory,	ls displays its name as well as any requested, associated information. For each operand that names a file of type directory, ls displays the names of files contained within that directory, as well as any requested, associated information.
-                If	no operands are	given, the contents of the current directory are displayed. If more than one operand is given, non-directory operands are displayed first; directory and non-directory operands are sorted separately and in lexicographical order.</details>
-            <options>
-                <A>Include directory entries whose names begin with a dot (`.') except for . and ... Automatically set for the super-user unless -I is specified.</A>
-                <B>Force printing of non-printable characters (as defined by ctype(3) and current locale settings) in file names as \xxx, where xxx is the numeric value of the character in octal.</B>
-                <C>Force multi-column output; this is the default when output is to a terminal.</C>
-                <D>When printing in the long (-l) format, use format to format the date and time output. The argument format is a string used by strftime(3). Depending on the choice of format string, this may result in a different number of columns in the output. This option overrides the -T option.</D>
-                <l>(The lowercase letter ``ell''.) List files in the long format, as described in the The Long Format subsection below.</l>
-            </options>
-            <format>ls	[-option] [-D format] [file ...]</format>
-            <example>
-                <exName>$ ls -l</exName>
-                <exDescription>List the contents of the current working directory in long format.</exDescription>
-            </example>
-            <sourcelink><![CDATA[https://www.freebsd.org/cgi/man.cgi?query=ls&apropos=0&sektion=0&manpath=FreeBSD+10.2-RELEASE&arch=default&format=html]]></sourcelink>
-        </ls>
-        <cp>
-            <description>Copy files</description>
-            <details>In	the first synopsis form, the cp	utility	copies the contents of the source_file to the target_file. In the second synopsis form, the contents of each named source_file is copied to the destination target_directory. The names of the files themselves are not changed. If cp detects an attempt to copy a file to itself, the copy will fail.</details>
-            <options>
-                <H>If the -R option is specified, symbolic links on the	command	line are followed. (Symbolic links encountered in the tree traversal are not followed.).</H>
-                <L>If the -R option is specified, all symbolic links are followed.</L>
-                <P>If the -R option is specified, no symbolic links are	followed. This is the default.</P>
-                <R>If source_file designates a directory, cp copies the	directory and the entire subtree connected at that point. If the source_file ends in a /, the contents of the directory are copied rather than the directory itself. This option also causes symbolic links to be copied, rather than indirected through, and for cp to create special files rather than copying them as normal files. Created directories have the same mode as the corresponding source directory, unmodified by the process' umask.
-                    Note that cp copies hard linked files as separate files. If you need to preserve hard links, consider using tar(1), cpio(1), or pax(1) instead.</R>
-                <a>Archive mode. Same as -RpP</a>
-            </options>
-            <format>cp	[-R [-H	| -L | -P]] [-f	| -i | -n] [-alpsvx] source_file target_file</format>
-            <example>$ cp	foo bar</example>
-            <sourcelink><![CDATA[https://www.freebsd.org/cgi/man.cgi?query=cp&apropos=0&sektion=1&manpath=FreeBSD+10.3-RELEASE&arch=default&format=html#end]]></sourcelink>
-        </cp>
-    </fileanddirectory>
-    <network>
-
-    </network>
-    <processmanagement>
-        <kill recentlyused="false">
-            <description>Terminate or signal a process.</description>
-            <details>The kill utility sends a signal to	the processes specified	by the pid operands.
-                Only the super-user may send signals to other users' processes.</details>
-            <options>
-                <s>A symbolic signal name specifying the signal to be sent instead of the default TERM.</s>
-                <l>If no operand is given, list the signal names; otherwise, write the signal name corresponding to exit_status.</l>
-            </options>
-            <format>kill [-s signal_name] pid ...</format>
-            <example>kill 142 157</example>
-            <sourcelink><![CDATA[https://www.freebsd.org/cgi/man.cgi?query=kill&apropos=0&sektion=0&manpath=FreeBSD+10.2-RELEASE&arch=default&format=html]]></sourcelink>
-        </kill>
-    </processmanagement>
-</categories>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Categories>
+    <Category>
+        <Category_Name>File System</Category_Name>
+        <Category_Commands>
+            <Category_Command isRecentlyUsed="true">
+                <Command_Name>ls</Command_Name>
+                <Command_Description>List directory contents.</Command_Description>
+                <Command_Details>For each operand that names a file of a type other than directory, ls displays its name as well as any requested, associated information. For each operand that names a file of type directory, ls displays the names of files contained within that directory, as well as any requested, associated information. If no operands are given, the contents of the current directory are displayed. If more than one operand is given, non-directory operands are displayed first; directory and non-directory operands are sorted separately and in lexicographical order.</Command_Details>
+                <Command_Options>
+                    <Command_Option>
+                        <Item_Name>-a</Item_Name>
+                        <Item_Description>Include directory entries whose names begin with a dot (`.').</Item_Description>
+                    </Command_Option>
+                    <Command_Option>
+                        <Item_Name>-l</Item_Name>
+                        <Item_Description>(The lowercase letter ``ell''.) List files in the long format, as described in the The Long Format subsection below.</Item_Description>
+                    </Command_Option>
+                    <Command_Option>
+                        <Item_Name>-C</Item_Name>
+                        <Item_Description>Force multi-column output; this is the default when output is to a terminal.</Item_Description>
+                    </Command_Option>
+                </Command_Options>
+                <Command_Formats>
+                    <Command_Format>ls [Option] [-D format] [file ...]</Command_Format>
+                </Command_Formats>
+                <Command_Examples>
+                    <Command_Example>
+                        <Item_Name>$ ls -l</Item_Name>
+                        <Item_Description>List the contents of the current working directory in long format.</Item_Description>
+                    </Command_Example>
+                    <Command_Example>
+                        <Item_Name>$ ls -lt /var/log</Item_Name>
+                        <Item_Description>List the files in /var/log, sorting the output such that the mostly recently modified entries are printed first.</Item_Description>
+                    </Command_Example>
+                </Command_Examples>
+                <Command_Source_Link>https://www.freebsd.org/cgi/man.cgi?query=ls&amp;apropos=0&amp;sektion=0&amp;manpath=FreeBSD+10.3-RELEASE&amp;arch=default&amp;format=html</Command_Source_Link>
+            </Category_Command>
+            <Category_Command isRecentlyUsed="false">
+                <Command_Name>cp</Command_Name>
+                <Command_Description>Copy files.</Command_Description>
+                <Command_Details>In the first synopsis form, the cp utility copies the contents of the source_file to the target_file. In the second synopsis form, the contents of each named source_file is copied to the destination target_directory. The names of the files themselves are not changed. If cp detects an attempt to copy a file to itself, the copy will fail.</Command_Details>
+                <Command_Options>
+                    <Command_Option>
+                        <Item_Name>-H</Item_Name>
+                        <Item_Description>If the -R option is specified, symbolic links on the command line are followed. (Symbolic links encountered in the tree traversal are not followed.)</Item_Description>
+                    </Command_Option>
+                    <Command_Option>
+                        <Item_Name>-l</Item_Name>
+                        <Item_Description>Create hard links to regular files in a hierarchy instead of copying.</Item_Description>
+                    </Command_Option>
+                </Command_Options>
+                <Command_Formats>
+                    <Command_Format>cp [-R [-H | -L | -P]] [-f | -i | -n] [-alpvx] source_file target_file</Command_Format>
+                    <Command_Format>cp [-R [-H | -L | -P]] [-f | -i | -n] [-alpvx] source_file ... target_directory</Command_Format>
+                </Command_Formats>
+                <Command_Examples>
+                    <Command_Example>
+                        <Item_Name>$ cp foo bar</Item_Name>
+                        <Item_Description>Make a copy of file foo named bar.</Item_Description>
+                    </Command_Example>
+                    <Command_Example>
+                        <Item_Name>$ cp *.txt /tmp</Item_Name>
+                        <Item_Description>Copy a group of files to the /tmp directory:</Item_Description>
+                    </Command_Example>
+                    <Command_Example>
+                        <Item_Name>$ cp -R junk /tmp</Item_Name>
+                        <Item_Description>Copy the directory junk and all of its contents (including any subdirectories) to the /tmp directory.</Item_Description>
+                    </Command_Example>
+                </Command_Examples>
+                <Command_Source_Link>https://www.freebsd.org/cgi/man.cgi?query=cp&amp;apropos=0&amp;sektion=0&amp;manpath=FreeBSD+10.2-RELEASE&amp;arch=default&amp;format=html</Command_Source_Link>
+            </Category_Command>
+        </Category_Commands>
+    </Category>
+    <Category>
+        <Category_Name>Process Management</Category_Name>
+        <Category_Commands>
+            <Category_Command isRecentlyUsed="false">
+                <Command_Name>kill</Command_Name>
+                <Command_Description>Terminate or signal a process.</Command_Description>
+                <Command_Details>The kill utility sends a signal to the processes specified by the pid operands. Only the super-user may send signals to other users' processes.</Command_Details>
+                <Command_Options>
+                    <Command_Option>
+                        <Item_Name>-s</Item_Name>
+                        <Item_Description>A symbolic signal name specifying the signal to be sent instead of the default TERM.</Item_Description>
+                    </Command_Option>
+                    <Command_Option>
+                        <Item_Name>-l</Item_Name>
+                        <Item_Description>If no operand is given, list the signal names; otherwise, write the signal name corresponding to exit_status.</Item_Description>
+                    </Command_Option>
+                </Command_Options>
+                <Command_Formats>
+                    <Command_Format>kill [-Option signal_name] pid ...</Command_Format>
+                    <Command_Format>kill -Option [exit_status]</Command_Format>
+                    <Command_Format>kill -signal_name pid ...</Command_Format>
+                    <Command_Format>kill -signal_number pid ...</Command_Format>
+                </Command_Formats>
+                <Command_Examples>
+                    <Command_Example>
+                        <Item_Name>$ kill 142 157</Item_Name>
+                        <Item_Description>Terminate the processes with PIDs 142 and 157</Item_Description>
+                    </Command_Example>
+                    <Command_Example>
+                        <Item_Name>$ kill -s HUP 507</Item_Name>
+                        <Item_Description>Send the hangup signal (SIGHUP) to the process with PID 507.</Item_Description>
+                    </Command_Example>
+                    <Command_Example>
+                        <Item_Name>$ kill -- -117</Item_Name>
+                        <Item_Description>Terminate the process group with PGID 117.</Item_Description>
+                    </Command_Example>
+                </Command_Examples>
+                <Command_Source_Link>https://www.freebsd.org/cgi/man.cgi?query=kill&amp;apropos=0&amp;sektion=0&amp;manpath=FreeBSD+10.2-RELEASE&amp;arch=default&amp;format=html</Command_Source_Link>
+            </Category_Command>
+        </Category_Commands>
+    </Category>
+    <Category>
+        <Category_Name>Network</Category_Name>
+        <Category_Commands>
+            <Category_Command isRecentlyUsed="false">
+                <Command_Name>rcp</Command_Name>
+                <Command_Description>Remote file copy.</Command_Description>
+                <Command_Details>The rcp utility copies files between machines. Each file or directory argument is either a remote file name of the form ``ruser@rhost:path'', or a local file name (containing no `:' characters, or a `/' before any `:'s).</Command_Details>
+                <Command_Options>
+                    <Command_Option>
+                        <Item_Name>-4</Item_Name>
+                        <Item_Description>Use IPv4 addresses only.</Item_Description>
+                    </Command_Option>
+                    <Command_Option>
+                        <Item_Name>-6</Item_Name>
+                        <Item_Description>Use IPv6 addresses only</Item_Description>
+                    </Command_Option>
+                    <Command_Option>
+                        <Item_Name>-p</Item_Name>
+                        <Item_Description> Cause rcp to attempt to preserve (duplicate) in its copies the modification times and modes of the source files, ignoring the umask(2). By default, the mode and owner of file2 are preserved if it already existed; otherwise the mode of the source file modified by the umask(2) on the destination host is used.</Item_Description>
+                    </Command_Option>
+                    <Command_Option>
+                        <Item_Name>-r</Item_Name>
+                        <Item_Description>If any of the source files are directories, rcp copies each sub tree rooted at that name; in this case the destination must be a directory.</Item_Description>
+                    </Command_Option>
+                </Command_Options>
+                <Command_Formats>
+                    <Command_Format>rcp [-Option] file1 file2</Command_Format>
+                    <Command_Format>rcp [-Option] file ... directory</Command_Format>
+                </Command_Formats>
+                <Command_Examples>
+                    <Command_Example>
+                        <Item_Name>$ rcp zeus.univ.edu:document1 document1</Item_Name>
+                        <Item_Description>Copies "document1" from the remote computer zeus.univ.edu to the local machine with the same name.</Item_Description>
+                    </Command_Example>
+                </Command_Examples>
+                <Command_Source_Link>https://www.freebsd.org/cgi/man.cgi?query=rcp&amp;apropos=0&amp;sektion=0&amp;manpath=FreeBSD+10.2-RELEASE&amp;arch=default&amp;format=html</Command_Source_Link>
+            </Category_Command>
+        </Category_Commands>
+    </Category>
+    <Category>
+        <Category_Name>Custom</Category_Name>
+        <Category_Commands/>
+    </Category>
+</Categories>

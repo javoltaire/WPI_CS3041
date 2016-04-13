@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Categories>
+    <Category>
+        <Category_Name></Category_Name>
+        <Category_Commands>
+            <Category_Command isRecentlyUsed="false">
+                <Command_Name></Command_Name>
+                <Command_Description></Command_Description>
+                <Command_Details></Command_Details>
+                <Command_Options>
+                    <Command_Option>
+                        <Item_Name></Item_Name>
+                        <Item_Description></Item_Description>
+                    </Command_Option>
+                    <Command_Option>
+                        <Item_Name></Item_Name>
+                        <Item_Description></Item_Description>
+                    </Command_Option>
+                    <Command_Option>
+                        <Item_Name></Item_Name>
+                        <Item_Description></Item_Description>
+                    </Command_Option>
+                </Command_Options>
+                <Command_Formats>
+                    <Command_Format></Command_Format>
+                    <Command_Format></Command_Format>
+                    <Command_Format></Command_Format>
+                </Command_Formats>
+                <Command_Examples>
+                    <Command_Example>
+                        <Item_Name></Item_Name>
+                        <Item_Description></Item_Description>
+                    </Command_Example>
+                </Command_Examples>
+                <Command_Source_Link></Command_Source_Link>
+            </Category_Command>
+        </Category_Commands>
+    </Category>
+</Categories>

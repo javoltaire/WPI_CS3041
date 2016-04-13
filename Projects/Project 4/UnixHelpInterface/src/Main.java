@@ -18,7 +18,6 @@ public class Main extends Application {
         primaryStage.setTitle("Hello World");
         primaryStage.setScene(new Scene(ControllerSingleton.getInstace().getMainPage(), 1920, 1080));
         primaryStage.show();
-        CategoryManagerSingleton.getInstance().saveData();
     }
 
     public static void main(String[] args) {
@@ -28,8 +27,10 @@ public class Main extends Application {
     private void printData(){
         System.out.println("All Categories");
         for(Category cat : CategoryManagerSingleton.getInstance().getCategoryManager().getCategories()){
-            System.out.println("\t" + cat.toPrintableString());
+            if(!cat.getName().equals("Recent"))
+                System.out.println("\t" + cat.toPrintableString());
         }
+        System.out.println("All Categories");
     }
 
  //region to be Helper Methods

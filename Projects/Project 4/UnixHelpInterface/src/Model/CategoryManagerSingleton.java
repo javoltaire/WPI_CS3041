@@ -16,7 +16,7 @@ public class CategoryManagerSingleton {
 
     private  Category recent = new Category(CATEGORIES.RECENT.getFormalName());
 
-    private File XMLfile = new File("src/Resources/Data/CustomCommandsList.xml");
+    private File XMLfile = new File("src/Resources/Data/CommandsList.xml");
     //endregion
 
     //region Constructors
