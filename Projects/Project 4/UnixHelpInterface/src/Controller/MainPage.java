@@ -2,6 +2,7 @@ package Controller;
 
 import Controller.Content.CategoriesView;
 import Controller.Content.CommandsView;
+import Controller.Content.SearchResultView;
 import Controller.Dialogs.Dialog;
 import Controller.Settings.SettingsPage;
 import Model.Category;
@@ -135,8 +136,9 @@ public class MainPage extends AnchorPane {
 
     }
 
-    public void navigateToSearchResult(){
-
+    public void navigateToSearchResult(String searchCommand){
+        SearchResultView searchResultView = new SearchResultView(searchCommand);
+        searchResultView.show();
     }
 
     private void navigate(Pane pane){
