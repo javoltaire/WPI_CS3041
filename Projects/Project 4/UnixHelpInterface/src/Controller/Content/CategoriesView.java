@@ -135,7 +135,7 @@ public class CategoriesView extends AnchorPane {
 
         categoriesListView.getSelectionModel().selectedItemProperty().addListener((v, oldValue, newValue) -> {
             if(newValue != null) {
-                if(CATEGORIES.CUSTOM.isEqualTo(newValue.getName()))
+                if(CATEGORIES.CUSTOM.toString().equals(newValue.getName()))
                     canAddNew.setValue(true);
                 else
                     canAddNew.setValue(false);

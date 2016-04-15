@@ -14,7 +14,7 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         printData();
-        ControllerSingleton.getInstace().getMainPage().navigateToCategoriesView(CategoryManagerSingleton.getInstance().getCategoryManager().getCategories());
+        ControllerSingleton.getInstace().getMainPage().navigateToCategoriesView(CategoryManager.getInstance().getCategories());
         primaryStage.setTitle("Hello World");
         primaryStage.setScene(new Scene(ControllerSingleton.getInstace().getMainPage(), 1920, 1080));
         primaryStage.show();
@@ -26,7 +26,7 @@ public class Main extends Application {
 
     private void printData(){
         System.out.println("All Categories");
-        for(Category cat : CategoryManagerSingleton.getInstance().getCategoryManager().getCategories()){
+        for(Category cat : CategoryManager.getInstance().getCategories()){
             if(!cat.getName().equals("Recent"))
                 System.out.println("\t" + cat.toPrintableString());
         }
@@ -62,7 +62,7 @@ public class Main extends Application {
 
         category1.commandsProperty().addAll(command1, command2);
 
-        CategoryManagerSingleton.getInstance().getCategoryManager().getCategories().addAll(category1, category2);
+        CategoryManager.getInstance().getCategories().addAll(category1, category2);
     }
     //endregion
 }

@@ -7,46 +7,73 @@
 
 <?import javafx.geometry.Insets?>
 <fx:root type="AnchorPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
-    <Label fx:id="emptyListLabel" alignment="CENTER" text="No Commands found." AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0" />
+    <!--<Label fx:id="emptyListLabel" alignment="CENTER" text="No Commands found." AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0" />-->
     <BorderPane fx:id="contentPane" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0">
         <left>
             <ListView fx:id="commandsListView" prefWidth="400.0" BorderPane.alignment="CENTER" />
         </left>
         <center>
-            <GridPane fx:id="categoryDetailsContainer" hgap="10.0" vgap="10.0">
-                <columnConstraints>
-                    <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="100.0" minWidth="100.0" prefWidth="100.0" />
-                    <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" />
-                </columnConstraints>
-                <rowConstraints>
-                    <RowConstraints minHeight="35.0" prefHeight="35.0" maxHeight="35.0" valignment="TOP" vgrow="SOMETIMES" />
-                    <RowConstraints minHeight="35.0" prefHeight="35.0" maxHeight="35.0"  valignment="TOP" vgrow="SOMETIMES" />
-                    <RowConstraints minHeight="35.0" prefHeight="35.0" valignment="TOP" vgrow="SOMETIMES" />
-                    <RowConstraints minHeight="35.0" prefHeight="35.0" valignment="TOP" vgrow="SOMETIMES" />
-                    <RowConstraints minHeight="35.0" prefHeight="35.0" valignment="TOP" vgrow="SOMETIMES" />
-                    <RowConstraints minHeight="35.0" prefHeight="35.0" valignment="TOP" vgrow="SOMETIMES" />
-                    <RowConstraints minHeight="35.0" prefHeight="35.0" maxHeight="35.0" valignment="CENTER" vgrow="SOMETIMES" />
-                </rowConstraints>
-                <children>
-                    <Label text="Name:" />
-                    <Label text="Description:" GridPane.rowIndex="1" />
-                    <Label text="Details:" GridPane.rowIndex="2" />
-                    <Label text="Options:" GridPane.rowIndex="3" />
-                    <Label text="Formats:" GridPane.rowIndex="4" />
-                    <Label text="Examples:" GridPane.rowIndex="5" />
-                    <Label text="Source:" GridPane.rowIndex="6" />
-                    <Label fx:id="commandNameLabel" GridPane.columnIndex="1" />
-                    <Label fx:id="commandDescriptionLabel"  GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                    <Label fx:id="commandDetailsLabel" GridPane.columnIndex="1" GridPane.rowIndex="2" wrapText="true" alignment="TOP_LEFT" />
-                    <ListView fx:id="optionsListView" mouseTransparent="true" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                    <ListView fx:id="formatsListView" mouseTransparent="true" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                    <ListView fx:id="examplesListView" mouseTransparent="true" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                    <Hyperlink fx:id="commandSourceLink" alignment="TOP_LEFT" text="Hyperlink" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-                </children>
-                <padding>
-                    <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
-                </padding>
-            </GridPane>
+            <VBox fx:id="detailsVBox" alignment="TOP_CENTER" spacing="10.0">
+                <BorderPane>
+                    <left>
+                        <Label fx:id="nameLabel" text="Name : " alignment="CENTER_RIGHT"/>
+                    </left>
+                    <center>
+                        <Label fx:id="commandNameLabel" maxWidth="Infinity" GridPane.columnIndex="1"/>
+                    </center>
+                </BorderPane>
+                <BorderPane>
+                    <left>
+                        <Label fx:id="descriptionLabel" text="Description : " alignment="CENTER_RIGHT" GridPane.rowIndex="1"/>
+                    </left>
+                    <center>
+                        <Label fx:id="commandDescriptionLabel" maxWidth="Infinity" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                    </center>
+                </BorderPane>
+                <BorderPane>
+                    <left>
+                        <Label fx:id="detailsLabel" text="Details : " alignment="CENTER_RIGHT" GridPane.rowIndex="2"/>
+                    </left>
+                    <center>
+                        <Label fx:id="commandDetailsLabel" maxWidth="Infinity" GridPane.columnIndex="1" GridPane.rowIndex="2" wrapText="true"/>
+                    </center>
+                </BorderPane>
+                <BorderPane>
+                    <left>
+                        <Label fx:id="optionsLabel" text="Options : " GridPane.rowIndex="3" alignment="CENTER_RIGHT"/>
+                    </left>
+                    <center>
+                        <ListView fx:id="optionsListView" mouseTransparent="true" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+                    </center>
+                </BorderPane>
+                <BorderPane>
+                <left>
+                <Label fx:id="formatsLabel" text="Formats : " alignment="CENTER_RIGHT" GridPane.rowIndex="4" />
+                </left>
+                <center>
+                <ListView fx:id="formatsListView" mouseTransparent="true" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                </center>
+                </BorderPane>
+                <BorderPane>
+                <left>
+                <Label fx:id="examplesLabel" text="Examples : " alignment="CENTER_RIGHT" GridPane.rowIndex="5" />
+                </left>
+                <center>
+                <ListView fx:id="examplesListView" mouseTransparent="true" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                </center>
+                </BorderPane>
+                <BorderPane>
+                <left>
+                <Label fx:id="sourceLinkLabel" text="Source : " alignment="CENTER_RIGHT" GridPane.rowIndex="6" />
+                </left>
+                <center>
+                <Hyperlink fx:id="commandSourceLink" alignment="CENTER_LEFT" maxWidth="Infinity" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                </center>
+                </BorderPane>
+                <!--<padding>-->
+                <!--<Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />-->
+                <!--</padding>-->
+            </VBox>
         </center>
     </BorderPane>
 

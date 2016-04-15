@@ -6,14 +6,14 @@ import Controller.CustomControls.SimpleCommandListCell;
 import Model.Category;
 import Model.Command;
 import Model.Item;
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.control.Hyperlink;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListCell;
-import javafx.scene.control.ListView;
+import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.VBox;
 import javafx.util.Callback;
 
 import java.io.IOException;
@@ -23,20 +23,33 @@ import java.io.IOException;
  */
 public class CommandsView extends AnchorPane {
     //region FXML Controls
+    @FXML private BorderPane contentPane;
     @FXML private ListView<Command> commandsListView;
+    @FXML private VBox detailsVBox;
+    @FXML private Label nameLabel;
     @FXML private Label commandNameLabel;
+    @FXML private Label descriptionLabel;
     @FXML private Label commandDescriptionLabel;
+    @FXML private Label detailsLabel;
     @FXML private Label commandDetailsLabel;
+    @FXML private Label optionsLabel;
     @FXML private ListView<Item> optionsListView;
+    @FXML private Label formatsLabel;
     @FXML private ListView<String> formatsListView;
+    @FXML private Label examplesLabel;
     @FXML private ListView<Item> examplesListView;
+    @FXML private Label sourceLinkLabel;
     @FXML private Hyperlink commandSourceLink;
+    //endregion
 
+    //region Variables and Properties
+    private final double LABEL_WIDTH = 75;
     //endregion
 
     //region Constructors
     public CommandsView(){
         loadFXMLFile();
+        setProperties();
         addListeners();
     }
     //endregion
@@ -57,7 +70,18 @@ public class CommandsView extends AnchorPane {
         }
     }
 
-    private void customizeControls(){
+    private void setProperties(){
+        nameLabel.setPrefWidth(LABEL_WIDTH);
+        descriptionLabel.setPrefWidth(LABEL_WIDTH);
+        detailsLabel.setPrefWidth(LABEL_WIDTH);
+        optionsLabel.setPrefWidth(LABEL_WIDTH);
+        formatsLabel.setPrefWidth(LABEL_WIDTH);
+        examplesLabel.setPrefWidth(LABEL_WIDTH);
+        sourceLinkLabel.setPrefWidth(LABEL_WIDTH);
+
+    }
+
+    private void customizeLisviews(){
         commandsListView.setCellFactory(new Callback<ListView<Command>, ListCell<Command>>() {
             @Override
             public ListCell<Command> call(ListView<Command> param) {
@@ -88,7 +112,7 @@ public class CommandsView extends AnchorPane {
 
     public void setCommandsList(ObservableList<Command> commands){
         commandsListView.setItems(commands);
-        customizeControls();
+        customizeLisviews();
     }
 
     private void updateContent(Command command){
@@ -96,8 +120,11 @@ public class CommandsView extends AnchorPane {
         commandDescriptionLabel.setText(command.getDescription());
         commandDetailsLabel.setText(command.getDetails());
         optionsListView.setItems(command.optionsProperty());
+        optionsListView.setPrefHeight(optionsListView.getItems().size() * 25.0);
         formatsListView.setItems(command.formatsProperty());
+        formatsListView.setPrefHeight(formatsListView.getItems().size() * 25.0);
         examplesListView.setItems(command.examplesProperty());
+        examplesListView.setPrefHeight(examplesListView.getItems().size() * 25.0);
         commandSourceLink.setText(command.getSourceLink());
     }
 

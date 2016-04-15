@@ -47,7 +47,6 @@ public class ItemListCell extends ListCell<Item> {
             nameLabel.setText(item.getName() + ":");
             descriptionLabel.setText(item.getDescription());
             setGraphic(root);
-
         }
     }
 }

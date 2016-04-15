@@ -10,10 +10,10 @@
    <children>
       <BorderPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
           <left>
-              <Label fx:id="nameLabel" alignment="CENTER_RIGHT" prefWidth="120" BorderPane.alignment="CENTER"/>
+              <Label fx:id="nameLabel" alignment="CENTER_RIGHT" text="Name" wrapText="true" BorderPane.alignment="CENTER" />
           </left>
          <center>
-             <Label fx:id="descriptionLabel" alignment="CENTER_LEFT" maxWidth="Infinity" BorderPane.alignment="CENTER"/>
+             <Label fx:id="descriptionLabel" alignment="CENTER_LEFT" text="Description" wrapText="true" BorderPane.alignment="CENTER" />
          </center>
       </BorderPane>
    </children>
