@@ -15,8 +15,8 @@
             <center>
                 <HBox alignment="CENTER">
                    <children>
-                       <TextField prefHeight="35" prefWidth="250.0" promptText="Search" />
-                       <Button prefHeight="35.0" prefWidth="35.0" text="Q" />
+                       <TextField fx:id="searchTextField" prefHeight="35" prefWidth="250.0" promptText="Search" />
+                       <Button fx:id="searchButton" prefHeight="35.0" prefWidth="35.0" text="Q" onAction="#onSearchButtonClick" />
                    </children>
                 </HBox>
             </center>

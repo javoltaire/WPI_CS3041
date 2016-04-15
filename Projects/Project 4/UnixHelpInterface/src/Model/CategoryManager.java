@@ -93,11 +93,12 @@ public class CategoryManager {
         getCategories().add(0,recent);
     }
 
-    public Command getCommandByName(String commandName){
-        if(commandHashMap.containsKey(commandName)){
-            return commandHashMap.get(commandName);
-        }
-        return null;
+    public boolean containsCommandKey(String key){
+        return commandHashMap.containsKey(key);
+    }
+
+    public Command getCommand(String key){
+        return commandHashMap.get(key);
     }
 
     public Category getCustom(){

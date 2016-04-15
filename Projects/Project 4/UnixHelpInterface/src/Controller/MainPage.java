@@ -6,6 +6,7 @@ import Controller.Content.SearchResultView;
 import Controller.Dialogs.Dialog;
 import Controller.Settings.SettingsPage;
 import Model.Category;
+import Model.CategoryManager;
 import Model.Command;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.ObjectProperty;
@@ -14,6 +15,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
@@ -31,6 +33,7 @@ import java.util.Stack;
 public class MainPage extends AnchorPane {
     //region FXML Controls
     @FXML private Button backButton;
+    @FXML private TextField searchTextField;
     @FXML private ToggleButton settingsToggleButton;
     @FXML private StackPane contentRoot;
     @FXML private CategoriesView categoriesView;
@@ -77,6 +80,16 @@ public class MainPage extends AnchorPane {
                 }
                 contentRoot.getChildren().add(0,pane);
                 currentPage = pane;
+            }
+        }
+    }
+
+    @FXML private void onSearchButtonClick(){
+        String searchInput = searchTextField.getText().trim();
+        if(!searchInput.isEmpty()){
+            if(CategoryManager.getInstance().containsCommandKey(searchInput)) {
+                Command command = CategoryManager.getInstance().getCommand(searchInput);
+                navigateToCommandsView(command);
             }
         }
     }
