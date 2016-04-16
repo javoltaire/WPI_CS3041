@@ -17,6 +17,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleButton;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
@@ -85,13 +86,11 @@ public class MainPage extends AnchorPane {
     }
 
     @FXML private void onSearchButtonClick(){
-        String searchInput = searchTextField.getText().trim();
-        if(!searchInput.isEmpty()){
-            if(CategoryManager.getInstance().containsCommandKey(searchInput)) {
-                Command command = CategoryManager.getInstance().getCommand(searchInput);
-                navigateToCommandsView(command);
-            }
-        }
+        search();
+    }
+
+    @FXML private void searchTextFieldOnAction(){
+        search();
     }
     //endregion
 
@@ -149,11 +148,6 @@ public class MainPage extends AnchorPane {
 
     }
 
-    public void navigateToSearchResult(String searchCommand){
-        SearchResultView searchResultView = new SearchResultView(searchCommand);
-        searchResultView.show();
-    }
-
     private void navigate(Pane pane){
         if(pane != null){
             if(currentPage != null) {
@@ -163,6 +157,27 @@ public class MainPage extends AnchorPane {
             }
             contentRoot.getChildren().add(0,pane);
             currentPage = pane;
+        }
+    }
+
+    private void search(){
+        String searchInput = searchTextField.getText().trim();
+        if(!searchInput.isEmpty()){
+            if(CategoryManager.getInstance().containsCommandKey(searchInput)) {
+                Command command = CategoryManager.getInstance().getCommand(searchInput);
+                navigateToCommandsView(command);
+            }
+            else{
+                ObservableList<Command> result = CategoryManager.getInstance().getSimilar(searchInput);
+                SearchResultView searchResultView = new SearchResultView();
+                if(result.isEmpty()){
+                    searchResultView.showNoResultError(searchInput);
+                }
+                else {
+                    searchResultView.showResult(result);
+                }
+                navigate(searchResultView);
+            }
         }
     }
     //endregion

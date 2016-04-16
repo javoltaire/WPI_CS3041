@@ -1,12 +1,16 @@
 package Model;
 
 import Model.Enums.CATEGORIES;
+import com.sun.xml.internal.bind.v2.TODO;
 import javafx.beans.binding.ObjectExpression;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import javax.xml.bind.*;
 import java.io.File;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 
 /**
  * Created by jules on 4/13/2016.
@@ -101,7 +105,7 @@ public class CategoryManager {
         return commandHashMap.get(key);
     }
 
-    public Category getCustom(){
+    public Category getCustomCategory(){
         Category customCategory = getCategories().get(getCategories().size() - 1);
         if(!customCategory.getName().equals(CATEGORIES.CUSTOM.toString())){
             for(Category category : getCategories()){
@@ -114,6 +118,20 @@ public class CategoryManager {
             }
         }
         return customCategory;
+    }
+
+    public ObservableList<Command> getSimilar(String sim){
+        ObservableList<Command> result = FXCollections.observableArrayList();
+        Iterator<Map.Entry<String, Command>> iterator = commandHashMap.entrySet().iterator();
+
+        while (iterator.hasNext()){
+            Map.Entry<String, Command> pair = (Map.Entry) iterator.next();
+            if(pair.getKey().startsWith(sim)){
+                result.add(pair.getValue());
+            }
+        }
+
+        return result;
     }
     //endregion
 }

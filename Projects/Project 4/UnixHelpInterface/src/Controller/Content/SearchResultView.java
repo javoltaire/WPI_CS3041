@@ -1,10 +1,9 @@
 package Controller.Content;
-
-import Controller.CustomControls.ItemListCell;
+import Controller.ControllerSingleton;
+import Controller.CustomControls.CommandListCell;
 import Controller.CustomControls.SimpleCommandListCell;
 import Model.Command;
-import Model.Item;
-import com.sun.corba.se.spi.activation.ServerAlreadyRegisteredHelper;
+import Model.Enums.CATEGORIES;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -16,7 +15,10 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.util.Callback;
 
+import java.awt.*;
 import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 
 /**
  * Created by jules on 4/15/2016.
@@ -43,6 +45,26 @@ public class SearchResultView extends BorderPane {
     }
     //endregion
 
+    //region FXML Methods
+    @FXML private void onSearchOnlineClicked(){
+        if(searchCommand != null){
+            try {
+                Desktop desktop = Desktop.getDesktop();
+                String toSearch = "https://www.google.com/search?q=" + searchCommand + "+" + "unix+command";
+                desktop.browse(new URI(toSearch));
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (URISyntaxException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+//    @FXML private void onResultItemClick(){
+//        ControllerSingleton.getInstace().getMainPage().navigateToCommandsView(resultListView.getSelectionModel().getSelectedItem());
+//    }
+    //endregion
+
     //region Methods
     /**
      * Loads the view portion(fxml file) for this class
@@ -59,28 +81,25 @@ public class SearchResultView extends BorderPane {
         }
     }
 
-    private void showResult(ObservableList<Command> resultCommand){
+    public void showResult(ObservableList<Command> resultCommand){
         this.resultListView.setItems(resultCommand);
         customizeLisviews();
         this.resultListView.setVisible(true);
         this.noResultPane.setVisible(false);
     }
 
-    private void showNoResultError(String searchCommand){
+    public void showNoResultError(String searchCommand){
         this. searchCommand = searchCommand;
-        this.errorLabel.setText("Sorry, " + searchCommand + "  was not found.");
+        this.errorLabel.setText("Sorry, \"" + searchCommand + "\" command was not found.");
+        this.resultListView.setVisible(false);
+        this.noResultPane.setVisible(true);
     }
 
-
-
-    public void show(){
-
-    }
     private void customizeLisviews() {
         resultListView.setCellFactory(new Callback<ListView<Command>, ListCell<Command>>() {
             @Override
             public ListCell<Command> call(ListView<Command> param) {
-                return new SimpleCommandListCell();
+                return new CommandListCell();
             }
         });
     }

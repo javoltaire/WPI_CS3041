@@ -4,19 +4,19 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root type="BorderPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <top>
       <Label text="Result" BorderPane.alignment="CENTER" />
    </top>
    <center>
       <StackPane>
          <ListView fx:id="resultListView" visible="false"/>
-         <VBox fx:id="noResultPane" BorderPane.alignment="CENTER">
+         <VBox fx:id="noResultPane" visible="false" BorderPane.alignment="CENTER">
             <children>
                <Label fx:id="errorLabel" text="Command was not found" />
-               <Hyperlink fx:id="searchOnlineLabel" text="Search online" />
+               <Hyperlink fx:id="searchOnlineLabel" text="Search online" onAction="#onSearchOnlineClicked"/>
             </children>
          </VBox>
       </StackPane>
    </center>
-</BorderPane>
+</fx:root>

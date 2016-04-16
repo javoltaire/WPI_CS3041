@@ -11,12 +11,16 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
+import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.util.Callback;
 
+import java.awt.*;
 import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 
 /**
  * Created by jules on 4/11/2016.
@@ -51,6 +55,20 @@ public class CommandsView extends AnchorPane {
         loadFXMLFile();
         setProperties();
         addListeners();
+    }
+    //endregion
+
+    //region FXML methods
+    @FXML private void onLinkClicked(){
+        try {
+            Desktop desktop = Desktop.getDesktop();
+            String toSearch = commandSourceLink.getText().trim();
+            desktop.browse(new URI(toSearch));
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (URISyntaxException e) {
+            e.printStackTrace();
+        }
     }
     //endregion
 

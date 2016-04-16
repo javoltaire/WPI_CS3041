@@ -67,7 +67,7 @@
                 <Label fx:id="sourceLinkLabel" text="Source : " alignment="CENTER_RIGHT" GridPane.rowIndex="6" />
                 </left>
                 <center>
-                <Hyperlink fx:id="commandSourceLink" alignment="CENTER_LEFT" maxWidth="Infinity" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                <Hyperlink fx:id="commandSourceLink" alignment="CENTER_LEFT" maxWidth="Infinity" GridPane.columnIndex="1" GridPane.rowIndex="6" onAction="#onLinkClicked" />
                 </center>
                 </BorderPane>
                 <!--<padding>-->
