@@ -17,7 +17,7 @@ public class CategoriesListWrapper {
     //endregion
 
     //region Constructors
-    private CategoriesListWrapper(){}
+    public CategoriesListWrapper(){}
     //endregion
 
     //region Getters and Setters

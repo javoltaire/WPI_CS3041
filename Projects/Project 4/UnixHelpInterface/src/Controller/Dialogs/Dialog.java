@@ -30,18 +30,12 @@ public abstract class Dialog extends VBox{
 
     //endregion
 
-    //FXML Methods
-    @FXML public void onCancelButtonClick(){
-        exitDialog();
-    }
-    //endregion
-
     //region Methods
     public void showDialog(){
         ControllerSingleton.getInstace().getMainPage().showDialog(this);
     }
 
-    public void exitDialog(){
+    protected void exitDialog(){
         ControllerSingleton.getInstace().getMainPage().exitDialog(this);
     }
     //endregion

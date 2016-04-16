@@ -22,11 +22,13 @@ public class CommandListCell extends ListCell<Command> {
     @FXML private GridPane root;
     @FXML private Label nameLabel;
     @FXML private Label descriptionLabel;
+    @FXML private Button editButton;
     @FXML private Button deleteButton;
     //endregion
 
     //region Variables
     private Command command = null;
+    private boolean canShowEditAndDeleteButton = false;
     //endregion
 
     //region Constructors
@@ -38,11 +40,17 @@ public class CommandListCell extends ListCell<Command> {
 
     //region FXML Methods
     @FXML private void onMouseEntered(){
-        this.deleteButton.setVisible(true);
+        if(canShowEditAndDeleteButton){
+            this.editButton.setVisible(true);
+            this.deleteButton.setVisible(true);
+        }
     }
 
     @FXML private void onMouseExited(){
-        this.deleteButton.setVisible(false);
+        if(canShowEditAndDeleteButton){
+            this.editButton.setVisible(false);
+            this.deleteButton.setVisible(false);
+        }
     }
 
     @FXML private void onMouseClicked(){
@@ -82,6 +90,10 @@ public class CommandListCell extends ListCell<Command> {
         this.setOnMouseEntered(e -> onMouseEntered());
 
         this.setOnMouseExited(e -> onMouseExited());
+    }
+
+    public void setCanShowEditAndDeleteButton(boolean value){
+        this.canShowEditAndDeleteButton = value;
     }
     //endregion
 

@@ -1,5 +1,6 @@
 package Model;
 
+import Controller.Dialogs.MessageDialog;
 import Model.Enums.CATEGORIES;
 import com.sun.xml.internal.bind.v2.TODO;
 import javafx.beans.binding.ObjectExpression;
@@ -66,7 +67,8 @@ public class CategoryManager {
             categoriesListWrapper.getCategories().add(0,recent);
 
         } catch (JAXBException e) {
-            e.printStackTrace();
+            MessageDialog dialog = new MessageDialog("Error", "Error has occurred while trying to save XML File\n" + e.getMessage());
+            dialog.showDialog();
         }
     }
 
@@ -76,12 +78,13 @@ public class CategoryManager {
             JAXBContext jaxbContext = JAXBContext.newInstance(CategoriesListWrapper.class);
             Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
 
-            // Creatinga CategoriesListWrapper object from the file.
+            // Creating a CategoriesListWrapper object from the file.
             return (CategoriesListWrapper) jaxbUnmarshaller.unmarshal(XMLfile);
         } catch (JAXBException e) {
-            e.printStackTrace();
+            MessageDialog dialog = new MessageDialog("Error", "Error has occurred while trying to read XML File\n" + e.getMessage());
+            dialog.showDialog();
         }
-        return null;
+        return new CategoriesListWrapper();
     }
 
     private void populateHashTable(){

@@ -3,6 +3,7 @@ package Controller.Content;
 import Controller.CustomControls.CategoryListCell;
 import Controller.CustomControls.CommandListCell;
 import Controller.Dialogs.DetailedCommandDialog;
+import Controller.Dialogs.MessageDialog;
 import Model.Category;
 import Model.Command;
 import Model.Enums.CATEGORIES;
@@ -82,7 +83,8 @@ public class CategoriesView extends AnchorPane {
 
     //region FXML Methods
     @FXML private void onAddNewButtonClick(){
-        DetailedCommandDialog detailedCommandDialog = new DetailedCommandDialog();
+        Command command = new Command("Custom", "", categoriesListView.getSelectionModel().getSelectedItem());
+        DetailedCommandDialog detailedCommandDialog = new DetailedCommandDialog(command);
         detailedCommandDialog.setTitle("Add new Command");
         detailedCommandDialog.showDialog();
     }
@@ -135,8 +137,10 @@ public class CategoriesView extends AnchorPane {
 
         categoriesListView.getSelectionModel().selectedItemProperty().addListener((v, oldValue, newValue) -> {
             if(newValue != null) {
-                if(CATEGORIES.CUSTOM.toString().equals(newValue.getName()))
+
+                if(CATEGORIES.CUSTOM.toString().equals(newValue.getName())){
                     canAddNew.setValue(true);
+                }
                 else
                     canAddNew.setValue(false);
 
@@ -149,14 +153,15 @@ public class CategoriesView extends AnchorPane {
                     commandsListView.setCellFactory(new Callback<ListView<Command>, ListCell<Command>>() {
                         @Override
                         public ListCell call(ListView<Command> param) {
-                            return new CommandListCell();
+                            CommandListCell cell = new CommandListCell();
+                            if(CATEGORIES.CUSTOM.toString().equals(newValue.getName())){
+                                cell.setCanShowEditAndDeleteButton(true);
+                            }
+                            return cell;
                         }
                     });
                     commandsListView.visibleProperty().bind(noCatSelected.not().and(isCommandsListEmpty.not()));
                     categoryDetailsContainer.getChildren().add(commandsListView);
-
-
-
                     isCommandsListEmpty.set(false);
                 }
                 else{

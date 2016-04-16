@@ -154,6 +154,41 @@
     </Category>
     <Category>
         <Category_Name>Custom</Category_Name>
-        <Category_Commands/>
+        <Category_Commands>
+            <Category_Command isRecentlyUsed="false">
+                <Command_Name>customCommand</Command_Name>
+                <Command_Description>Remote file copy.</Command_Description>
+                <Command_Details>The rcp utility copies files between machines. Each file or directory argument is either a remote file name of the form ``ruser@rhost:path'', or a local file name (containing no `:' characters, or a `/' before any `:'s).</Command_Details>
+                <Command_Options>
+                    <Command_Option>
+                        <Item_Name>-4</Item_Name>
+                        <Item_Description>Use IPv4 addresses only.</Item_Description>
+                    </Command_Option>
+                    <Command_Option>
+                        <Item_Name>-6</Item_Name>
+                        <Item_Description>Use IPv6 addresses only</Item_Description>
+                    </Command_Option>
+                    <Command_Option>
+                        <Item_Name>-p</Item_Name>
+                        <Item_Description> Cause rcp to attempt to preserve (duplicate) in its copies the modification times and modes of the source files, ignoring the umask(2). By default, the mode and owner of file2 are preserved if it already existed; otherwise the mode of the source file modified by the umask(2) on the destination host is used.</Item_Description>
+                    </Command_Option>
+                    <Command_Option>
+                        <Item_Name>-r</Item_Name>
+                        <Item_Description>If any of the source files are directories, rcp copies each sub tree rooted at that name; in this case the destination must be a directory.</Item_Description>
+                    </Command_Option>
+                </Command_Options>
+                <Command_Formats>
+                    <Command_Format>rcp [-Option] file1 file2</Command_Format>
+                    <Command_Format>rcp [-Option] file ... directory</Command_Format>
+                </Command_Formats>
+                <Command_Examples>
+                    <Command_Example>
+                        <Item_Name>$ rcp zeus.univ.edu:document1 document1</Item_Name>
+                        <Item_Description>Copies "document1" from the remote computer zeus.univ.edu to the local machine with the same name.</Item_Description>
+                    </Command_Example>
+                </Command_Examples>
+                <Command_Source_Link>https://www.freebsd.org/cgi/man.cgi?query=rcp&amp;apropos=0&amp;sektion=0&amp;manpath=FreeBSD+10.2-RELEASE&amp;arch=default&amp;format=html</Command_Source_Link>
+            </Category_Command>
+        </Category_Commands>
     </Category>
 </Categories>

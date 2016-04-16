@@ -59,10 +59,6 @@ public class SearchResultView extends BorderPane {
             }
         }
     }
-
-//    @FXML private void onResultItemClick(){
-//        ControllerSingleton.getInstace().getMainPage().navigateToCommandsView(resultListView.getSelectionModel().getSelectedItem());
-//    }
     //endregion
 
     //region Methods

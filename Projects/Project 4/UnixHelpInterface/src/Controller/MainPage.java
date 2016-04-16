@@ -115,7 +115,7 @@ public class MainPage extends AnchorPane {
     }
 
     /**
-     * This method just add listeners to all the required controls
+     * This method add listeners to all the required controls
      */
     private void addListeneers(){
         settingsToggleButton.selectedProperty().addListener((v, oldValue, newValue) -> {
@@ -130,8 +130,8 @@ public class MainPage extends AnchorPane {
     }
 
     public void exitDialog(Dialog dialog){
-        dialogRoot.getChildren().remove(dialog);
         dialogRoot.setVisible(false);
+        dialogRoot.getChildren().remove(dialog);
     }
 
     public void navigateToCategoriesView(ObservableList<Category> categories){
@@ -145,7 +145,6 @@ public class MainPage extends AnchorPane {
         commandsView.setCommandsList(command.getParentCategory().getCommands());
         commandsView.select(command);
         navigate(commandsView);
-
     }
 
     private void navigate(Pane pane){
@@ -178,6 +177,7 @@ public class MainPage extends AnchorPane {
                 }
                 navigate(searchResultView);
             }
+            searchTextField.clear();
         }
     }
     //endregion

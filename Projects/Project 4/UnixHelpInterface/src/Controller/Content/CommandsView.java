@@ -3,6 +3,7 @@ package Controller.Content;
 import Controller.CustomControls.CategoryListCell;
 import Controller.CustomControls.ItemListCell;
 import Controller.CustomControls.SimpleCommandListCell;
+import Controller.Dialogs.MessageDialog;
 import Model.Category;
 import Model.Command;
 import Model.Item;
@@ -65,9 +66,11 @@ public class CommandsView extends AnchorPane {
             String toSearch = commandSourceLink.getText().trim();
             desktop.browse(new URI(toSearch));
         } catch (IOException e) {
-            e.printStackTrace();
+            MessageDialog dialog = new MessageDialog("Error", "Error has occurred while trying to navigate to this link.\n" + e.getMessage());
+            dialog.showDialog();
         } catch (URISyntaxException e) {
-            e.printStackTrace();
+            MessageDialog dialog = new MessageDialog("Error", "Invalid URL.\n" + e.getMessage());
+            dialog.showDialog();
         }
     }
     //endregion
