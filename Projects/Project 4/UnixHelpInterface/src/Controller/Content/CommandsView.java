@@ -1,13 +1,10 @@
 package Controller.Content;
 
-import Controller.CustomControls.CategoryListCell;
-import Controller.CustomControls.ItemListCell;
-import Controller.CustomControls.SimpleCommandListCell;
+import Controller.CustomControls.ListCells.ItemListCell;
+import Controller.CustomControls.ListCells.SimpleCommandListCell;
 import Controller.Dialogs.MessageDialog;
-import Model.Category;
 import Model.Command;
 import Model.Item;
-import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;

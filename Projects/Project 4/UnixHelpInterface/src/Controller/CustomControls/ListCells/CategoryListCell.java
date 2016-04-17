@@ -1,9 +1,9 @@
-package Controller.CustomControls;
+package Controller.CustomControls.ListCells;
 
 import Model.Category;
-import Model.Command;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.layout.AnchorPane;
@@ -11,23 +11,23 @@ import javafx.scene.layout.AnchorPane;
 import java.io.IOException;
 
 /**
- * Created by jules on 4/11/2016.
+ * Created by jules on 4/9/2016.
  */
-public class SimpleCommandListCell extends ListCell<Command> {
+public class CategoryListCell extends ListCell<Category>{
     //region FXML variables
     @FXML private AnchorPane root;
     @FXML private Label label;
     //endregion
 
     //region Constructor
-    public SimpleCommandListCell(){
+    public CategoryListCell(){
         loadFXMLFile();
     }
     //endregion
 
 
     private void loadFXMLFile(){
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../../View/CustomControls/SimpleCommandListCell.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../../../View/CustomControls/CategoryListCell.fxml"));
         loader.setController(this);
         try{
             loader.load();
@@ -38,14 +38,16 @@ public class SimpleCommandListCell extends ListCell<Command> {
     }
 
     @Override
-    public void updateItem(Command command, boolean empty)
+    public void updateItem(Category category, boolean empty)
     {
-        super.updateItem(command,empty);
-        if(command != null)
-        {
-            label.setText(command.getName());
+        super.updateItem(category,empty);
+        if(empty || category == null){
+            label.setText(null);
+            setGraphic(null);
+        }
+        else{
+            label.setText(category.getName());
             setGraphic(root);
-
         }
     }
 }

@@ -1,4 +1,4 @@
-package Controller.CustomControls;
+package Controller.CustomControls.ListCells;
 
 import Model.Command;
 import Model.Item;
@@ -28,7 +28,7 @@ public class ItemListCell extends ListCell<Item> {
 
 
     private void loadFXMLFile(){
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../../View/CustomControls/ItemListCell.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../../../View/CustomControls/ItemListCell.fxml"));
         loader.setController(this);
         try{
             loader.load();
@@ -42,8 +42,12 @@ public class ItemListCell extends ListCell<Item> {
     public void updateItem(Item item, boolean empty)
     {
         super.updateItem(item,empty);
-        if(item != null)
-        {
+        if(empty || item == null){
+            nameLabel.setText(null);
+            descriptionLabel.setText(null);
+            setGraphic(null);
+        }
+        else {
             nameLabel.setText(item.getName() + ":");
             descriptionLabel.setText(item.getDescription());
             setGraphic(root);

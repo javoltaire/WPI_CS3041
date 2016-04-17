@@ -1,9 +1,8 @@
 package Controller.Content;
 
-import Controller.CustomControls.CategoryListCell;
-import Controller.CustomControls.CommandListCell;
+import Controller.CustomControls.ListCells.CategoryListCell;
+import Controller.CustomControls.ListCells.CommandListCell;
 import Controller.Dialogs.DetailedCommandDialog;
-import Controller.Dialogs.MessageDialog;
 import Model.Category;
 import Model.Command;
 import Model.Enums.CATEGORIES;
@@ -31,13 +30,13 @@ public class CategoriesView extends AnchorPane {
     @FXML private BorderPane contentPane;
     @FXML private ListView<Category> categoriesListView;
     @FXML private GridPane categoryDetailsContainer;
+    @FXML private ListView<Command> commandsListView;
     @FXML private Label noCatSelectedLabel;
     @FXML private Label emptyCategoryLabel;
     @FXML private Button addNewButton;
     //endregion
 
     //region Other Controls
-    private ListView<Command> commandsListView;
     //endregion
 
     //region Variables and properties
@@ -83,8 +82,8 @@ public class CategoriesView extends AnchorPane {
 
     //region FXML Methods
     @FXML private void onAddNewButtonClick(){
-        Command command = new Command("Custom", "", categoriesListView.getSelectionModel().getSelectedItem());
-        DetailedCommandDialog detailedCommandDialog = new DetailedCommandDialog(command);
+        Command command = new Command("", "", categoriesListView.getSelectionModel().getSelectedItem());
+        DetailedCommandDialog detailedCommandDialog = new DetailedCommandDialog(command, true);
         detailedCommandDialog.setTitle("Add new Command");
         detailedCommandDialog.showDialog();
     }
@@ -122,6 +121,7 @@ public class CategoriesView extends AnchorPane {
         noCatSelectedLabel.visibleProperty().bind(noCatSelected);
         emptyCategoryLabel.visibleProperty().bind(isCommandsListEmpty);
         addNewButton.visibleProperty().bind(canAddNew);
+        commandsListView.visibleProperty().bind(noCatSelected.not().and(isCommandsListEmpty.not()));
     }
 
     private void setListeners(){
@@ -139,30 +139,31 @@ public class CategoriesView extends AnchorPane {
             if(newValue != null) {
 
                 if(CATEGORIES.CUSTOM.toString().equals(newValue.getName())){
-                    canAddNew.setValue(true);
-                }
-                else
-                    canAddNew.setValue(false);
-
-                if (newValue.getCommands().size() > 0) {
-                    if(commandsListView != null) {
-                        categoryDetailsContainer.getChildren().remove(commandsListView);
-                        commandsListView.visibleProperty().unbind();
-                    }
-                    commandsListView = new ListView<Command>(newValue.getCommands());
                     commandsListView.setCellFactory(new Callback<ListView<Command>, ListCell<Command>>() {
                         @Override
                         public ListCell call(ListView<Command> param) {
                             CommandListCell cell = new CommandListCell();
-                            if(CATEGORIES.CUSTOM.toString().equals(newValue.getName())){
-                                cell.setCanShowEditAndDeleteButton(true);
-                            }
+                            cell.setCanShowEditAndDeleteButton(true);
                             return cell;
                         }
                     });
-                    commandsListView.visibleProperty().bind(noCatSelected.not().and(isCommandsListEmpty.not()));
-                    categoryDetailsContainer.getChildren().add(commandsListView);
+                    canAddNew.setValue(true);
+                }
+                else {
+                    commandsListView.setCellFactory(new Callback<ListView<Command>, ListCell<Command>>() {
+                        @Override
+                        public ListCell call(ListView<Command> param) {
+                            CommandListCell cell = new CommandListCell();
+                            cell.setCanShowEditAndDeleteButton(false);
+                            return cell;
+                        }
+                    });
+                    canAddNew.setValue(false);
+                }
+
+                if (newValue.getCommands().size() > 0) {
                     isCommandsListEmpty.set(false);
+                    commandsListView.setItems(newValue.getCommands());
                 }
                 else{
                     isCommandsListEmpty.setValue(true);
@@ -172,6 +173,43 @@ public class CategoriesView extends AnchorPane {
             else{
                 noCatSelected.set(true);
             }
+
+//            if(newValue != null) {
+//
+//                if(CATEGORIES.CUSTOM.toString().equals(newValue.getName())){
+//                    canAddNew.setValue(true);
+//                }
+//                else
+//                    canAddNew.setValue(false);
+//
+//                if (newValue.getCommands().size() > 0) {
+//                    if(commandsListView != null) {
+//                        categoryDetailsContainer.getChildren().remove(commandsListView);
+//                        commandsListView.visibleProperty().unbind();
+//                    }
+//                    commandsListView = new ListView<Command>(newValue.getCommands());
+//                    commandsListView.setCellFactory(new Callback<ListView<Command>, ListCell<Command>>() {
+//                        @Override
+//                        public ListCell call(ListView<Command> param) {
+//                            CommandListCell cell = new CommandListCell();
+//                            if(CATEGORIES.CUSTOM.toString().equals(newValue.getName())){
+//                                cell.setCanShowEditAndDeleteButton(true);
+//                            }
+//                            return cell;
+//                        }
+//                    });
+//                    commandsListView.visibleProperty().bind(noCatSelected.not().and(isCommandsListEmpty.not()));
+//                    categoryDetailsContainer.getChildren().add(commandsListView);
+//                    isCommandsListEmpty.set(false);
+//                }
+//                else{
+//                    isCommandsListEmpty.setValue(true);
+//                }
+//                noCatSelected.set(false);
+//            }
+//            else{
+//                noCatSelected.set(true);
+//            }
 
         });
     }

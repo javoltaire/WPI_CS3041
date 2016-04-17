@@ -1,9 +1,6 @@
 package Controller.Content;
-import Controller.ControllerSingleton;
-import Controller.CustomControls.CommandListCell;
-import Controller.CustomControls.SimpleCommandListCell;
+import Controller.CustomControls.ListCells.CommandListCell;
 import Model.Command;
-import Model.Enums.CATEGORIES;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;

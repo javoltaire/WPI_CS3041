@@ -24,6 +24,7 @@
                         <children>
                             <Label fx:id="noCatSelectedLabel" text="No categories Selected"/>
                             <Label fx:id="emptyCategoryLabel" visible="false" text="No commands in this category"/>
+                            <ListView fx:id="commandsListView"/>
                         </children>
                     </GridPane>
                     <Button fx:id="addNewButton" alignment="CENTER" mnemonicParsing="false" text="+" prefHeight="40" prefWidth="40" StackPane.alignment="BOTTOM_RIGHT" onAction="#onAddNewButtonClick">

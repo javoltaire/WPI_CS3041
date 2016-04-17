@@ -1,4 +1,4 @@
-package Controller.CustomControls;
+package Controller.CustomControls.ListCells;
 import Controller.ControllerSingleton;
 import Model.Category;
 import Model.Command;
@@ -61,7 +61,7 @@ public class CommandListCell extends ListCell<Command> {
 
     //region Helper Methods
     private void loadFXMLFile(){
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../../View/CustomControls/CommandListCell.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../../../View/CustomControls/CommandListCell.fxml"));
         loader.setController(this);
         try{
             loader.load();
@@ -75,8 +75,13 @@ public class CommandListCell extends ListCell<Command> {
     public void updateItem(Command command, boolean empty)
     {
         super.updateItem(command,empty);
-        if(command != null)
-        {
+        if(empty || command == null){
+            this.command = null;
+            nameLabel.setText(null);
+            descriptionLabel.setText(null);
+            setGraphic(null);
+        }
+        else {
             this.command = command;
             nameLabel.setText(command.getName());
             descriptionLabel.setText(command.getDescription());
