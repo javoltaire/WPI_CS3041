@@ -145,6 +145,8 @@ public class MainPage extends AnchorPane {
         commandsView.setCommandsList(command.getParentCategory().getCommands());
         commandsView.select(command);
         navigate(commandsView);
+        command.setRecentlyUsed(true);
+
     }
 
     private void navigate(Pane pane){

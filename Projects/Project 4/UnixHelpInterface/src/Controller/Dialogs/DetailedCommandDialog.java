@@ -67,7 +67,7 @@ public class DetailedCommandDialog extends Dialog {
         command.getFormats().addAll(newFormats);
         command.getExamples().addAll(newExamples);
         if(isNew){
-            command.getParentCategory().getCommands().add(command);
+            CategoryManager.getInstance().addCommand(command);
         }
         super.exitDialog();
     }
@@ -141,8 +141,11 @@ public class DetailedCommandDialog extends Dialog {
         this.descriptionTextField.setText(command.getDescription());
         this.detailsTextArea.setText(command.getDetails());
         this.optionsListView.getItems().setAll(command.getOptions());
+        optionsListView.setPrefHeight(optionsListView.getItems().size() * 25);
         this.formatsListView.getItems().setAll(command.getFormats());
+        formatsListView.setPrefHeight(formatsListView.getItems().size() * 25);
         this.examplesListVIew.getItems().setAll(command.getExamples());
+        examplesListVIew.setPrefHeight(examplesListVIew.getItems().size() * 25);
         super.showDialog();
     }
     //endregion

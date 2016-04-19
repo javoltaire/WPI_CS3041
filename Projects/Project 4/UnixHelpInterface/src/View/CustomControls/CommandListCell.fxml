@@ -18,7 +18,7 @@
       <Label fx:id="descriptionLabel" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="0.0" text="Description" GridPane.columnIndex="1" />
       <HBox GridPane.columnIndex="2" spacing="10">
           <children>
-              <Button fx:id="editButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="0.0" mnemonicParsing="false" text="I" visible="false"  />
+              <Button fx:id="editButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="0.0" mnemonicParsing="false" text="I" visible="false" onAction="#onEditCommandButtonClick" />
               <Button fx:id="deleteButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="0.0" mnemonicParsing="false" text="X" visible="false" />
           </children>
       </HBox>

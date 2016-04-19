@@ -1,5 +1,6 @@
 package Controller.CustomControls.ListCells;
 import Controller.ControllerSingleton;
+import Controller.Dialogs.DetailedCommandDialog;
 import Model.Category;
 import Model.Command;
 import javafx.event.EventHandler;
@@ -57,6 +58,14 @@ public class CommandListCell extends ListCell<Command> {
         if(command != null)
             ControllerSingleton.getInstace().getMainPage().navigateToCommandsView(command);
     }
+
+    @FXML private void onEditCommandButtonClick(){
+        if(command != null){
+            DetailedCommandDialog detailedCommandDialog = new DetailedCommandDialog(command, false);
+            detailedCommandDialog.setTitle("Edit Command");
+            detailedCommandDialog.showDialog();
+        }
+    }
     //endregion
 
     //region Helper Methods
@@ -89,7 +98,7 @@ public class CommandListCell extends ListCell<Command> {
         }
     }
 
-    private void setEventHandlers(){
+    private void setEventHandlers() {
         this.setOnMouseClicked(e -> onMouseClicked());
 
         this.setOnMouseEntered(e -> onMouseEntered());

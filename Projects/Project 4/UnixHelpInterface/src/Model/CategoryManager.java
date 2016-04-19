@@ -44,7 +44,6 @@ public class CategoryManager {
     public ObservableList<Category> getCategories() {
         return categoriesListWrapper.getCategories();
     }
-
     //endregion
 
     //region Methods
@@ -135,6 +134,17 @@ public class CategoryManager {
         }
 
         return result;
+    }
+
+    public void addToRecent(Command command){
+        if(recent.getCommands().contains(command))
+            recent.getCommands().remove(command);
+        recent.getCommands().add(0, command);
+    }
+
+    public void addCommand(Command command){
+        command.getParentCategory().getCommands().add(command);
+        commandHashMap.put(command.getName(), command);
     }
     //endregion
 }

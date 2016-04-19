@@ -3,6 +3,7 @@ package Controller.Content;
 import Controller.CustomControls.ListCells.ItemListCell;
 import Controller.CustomControls.ListCells.SimpleCommandListCell;
 import Controller.Dialogs.MessageDialog;
+import Model.CategoryManager;
 import Model.Command;
 import Model.Item;
 import javafx.collections.ObservableList;
@@ -125,6 +126,7 @@ public class CommandsView extends AnchorPane {
     private void addListeners(){
         commandsListView.getSelectionModel().selectedItemProperty().addListener((v, oldValue, newValue) ->{
             updateContent(newValue);
+            CategoryManager.getInstance().addToRecent(newValue);
         });
     }
 
