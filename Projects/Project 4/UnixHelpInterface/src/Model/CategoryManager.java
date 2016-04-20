@@ -139,6 +139,7 @@ public class CategoryManager {
     public void addToRecent(Command command){
         if(recent.getCommands().contains(command))
             recent.getCommands().remove(command);
+        command.setRecentlyUsed(true);
         recent.getCommands().add(0, command);
     }
 
@@ -148,9 +149,11 @@ public class CategoryManager {
     }
 
     public void clearRecent(){
-        for(Command command : recent.getCommands()){
-            command.setRecentlyUsed(false);
-            recent.getCommands().remove(command);
+        int numRecentItem = recent.getCommands().size();
+        for(int i = 0; i < numRecentItem; i++){
+            Command firstCommand = recent.getCommands().get(0);
+            firstCommand.setRecentlyUsed(false);
+            recent.getCommands().remove(firstCommand);
         }
     }
     //endregion

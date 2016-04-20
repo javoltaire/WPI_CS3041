@@ -1,6 +1,7 @@
 package Controller.CustomControls.ListCells;
 import Controller.ControllerSingleton;
 import Controller.Dialogs.DetailedCommandDialog;
+import Model.CategoryManager;
 import Model.Command;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -51,8 +52,10 @@ public class CommandListCell extends ListCell<Command> {
     }
 
     @FXML private void onMouseClicked(){
-        if(command != null)
+        if(command != null) {
             ControllerSingleton.getInstace().getMainPage().navigateToCommandsView(command);
+            CategoryManager.getInstance().addToRecent(command);
+        }
     }
 
     @FXML private void onEditCommandButtonClick(){
