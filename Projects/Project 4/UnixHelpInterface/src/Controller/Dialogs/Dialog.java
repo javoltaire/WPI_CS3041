@@ -15,6 +15,10 @@ public abstract class Dialog extends VBox{
     @FXML private Label titleLabel;
     //endregion
 
+    protected Dialog(){
+        this.getStyleClass().add("dialog");
+    }
+
     //region Getters and Setters
     public StringProperty titleProperty() {
         return titleLabel.textProperty();

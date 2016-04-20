@@ -33,20 +33,20 @@
                         <children>
                             <HBox alignment="CENTER" minHeight="0.0" prefHeight="35.0" spacing="50.0">
                                 <children>
-                                    <RadioButton fx:id="blueRadioButton" mnemonicParsing="false" prefWidth="35.0">
+                                    <RadioButton fx:id="midNightBlueRadioButton" mnemonicParsing="false" prefWidth="35.0">
                                         <toggleGroup>
                                             <ToggleGroup fx:id="systemColorToggleGroup" />
                                         </toggleGroup>
                                     </RadioButton>
-                                    <RadioButton mnemonicParsing="false" prefWidth="35.0" toggleGroup="${blueRadioButton.toggleGroup}" />
-                                    <RadioButton mnemonicParsing="false" prefWidth="35.0" toggleGroup="${blueRadioButton.toggleGroup}" />
+                                    <RadioButton fx:id="belizeHoleBlueRadioButton" mnemonicParsing="false" prefWidth="35.0" toggleGroup="${midNightBlueRadioButton.toggleGroup}" />
+                                    <RadioButton fx:id="nephritisGreenRadioButton" mnemonicParsing="false" prefWidth="35.0" toggleGroup="${midNightBlueRadioButton.toggleGroup}" />
                                 </children>
                             </HBox>
                             <HBox alignment="CENTER" minHeight="0.0" prefHeight="35.0" spacing="50.0">
                                 <children>
-                                    <RadioButton mnemonicParsing="false" prefWidth="35.0" toggleGroup="${blueRadioButton.toggleGroup}" />
-                                    <RadioButton mnemonicParsing="false" prefWidth="35.0" toggleGroup="${blueRadioButton.toggleGroup}" />
-                                    <RadioButton mnemonicParsing="false" prefWidth="35.0" toggleGroup="${blueRadioButton.toggleGroup}" />
+                                    <RadioButton fx:id="pomegranateRedRadioButton" mnemonicParsing="false" prefWidth="35.0" toggleGroup="${midNightBlueRadioButton.toggleGroup}" />
+                                    <RadioButton fx:id="wisteriaPurpleRadioButton" mnemonicParsing="false" prefWidth="35.0" toggleGroup="${midNightBlueRadioButton.toggleGroup}" />
+                                    <RadioButton fx:id="pinkRadioButton" mnemonicParsing="false" prefWidth="35.0" toggleGroup="${midNightBlueRadioButton.toggleGroup}" />
                                 </children>
                             </HBox>
                         </children>

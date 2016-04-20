@@ -1,6 +1,7 @@
 /* Declaring the variables*/
 *{
     midnight-blue: #2c3e50;
+    wet-asphalt: #34495e;
     midnight-blue-light: #46586A;
     midnight-blue-super-light: #eff2f6;
 
@@ -13,6 +14,24 @@
 #simpleCommandsListView .list-cell{
     -fx-background-color: midnight-blue;
     -fx-text-fill: white;
+}
+
+.list-cell .button{
+    -fx-text-fill: midnight-blue;
+}
+
+.list-cell .button:hover{
+    -fx-text-fill: midnight-blue-super-light;
+}
+
+.toggle-button:selected{
+    -fx-background-color: wet-asphalt;
+}
+
+.dialog{
+    -fx-background-color: white;
+    -fx-border-color: midnight-blue;
+    -fx-border-width: 2;
 }
 
 .button:hover,

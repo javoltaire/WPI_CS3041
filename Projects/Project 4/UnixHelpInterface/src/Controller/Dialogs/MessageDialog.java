@@ -20,10 +20,12 @@ public class MessageDialog extends Dialog{
 
     //region Contructors
     public MessageDialog(){
+        super();
         loadFXMLFile();
     }
 
     public MessageDialog(String title, String message){
+        super();
         loadFXMLFile();
         titleLabel.setText(title);
         messageLabel.setText(message);

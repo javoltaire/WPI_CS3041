@@ -18,6 +18,12 @@ public class SettingsPage extends VBox{
     @FXML private Label settingsHeaderLabel;
     @FXML private VBox settingsMenuContentPane;
     @FXML private VBox personalizeContentPane;
+    @FXML private RadioButton midNightBlueRadioButton;
+    @FXML private RadioButton belizeHoleBlueRadioButton;
+    @FXML private RadioButton nephritisGreenRadioButton;
+    @FXML private RadioButton pomegranateRedRadioButton;
+    @FXML private RadioButton wisteriaPurpleRadioButton;
+    @FXML private RadioButton pinkRadioButton;
     @FXML private VBox helpContentPage;
     @FXML private VBox aboutContentPage;
     //endregion
@@ -35,6 +41,7 @@ public class SettingsPage extends VBox{
      */
     public SettingsPage(){
         loadFXMLFile();
+        styleRadioButtons();
         addListeners();
     }
     //endregion
@@ -102,6 +109,20 @@ public class SettingsPage extends VBox{
         catch(IOException excpt){
             throw new RuntimeException(excpt);
         }
+    }
+
+    private void styleRadioButtons(){
+        replaceRadioButtonStyle(midNightBlueRadioButton);
+        replaceRadioButtonStyle(belizeHoleBlueRadioButton);
+        replaceRadioButtonStyle(nephritisGreenRadioButton);
+        replaceRadioButtonStyle(pomegranateRedRadioButton);
+        replaceRadioButtonStyle(wisteriaPurpleRadioButton);
+        replaceRadioButtonStyle(pinkRadioButton);
+    }
+
+    private void replaceRadioButtonStyle(RadioButton radioButton){
+        radioButton.getStyleClass().remove("radio-button");
+        radioButton.getStyleClass().add("toggle-button");
     }
 
     /**

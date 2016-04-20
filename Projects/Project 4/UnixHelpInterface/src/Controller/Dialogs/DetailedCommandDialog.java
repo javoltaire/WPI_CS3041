@@ -48,6 +48,7 @@ public class DetailedCommandDialog extends Dialog {
 
     //region Constructors
     public DetailedCommandDialog(Command command, boolean isNew){
+        super();
         this.command = command;
         this.isNew = isNew;
         loadFXMLFile();

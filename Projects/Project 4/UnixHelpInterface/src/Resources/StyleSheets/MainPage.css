@@ -1,5 +1,11 @@
 *{
     list-view-hover-color: #bdc3c7;
+    midnight-blue: #2c3e50;
+    belize-hole-blue: #2e8dcd;
+    nephritis-green: #27ae60;
+    wisteria-purple: #8e44ad;
+    pomegranate-red: #c0392b;
+    pink-color: #db57db;
     -fx-background-radius: 0;
     -fx-focus-color: transparent;
 }
@@ -10,6 +16,15 @@
 
 .list-cell{
     -fx-background-color: white;
+}
+
+.toggle-button:selected{
+    -fx-border-color: black;
+    -fx-border-width: 3;
+}
+
+.list-cell .button{
+    -fx-background-color: transparent;
 }
 
 .list-cell:filled:hover,
@@ -28,9 +43,30 @@
 }
 
 #dialogRoot{
-    -fx-background-color: rgba(255, 255, 255, 0.8);
+    -fx-background-color: rgba(0, 0, 0, 0.4);
 }
 
-.list-cell .button{
-    -fx-background-color: white;
+#midNightBlueRadioButton{
+    -fx-background-color:midnight-blue;
 }
+
+#belizeHoleBlueRadioButton{
+    -fx-background-color: belize-hole-blue;
+}
+
+#nephritisGreenRadioButton{
+    -fx-background-color: nephritis-green;
+}
+
+#pomegranateRedRadioButton{
+    -fx-background-color: pomegranate-red;
+}
+
+#wisteriaPurpleRadioButton{
+    -fx-background-color: wisteria-purple;
+}
+
+#pinkRadioButton{
+    -fx-background-color: pink-color;
+}
+

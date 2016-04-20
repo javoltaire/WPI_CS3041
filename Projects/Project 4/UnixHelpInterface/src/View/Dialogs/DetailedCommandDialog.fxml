@@ -32,7 +32,7 @@
                 <Label text="Link:" GridPane.rowIndex="6" />
                 <TextField fx:id="nameTextField" minHeight="0.0" minWidth="0.0" promptText="Name" GridPane.columnIndex="1" />
                 <TextField fx:id="descriptionTextField" minHeight="0.0" minWidth="0.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                <TextArea fx:id="detailsTextArea" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                <TextArea fx:id="detailsTextArea" minHeight="35" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                 <VBox GridPane.columnIndex="1" GridPane.rowIndex="3">
                     <children>
                         <ListView fx:id="optionsListView" minHeight="0.0" prefHeight="0.0" />
@@ -81,7 +81,7 @@
             </children>
             <TextField fx:id="sourceLinkTextField" minHeight="0.0" minWidth="0.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
         </GridPane>
-        <HBox alignment="CENTER_RIGHT" spacing="40.0">
+        <HBox alignment="CENTER_RIGHT" spacing="30.0">
             <children>
                 <Button mnemonicParsing="false" text="Save" onAction="#onSaveButtonClick" />
                 <Button mnemonicParsing="false" onAction="#onCancelButtonClick" text="Cancel" />
