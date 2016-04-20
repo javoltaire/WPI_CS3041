@@ -1,5 +1,6 @@
 package Controller.Settings;
 
+import Model.CategoryManager;
 import javafx.beans.property.*;
 import javafx.fxml.*;
 import javafx.scene.Node;
@@ -80,6 +81,10 @@ public class SettingsPage extends VBox{
      */
     @FXML private void onAboutButtonClick(){
         goToSettingsPage(aboutContentPage, "About");
+    }
+
+    @FXML private void onClearRecentButtonClick(){
+        CategoryManager.getInstance().clearRecent();
     }
     //endregion
 

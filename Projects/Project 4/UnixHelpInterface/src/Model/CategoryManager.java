@@ -146,5 +146,12 @@ public class CategoryManager {
         command.getParentCategory().getCommands().add(command);
         commandHashMap.put(command.getName(), command);
     }
+
+    public void clearRecent(){
+        for(Command command : recent.getCommands()){
+            command.setRecentlyUsed(false);
+            recent.getCommands().remove(command);
+        }
+    }
     //endregion
 }
