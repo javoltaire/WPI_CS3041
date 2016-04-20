@@ -14,6 +14,7 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         printData();
+        primaryStage.setOnCloseRequest(e -> CategoryManager.getInstance().saveData());
         ControllerSingleton.getInstace().getMainPage().navigateToCategoriesView(CategoryManager.getInstance().getCategories());
         primaryStage.setTitle("Unix Command");
         primaryStage.setScene(new Scene(ControllerSingleton.getInstace().getMainPage(), 1920, 1080));

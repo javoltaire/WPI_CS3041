@@ -3,7 +3,7 @@
     <Category>
         <Category_Name>File System</Category_Name>
         <Category_Commands>
-            <Category_Command isRecentlyUsed="true">
+            <Category_Command isRecentlyUsed="false">
                 <Command_Name>ls</Command_Name>
                 <Command_Description>List directory contents.</Command_Description>
                 <Command_Details>For each operand that names a file of a type other than directory, ls displays its name as well as any requested, associated information. For each operand that names a file of type directory, ls displays the names of files contained within that directory, as well as any requested, associated information. If no operands are given, the contents of the current directory are displayed. If more than one operand is given, non-directory operands are displayed first; directory and non-directory operands are sorted separately and in lexicographical order.</Command_Details>
@@ -116,7 +116,7 @@
     <Category>
         <Category_Name>Network</Category_Name>
         <Category_Commands>
-            <Category_Command isRecentlyUsed="false">
+            <Category_Command isRecentlyUsed="true">
                 <Command_Name>rcp</Command_Name>
                 <Command_Description>Remote file copy.</Command_Description>
                 <Command_Details>The rcp utility copies files between machines. Each file or directory argument is either a remote file name of the form ``ruser@rhost:path'', or a local file name (containing no `:' characters, or a `/' before any `:'s).</Command_Details>
