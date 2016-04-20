@@ -1,6 +1,5 @@
 package Controller.CustomControls.ListCells;
 
-import Model.Command;
 import Model.Item;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -28,7 +27,7 @@ public class ItemListCell extends ListCell<Item> {
 
 
     private void loadFXMLFile(){
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../../../View/CustomControls/ItemListCell.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../../../View/CustomControls/Cells/ItemListCell.fxml"));
         loader.setController(this);
         try{
             loader.load();

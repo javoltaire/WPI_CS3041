@@ -1,9 +1,9 @@
 package Controller.CustomControls.ListCells;
 
-import Model.Category;
 import Model.Command;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.layout.AnchorPane;
@@ -14,28 +14,9 @@ import java.io.IOException;
  * Created by jules on 4/11/2016.
  */
 public class SimpleCommandListCell extends ListCell<Command> {
-    //region FXML variables
-    @FXML private AnchorPane root;
-    @FXML private Label label;
-    //endregion
-
     //region Constructor
-    public SimpleCommandListCell(){
-        loadFXMLFile();
-    }
+    public SimpleCommandListCell(){}
     //endregion
-
-
-    private void loadFXMLFile(){
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../../../View/CustomControls/SimpleCommandListCell.fxml"));
-        loader.setController(this);
-        try{
-            loader.load();
-        }
-        catch(IOException excpt){
-            throw new RuntimeException(excpt);
-        }
-    }
 
     @Override
     public void updateItem(Command command, boolean empty)
@@ -43,12 +24,11 @@ public class SimpleCommandListCell extends ListCell<Command> {
         super.updateItem(command,empty);
         if(empty || command == null)
         {
-            label.setText(null);
-            setGraphic(null);
+            setText(null);
         }
         else{
-            label.setText(command.getName());
-            setGraphic(root);
+            setText(command.getName());
         }
+        setAlignment(Pos.CENTER);
     }
 }

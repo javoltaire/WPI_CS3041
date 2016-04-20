@@ -1,16 +1,12 @@
 package Controller.CustomControls.ListCells;
 import Controller.ControllerSingleton;
 import Controller.Dialogs.DetailedCommandDialog;
-import Model.Category;
 import Model.Command;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.Labeled;
 import javafx.scene.control.ListCell;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 
 import java.io.IOException;
@@ -70,7 +66,7 @@ public class CommandListCell extends ListCell<Command> {
 
     //region Helper Methods
     private void loadFXMLFile(){
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../../../View/CustomControls/CommandListCell.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../../../View/CustomControls/Cells/CommandListCell.fxml"));
         loader.setController(this);
         try{
             loader.load();

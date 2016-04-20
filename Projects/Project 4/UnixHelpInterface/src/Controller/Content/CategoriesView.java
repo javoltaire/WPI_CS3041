@@ -174,48 +174,12 @@ public class CategoriesView extends AnchorPane {
                 noCatSelected.set(true);
             }
 
-//            if(newValue != null) {
-//
-//                if(CATEGORIES.CUSTOM.toString().equals(newValue.getName())){
-//                    canAddNew.setValue(true);
-//                }
-//                else
-//                    canAddNew.setValue(false);
-//
-//                if (newValue.getCommands().size() > 0) {
-//                    if(commandsListView != null) {
-//                        categoryDetailsContainer.getChildren().remove(commandsListView);
-//                        commandsListView.visibleProperty().unbind();
-//                    }
-//                    commandsListView = new ListView<Command>(newValue.getCommands());
-//                    commandsListView.setCellFactory(new Callback<ListView<Command>, ListCell<Command>>() {
-//                        @Override
-//                        public ListCell call(ListView<Command> param) {
-//                            CommandListCell cell = new CommandListCell();
-//                            if(CATEGORIES.CUSTOM.toString().equals(newValue.getName())){
-//                                cell.setCanShowEditAndDeleteButton(true);
-//                            }
-//                            return cell;
-//                        }
-//                    });
-//                    commandsListView.visibleProperty().bind(noCatSelected.not().and(isCommandsListEmpty.not()));
-//                    categoryDetailsContainer.getChildren().add(commandsListView);
-//                    isCommandsListEmpty.set(false);
-//                }
-//                else{
-//                    isCommandsListEmpty.setValue(true);
-//                }
-//                noCatSelected.set(false);
-//            }
-//            else{
-//                noCatSelected.set(true);
-//            }
-
         });
     }
 
     public void setCategoriesList(ObservableList<Category> categories){
         this.categories.set(categories);
+        categoriesListView.getSelectionModel().select(0);
 
     }
     //endregion

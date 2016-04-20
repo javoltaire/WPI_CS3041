@@ -1,0 +1,37 @@
+/* Declaring the variables*/
+*{
+    midnight-blue: #2c3e50;
+    midnight-blue-light: #46586A;
+    midnight-blue-super-light: #eff2f6;
+
+}
+
+/* */
+.button,
+.toggle-button,
+#categoriesListView .list-cell,
+#simpleCommandsListView .list-cell{
+    -fx-background-color: midnight-blue;
+    -fx-text-fill: white;
+}
+
+.button:hover,
+.toggle-button:hover,
+#categoriesListView .list-cell:filled:hover,
+#simpleCommandsListView .list-cell:filled:hover{
+    -fx-background-color: midnight-blue-light;
+}
+
+.text-field:focused, .text-area:focused{
+    -fx-focus-color: midnight-blue;
+}
+
+#categoriesListView .list-cell:filled:selected,
+#simpleCommandsListView .list-cell:filled:selected{
+    -fx-background-color: white;
+    -fx-text-fill: midnight-blue;
+}
+
+#commandsListView .list-cell:filled:odd{
+    -fx-background-color: midnight-blue-super-light;
+}

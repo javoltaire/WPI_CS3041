@@ -15,7 +15,7 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception {
         printData();
         ControllerSingleton.getInstace().getMainPage().navigateToCategoriesView(CategoryManager.getInstance().getCategories());
-        primaryStage.setTitle("Hello World");
+        primaryStage.setTitle("Unix Command");
         primaryStage.setScene(new Scene(ControllerSingleton.getInstace().getMainPage(), 1920, 1080));
         primaryStage.show();
     }

@@ -27,7 +27,7 @@ import java.net.URISyntaxException;
 public class CommandsView extends AnchorPane {
     //region FXML Controls
     @FXML private BorderPane contentPane;
-    @FXML private ListView<Command> commandsListView;
+    @FXML private ListView<Command> simpleCommandsListView;
     @FXML private VBox detailsVBox;
     @FXML private Label nameLabel;
     @FXML private Label commandNameLabel;
@@ -101,7 +101,7 @@ public class CommandsView extends AnchorPane {
     }
 
     private void customizeLisviews(){
-        commandsListView.setCellFactory(new Callback<ListView<Command>, ListCell<Command>>() {
+        simpleCommandsListView.setCellFactory(new Callback<ListView<Command>, ListCell<Command>>() {
             @Override
             public ListCell<Command> call(ListView<Command> param) {
                 return new SimpleCommandListCell();
@@ -124,14 +124,14 @@ public class CommandsView extends AnchorPane {
     }
 
     private void addListeners(){
-        commandsListView.getSelectionModel().selectedItemProperty().addListener((v, oldValue, newValue) ->{
+        simpleCommandsListView.getSelectionModel().selectedItemProperty().addListener((v, oldValue, newValue) ->{
             updateContent(newValue);
             CategoryManager.getInstance().addToRecent(newValue);
         });
     }
 
     public void setCommandsList(ObservableList<Command> commands){
-        commandsListView.setItems(commands);
+        simpleCommandsListView.setItems(commands);
         customizeLisviews();
     }
 
@@ -149,7 +149,7 @@ public class CommandsView extends AnchorPane {
     }
 
     public void select(Command command){
-        commandsListView.getSelectionModel().select(command);
+        simpleCommandsListView.getSelectionModel().select(command);
     }
 
 

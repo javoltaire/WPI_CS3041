@@ -23,6 +23,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.LinkedList;
 import java.util.Queue;
@@ -104,6 +105,8 @@ public class MainPage extends AnchorPane {
         loader.setController(this);
         try{
             loader.load();
+            getStylesheets().add(getClass().getResource("/Resources/StyleSheets/MainPage.css").toExternalForm());
+            getStylesheets().add(getClass().getResource("/Resources/StyleSheets/MainPageMidBlue.css").toExternalForm());
         }
         catch(IOException excpt){
             throw new RuntimeException(excpt);

@@ -10,13 +10,13 @@
     <children>
         <BorderPane prefHeight="45.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <left>
-                <Button fx:id="backButton" mnemonicParsing="false" prefHeight="45.0" prefWidth="45.0" text="Back" BorderPane.alignment="CENTER" onAction="#onBackButtonClicked" />
+                <Button fx:id="backButton" mnemonicParsing="false" onAction="#onBackButtonClicked" prefHeight="45.0" prefWidth="45.0" text="Back" BorderPane.alignment="CENTER" />
             </left>
             <center>
                 <HBox alignment="CENTER">
                    <children>
-                       <TextField fx:id="searchTextField" prefHeight="35" prefWidth="250.0" promptText="Search" onAction="#searchTextFieldOnAction"/>
-                       <Button fx:id="searchButton" prefHeight="35.0" prefWidth="35.0" text="Q" onAction="#onSearchButtonClick" />
+                       <TextField fx:id="searchTextField" onAction="#searchTextFieldOnAction" prefHeight="35" prefWidth="250.0" promptText="Search" />
+                       <Button onAction="#onSearchButtonClick" prefHeight="35.0" prefWidth="35.0" text="Q" />
                    </children>
                 </HBox>
             </center>
@@ -29,7 +29,7 @@
                 <SettingsPage fx:id="settingsPage" maxWidth="300" style="-fx-background-color: #ecf0f1;" visible="false" />
             </children>
         </StackPane>
-        <GridPane fx:id="dialogRoot" visible="false" alignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <GridPane fx:id="dialogRoot" alignment="CENTER" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <columnConstraints>
                 <ColumnConstraints fillWidth="true" halignment="CENTER" hgrow="SOMETIMES" percentWidth="80.0" />
             </columnConstraints>
