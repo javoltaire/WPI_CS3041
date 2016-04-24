@@ -155,7 +155,7 @@
     <Category>
         <Category_Name>Custom</Category_Name>
         <Category_Commands>
-            <Category_Command isRecentlyUsed="false">
+            <Category_Command isRecentlyUsed="true">
                 <Command_Name>customCommand</Command_Name>
                 <Command_Description>Short description of the custom command</Command_Description>
                 <Command_Details>This is a more detailed description of what this command does</Command_Details>

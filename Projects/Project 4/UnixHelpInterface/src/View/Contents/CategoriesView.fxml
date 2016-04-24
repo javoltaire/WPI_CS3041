@@ -27,7 +27,7 @@
                             <ListView fx:id="commandsListView"/>
                         </children>
                     </GridPane>
-                    <Button fx:id="addNewButton" alignment="CENTER" mnemonicParsing="false" text="New" prefHeight="40" prefWidth="40" StackPane.alignment="BOTTOM_RIGHT" onAction="#onAddNewButtonClick">
+                    <Button fx:id="addNewButton" alignment="CENTER" mnemonicParsing="false" text="New" prefHeight="40" disable="true" StackPane.alignment="BOTTOM_RIGHT" onAction="#onAddNewButtonClick">
                         <StackPane.margin>
                             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                         </StackPane.margin>

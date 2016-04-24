@@ -58,6 +58,12 @@ public class SearchResultView extends BorderPane {
     }
     //endregion
 
+    //region Getters and setters
+    public String getTitle(){
+        return "Result";
+    }
+    //endregion
+
     //region Methods
     /**
      * Loads the view portion(fxml file) for this class

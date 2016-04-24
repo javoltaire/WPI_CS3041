@@ -14,6 +14,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 import javafx.util.Callback;
 
 import java.awt.*;
@@ -47,6 +48,7 @@ public class CommandsView extends AnchorPane {
 
     //region Variables and Properties
     private final double LABEL_WIDTH = 75;
+    private String title = "Commands";
     //endregion
 
     //region Constructors
@@ -54,6 +56,12 @@ public class CommandsView extends AnchorPane {
         loadFXMLFile();
         setProperties();
         addListeners();
+    }
+    //endregion
+
+    //region getters and setters
+    public String getTitle(){
+        return title;
     }
     //endregion
 
@@ -111,7 +119,9 @@ public class CommandsView extends AnchorPane {
         optionsListView.setCellFactory(new Callback<ListView<Item>, ListCell<Item>>() {
             @Override
             public ListCell<Item> call(ListView<Item> param) {
-                return new ItemListCell();
+                ItemListCell itemListCell = new ItemListCell();
+                itemListCell.prefWidthProperty().bind(optionsListView.widthProperty());
+                return itemListCell;
             }
         });
 
@@ -121,6 +131,27 @@ public class CommandsView extends AnchorPane {
                 return new ItemListCell();
             }
         });
+
+//        optionsListView.setCellFactory(new Callback<ListView<Item>, ListCell<Item>>() {
+//            @Override
+//            public ListCell<Item> call(ListView<Item> list) {
+//                final ListCell<Item> cell = new ListCell<Item>() {
+//                    private Text text;
+//
+//                    @Override
+//                    public void updateItem(Item item, boolean empty) {
+//                        super.updateItem(item, empty);
+//                        if (!isEmpty()) {
+//                            text = new Text(item.getName() + ": " + item.getDescription());
+//                            text.setWrappingWidth(optionsListView.getPrefWidth());
+//                            setGraphic(text);
+//                        }
+//                    }
+//                };
+//
+//                return cell;
+//            }
+//        });
     }
 
     private void addListeners(){
@@ -136,15 +167,16 @@ public class CommandsView extends AnchorPane {
     }
 
     private void updateContent(Command command){
+        title = command.getParentCategory().getName();
         commandNameLabel.setText(command.getName());
         commandDescriptionLabel.setText(command.getDescription());
         commandDetailsLabel.setText(command.getDetails());
         optionsListView.setItems(command.optionsProperty());
-        optionsListView.setPrefHeight(optionsListView.getItems().size() * 25.0);
+        optionsListView.setPrefHeight(optionsListView.getItems().size() * 29.0);
         formatsListView.setItems(command.formatsProperty());
-        formatsListView.setPrefHeight(formatsListView.getItems().size() * 25.0);
+        formatsListView.setPrefHeight(formatsListView.getItems().size() * 29.0);
         examplesListView.setItems(command.examplesProperty());
-        examplesListView.setPrefHeight(examplesListView.getItems().size() * 25.0);
+        examplesListView.setPrefHeight(examplesListView.getItems().size() * 29.0);
         commandSourceLink.setText(command.getSourceLink());
     }
 

@@ -1,6 +1,9 @@
 package Controller.CustomControls.TextFields;
 
+import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.StringProperty;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
@@ -42,6 +45,18 @@ public class ErrorTextField extends VBox {
     public void setPromptText(String text){
         promptTextProperty().set(text);
     }
+
+    public ObjectProperty<EventHandler<ActionEvent>> onActionProperty(){
+        return textField.onActionProperty();
+    }
+
+    public EventHandler<ActionEvent> getOnAction(){
+        return onActionProperty().get();
+    }
+
+    public void setOnAction(EventHandler<ActionEvent> actionEvent){
+        onActionProperty().set(actionEvent);
+    }
     //endregion
 
     private void loadFXMLFile(){
@@ -71,5 +86,12 @@ public class ErrorTextField extends VBox {
     public void hideErrorLabel(){
         errorLabel.setPrefHeight(errorLabel.getMinHeight());
         errorLabel.setText("");
+    }
+
+    /**
+     * Clears the content inside the textfield
+     */
+    public void clear(){
+        textField.clear();
     }
 }

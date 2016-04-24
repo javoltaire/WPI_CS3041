@@ -3,6 +3,7 @@ package Controller;
 import Controller.Content.CategoriesView;
 import Controller.Content.CommandsView;
 import Controller.Content.SearchResultView;
+import Controller.CustomControls.TextFields.ErrorTextField;
 import Controller.Dialogs.Dialog;
 import Controller.Settings.SettingsPage;
 import Model.Category;
@@ -12,11 +13,16 @@ import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.collections.ObservableList;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleButton;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyCodeCombination;
+import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.*;
 
@@ -32,6 +38,7 @@ import java.util.Stack;
 public class MainPage extends AnchorPane {
     //region FXML Controls
     @FXML private Button backButton;
+    @FXML private Label pageTitleLabel;
     @FXML private TextField searchTextField;
     @FXML private ToggleButton settingsToggleButton;
     @FXML private StackPane contentRoot;
@@ -42,8 +49,14 @@ public class MainPage extends AnchorPane {
 
     //region Variables and Properties
     private Pane currentPage = null;
+    private String lastVisitedPage = null;
     private Stack<Pane> history = new Stack<>();
+    private Stack<String> titleHistory = new Stack<>();
     private BooleanProperty canShowBackButton = new SimpleBooleanProperty(this, "canShowBackButton", false);
+    //endregion
+
+    //region Other variables
+    private final KeyCombination ctrlfCombination = new KeyCodeCombination(KeyCode.F, KeyCombination.CONTROL_DOWN);
     //endregion
 
     //region Constructors
@@ -72,14 +85,19 @@ public class MainPage extends AnchorPane {
     @FXML private void onBackButtonClicked(){
         if(!history.empty()) {
             Pane pane = history.pop();
+            String pageTitle = titleHistory.pop();
             canShowBackButton.setValue(!history.empty());
             if(currentPage != pane) {
                 if(currentPage != null) {
                     contentRoot.getChildren().remove(currentPage);
                 }
                 contentRoot.getChildren().add(0,pane);
+                pageTitleLabel.setText(pageTitle);
                 currentPage = pane;
             }
+            //work around
+            if(titleHistory.isEmpty())
+                pageTitleLabel.setText("Home");
         }
     }
 
@@ -121,6 +139,13 @@ public class MainPage extends AnchorPane {
         settingsToggleButton.selectedProperty().addListener((v, oldValue, newValue) -> {
             settingsPage.setVisible(newValue);
         });
+        this.addEventHandler(KeyEvent.KEY_RELEASED, new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent event) {
+                if(ctrlfCombination.match(event))
+                    searchTextField.requestFocus();
+            }
+        });
     }
 
     public void showDialog(Dialog dialog){
@@ -137,6 +162,11 @@ public class MainPage extends AnchorPane {
     public void navigateToCategoriesView(ObservableList<Category> categories){
         CategoriesView categoriesView = new CategoriesView();
         categoriesView.setCategoriesList(categories);
+        if(lastVisitedPage != null)
+            titleHistory.push(lastVisitedPage);
+        String categoriesViewTitle = categoriesView.getTitle();
+        lastVisitedPage = categoriesViewTitle;
+        pageTitleLabel.setText(categoriesViewTitle);
         navigate(categoriesView);
     }
 
@@ -144,6 +174,11 @@ public class MainPage extends AnchorPane {
         CommandsView commandsView = new CommandsView();
         commandsView.setCommandsList(command.getParentCategory().getCommands());
         commandsView.select(command);
+        if(lastVisitedPage != null)
+            titleHistory.push(lastVisitedPage);
+        String commandsViewTitle = commandsView.getTitle();
+        lastVisitedPage = commandsViewTitle;
+        pageTitleLabel.setText(commandsViewTitle);
         navigate(commandsView);
 
     }
@@ -176,6 +211,11 @@ public class MainPage extends AnchorPane {
                 else {
                     searchResultView.showResult(result);
                 }
+                if(lastVisitedPage != null)
+                    titleHistory.push(lastVisitedPage);
+                String searchTitle = searchResultView.getTitle();
+                lastVisitedPage = searchTitle;
+                pageTitleLabel.setText(searchTitle);
                 navigate(searchResultView);
             }
             searchTextField.clear();
