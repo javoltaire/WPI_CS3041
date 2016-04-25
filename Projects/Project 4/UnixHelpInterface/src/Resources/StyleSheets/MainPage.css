@@ -14,6 +14,10 @@
     -fx-background-color: white;
 }
 
+#pageTitleLabel{
+    -fx-font-size:12pt;
+}
+
 .list-cell{
     -fx-background-color: white;
 }
@@ -68,5 +72,20 @@
 
 #pinkRadioButton{
     -fx-background-color: pink-color;
+}
+
+#optionsListView .scroll-bar:horizontal .increment-arrow,
+#optionsListView .scroll-bar:horizontal .decrement-arrow,
+#optionsListView .scroll-bar:horizontal .increment-button,
+#optionsListView .scroll-bar:horizontal .decrement-button,
+#formatsListView .scroll-bar:horizontal .increment-arrow,
+#formatsListView .scroll-bar:horizontal .decrement-arrow,
+#formatsListView .scroll-bar:horizontal .increment-button,
+#formatsListView .scroll-bar:horizontal .decrement-button,
+#examplesListView .scroll-bar:horizontal .increment-arrow,
+#examplesListView .scroll-bar:horizontal .decrement-arrow,
+#examplesListView .scroll-bar:horizontal .increment-button,
+#examplesListView .scroll-bar:horizontal .decrement-button{
+    -fx-padding:0;
 }
 

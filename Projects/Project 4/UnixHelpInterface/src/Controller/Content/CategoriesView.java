@@ -78,6 +78,10 @@ public class CategoriesView extends AnchorPane {
         this.isCommandsListEmpty.set(isCommandsListEmpty);
     }
 
+    public String getTitle(){
+        return "Home";
+    }
+
     //endregion
 
     //region FXML Methods

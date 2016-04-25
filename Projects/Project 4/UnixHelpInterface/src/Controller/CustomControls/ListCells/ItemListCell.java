@@ -6,8 +6,11 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.text.Text;
 
 import java.io.IOException;
+
+import static com.sun.org.apache.xml.internal.serializer.utils.Utils.messages;
 
 /**
  * Created by jules on 4/13/2016.
@@ -47,9 +50,12 @@ public class ItemListCell extends ListCell<Item> {
             setGraphic(null);
         }
         else {
-            nameLabel.setText(item.getName() + ":");
+            nameLabel.setText(item.getName() + ":  ");
             descriptionLabel.setText(item.getDescription());
             setGraphic(root);
+//            Text text = new Text(item.getName() + ":  " + item.getDescription());
+//            text.setWrappingWidth(this.getPrefWidth());
+//            setGraphic(text);
         }
     }
 }

@@ -9,7 +9,10 @@
     <children>
         <BorderPane prefHeight="45.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <left>
-                <Button fx:id="backButton" mnemonicParsing="false" onAction="#onBackButtonClicked" prefHeight="45.0" text="Back" BorderPane.alignment="CENTER" />
+                <HBox BorderPane.alignment="CENTER" alignment="CENTER" spacing="15">
+                    <Button fx:id="backButton" mnemonicParsing="false" onAction="#onBackButtonClicked" prefHeight="45.0" text="Back" />
+                    <Label fx:id="pageTitleLabel" text="Title of the page"/>
+                </HBox>
             </left>
             <center>
                 <HBox alignment="CENTER">

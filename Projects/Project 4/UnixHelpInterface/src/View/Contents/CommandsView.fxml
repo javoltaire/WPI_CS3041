@@ -43,7 +43,7 @@
                         <Label fx:id="optionsLabel" text="Options : " GridPane.rowIndex="3" alignment="CENTER_RIGHT"/>
                     </left>
                     <center>
-                        <ListView fx:id="optionsListView" mouseTransparent="true" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+                        <ListView fx:id="optionsListView" focusTraversable="false" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
                     </center>
                 </BorderPane>
                 <BorderPane>
@@ -51,7 +51,7 @@
                 <Label fx:id="formatsLabel" text="Formats : " alignment="CENTER_RIGHT" GridPane.rowIndex="4" />
                 </left>
                 <center>
-                <ListView fx:id="formatsListView" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                <ListView fx:id="formatsListView" focusTraversable="false" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                 </center>
                 </BorderPane>
                 <BorderPane>
@@ -59,7 +59,7 @@
                 <Label fx:id="examplesLabel" text="Examples : " alignment="CENTER_RIGHT" GridPane.rowIndex="5" />
                 </left>
                 <center>
-                <ListView fx:id="examplesListView" mouseTransparent="true" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                <ListView fx:id="examplesListView" focusTraversable="false" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                 </center>
                 </BorderPane>
                 <BorderPane>
@@ -70,9 +70,6 @@
                 <Hyperlink fx:id="commandSourceLink" alignment="CENTER_LEFT" maxWidth="Infinity" GridPane.columnIndex="1" GridPane.rowIndex="6" onAction="#onLinkClicked" />
                 </center>
                 </BorderPane>
-                <!--<padding>-->
-                <!--<Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />-->
-                <!--</padding>-->
             </VBox>
         </center>
     </BorderPane>
