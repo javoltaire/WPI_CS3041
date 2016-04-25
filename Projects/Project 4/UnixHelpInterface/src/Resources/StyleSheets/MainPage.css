@@ -12,11 +12,10 @@
 
 .root{
     -fx-background-color: white;
-    -fx-font-size: 11pt;
 }
 
 #pageTitleLabel{
-    -fx-font-size:15pt;
+    -fx-font-size:12pt;
 }
 
 .list-cell{

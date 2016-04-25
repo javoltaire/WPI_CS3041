@@ -147,7 +147,6 @@ public class CategoriesView extends AnchorPane {
                         @Override
                         public ListCell call(ListView<Command> param) {
                             CommandListCell cell = new CommandListCell();
-                            cell.prefWidthProperty().bind(commandsListView.widthProperty());
                             cell.setCanShowEditAndDeleteButton(true);
                             return cell;
                         }
@@ -159,7 +158,6 @@ public class CategoriesView extends AnchorPane {
                         @Override
                         public ListCell call(ListView<Command> param) {
                             CommandListCell cell = new CommandListCell();
-                            cell.prefWidthProperty().bind(commandsListView.widthProperty());
                             cell.setCanShowEditAndDeleteButton(false);
                             return cell;
                         }

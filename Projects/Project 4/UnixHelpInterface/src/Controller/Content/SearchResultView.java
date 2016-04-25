@@ -9,6 +9,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.util.Callback;
 
@@ -20,7 +21,7 @@ import java.net.URISyntaxException;
 /**
  * Created by jules on 4/15/2016.
  */
-public class SearchResultView extends BorderPane {
+public class SearchResultView extends StackPane {
     //region FXML variable
     @FXML private ListView<Command> resultListView;
     @FXML private VBox noResultPane;
