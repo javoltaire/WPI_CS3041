@@ -9,7 +9,7 @@ import javax.xml.bind.annotation.XmlType;
 
 /**
  * @Author Jules Voltaire on 4/2/2016.
- * This class represent an option for a command and a short description of what that option does to the command.
+ * This class represent an Item that has a name and a description.
  * For example, for ls, an option is
  * -r : reverses the order of the sort.
  * Code wise, that would be represented as
@@ -30,17 +30,19 @@ public class Item {
     //endregion
 
     //region Constructors
-
     /**
      * Initializes a new instance of this class with the given parameters
-     * @param name The name of the option i.e. r
-     * @param description The description of what the command does i.e. reverses the order of the sort
+     * @param name The name of the item i.e. r
+     * @param description The description of the item i.e. reverses the order of the sort
      */
     public Item(String name, String description){
         this.name.setValue(name);
         this.description.setValue(description);
     }
 
+    /**
+     * Initializes a new instance of this class.
+     */
     private Item(){}
     //endregion
 
@@ -55,7 +57,7 @@ public class Item {
     }
 
     /**
-     * Gets the name of the option
+     * Gets the name of the item
      * @return The value of the name property
      */
     public String getName() {
@@ -63,8 +65,8 @@ public class Item {
     }
 
     /**
-     * Sets the name of the option
-     * @param name The new value for the name of the option
+     * Sets the name of the item
+     * @param name The new value for the name of the item
      */
     @XmlElement (name = "Item_Name")
     public void setName(String name) {
@@ -82,16 +84,16 @@ public class Item {
     }
 
     /**
-     * Gets the description of the option
-     * @return The value of the description property
+     * Gets the description of the item
+     * @return The value of the description of the item
      */
     public String getDescription() {
         return description.get();
     }
 
     /**
-     * Sets the description of the option
-     * @param description The new value for the description of the option
+     * Sets the description of the item
+     * @param description The new value for the description of the item
      */
     @XmlElement (name = "Item_Description")
     public void setDescription(String description) {
@@ -100,11 +102,10 @@ public class Item {
     //endregion
     //endregion
 
-    //Region Methods
-
+    //region Methods
     /**
-     * Gets this.name + " - " + this.description
-     * @return The name of the option separated by a -
+     * Gets the name and description of the item
+     * @return The name and description of the item separated by a -
      */
     public String toPrintableString(){
         return this.getName() + " - " + this.getDescription() + "\n";
