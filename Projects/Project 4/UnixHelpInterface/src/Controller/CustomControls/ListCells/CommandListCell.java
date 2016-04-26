@@ -68,6 +68,9 @@ public class CommandListCell extends ListCell<Command> {
     //endregion
 
     //region Helper Methods
+    /**
+     * Loads the view portion(fxml file) for this class
+     */
     private void loadFXMLFile(){
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../../../View/CustomControls/Cells/CommandListCell.fxml"));
         loader.setController(this);
@@ -105,6 +108,10 @@ public class CommandListCell extends ListCell<Command> {
         this.setOnMouseExited(e -> onMouseExited());
     }
 
+    /**
+     *
+     * @param value
+     */
     public void setCanShowEditAndDeleteButton(boolean value){
         this.canShowEditAndDeleteButton = value;
     }

@@ -111,6 +111,9 @@ public class SettingsPage extends VBox{
         }
     }
 
+    /**
+     * changes the styles of all the radio buttons in this page.
+     */
     private void styleRadioButtons(){
         replaceRadioButtonStyle(midNightBlueRadioButton);
         replaceRadioButtonStyle(belizeHoleBlueRadioButton);

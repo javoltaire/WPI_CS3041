@@ -109,6 +109,9 @@ public class CategoriesView extends AnchorPane {
         }
     }
 
+    /**
+     * Changes the cell factory of some of the listviews
+     */
     private void customizeControls(){
         categoriesListView.setCellFactory(new Callback<ListView<Category>, ListCell<Category>>() {
             @Override
@@ -118,6 +121,9 @@ public class CategoriesView extends AnchorPane {
         });
     }
 
+    /**
+     * Bind properties to other properties
+     */
     private void bind(){
         emptyListLabel.visibleProperty().bind(isListEmpty);
         contentPane.visibleProperty().bind(isListEmpty.not());
@@ -128,6 +134,9 @@ public class CategoriesView extends AnchorPane {
         commandsListView.visibleProperty().bind(noCatSelected.not().and(isCommandsListEmpty.not()));
     }
 
+    /**
+     * Set listeners to properties
+     */
     private void setListeners(){
         categories.addListener(new ListChangeListener<Category>() {
             @Override
@@ -181,6 +190,10 @@ public class CategoriesView extends AnchorPane {
         });
     }
 
+    /**
+     * Sets the context categories list
+     * @param categories the new list
+     */
     public void setCategoriesList(ObservableList<Category> categories){
         this.categories.set(categories);
         categoriesListView.getSelectionModel().select(0);

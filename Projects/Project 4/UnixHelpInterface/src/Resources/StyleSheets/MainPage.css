@@ -89,3 +89,7 @@
     -fx-padding:0;
 }
 
+#settingsHeaderLabel{
+    -fx-font-size: 13pt;
+    }
+

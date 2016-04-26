@@ -34,9 +34,18 @@ public class SearchResultView extends StackPane {
     //endregion
 
     //region Constuctors
+
+    /**
+     * Initializes a new instance of this class
+     */
     public SearchResultView(){
         loadFXMLFile();
     }
+
+    /**
+     * Initializes a new instance of this class
+     * @param searchCommand the string that is searched for
+     */
     public SearchResultView(String searchCommand){
         this.searchCommand = searchCommand;
         loadFXMLFile();
@@ -60,6 +69,11 @@ public class SearchResultView extends StackPane {
     //endregion
 
     //region Getters and setters
+
+    /**
+     * Returns Result
+     * @return The string "Result"
+     */
     public String getTitle(){
         return "Result";
     }
@@ -81,6 +95,10 @@ public class SearchResultView extends StackPane {
         }
     }
 
+    /**
+     * Displays the result from the search
+     * @param resultCommand The list of commands results
+     */
     public void showResult(ObservableList<Command> resultCommand){
         this.resultListView.setItems(resultCommand);
         customizeLisviews();
@@ -88,6 +106,10 @@ public class SearchResultView extends StackPane {
         this.noResultPane.setVisible(false);
     }
 
+    /**
+     * Displays the error message and such if no commands were found
+     * @param searchCommand the string that was searched for
+     */
     public void showNoResultError(String searchCommand){
         this. searchCommand = searchCommand;
         this.errorLabel.setText("Sorry, \"" + searchCommand + "\" command was not found.");
@@ -95,6 +117,9 @@ public class SearchResultView extends StackPane {
         this.noResultPane.setVisible(true);
     }
 
+    /**
+     * Changes the cell factories of some of the listviews
+     */
     private void customizeLisviews() {
         resultListView.setCellFactory(new Callback<ListView<Command>, ListCell<Command>>() {
             @Override

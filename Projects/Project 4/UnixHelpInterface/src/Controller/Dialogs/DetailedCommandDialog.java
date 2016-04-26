@@ -36,7 +36,6 @@ public class DetailedCommandDialog extends Dialog {
     @FXML private TextField exampleDescriptionTextField;
     //endregion
 
-
     //region variable
     private Command command;
     private boolean isNew;
@@ -47,6 +46,12 @@ public class DetailedCommandDialog extends Dialog {
     //endregion
 
     //region Constructors
+
+    /**
+     * Initializes a new instance of this class
+     * @param command The command context for the pane
+     * @param isNew tells whether this is a new command or just editing one
+     */
     public DetailedCommandDialog(Command command, boolean isNew){
         super();
         this.command = command;
@@ -56,10 +61,11 @@ public class DetailedCommandDialog extends Dialog {
     }
     //endregion
 
-    //FXML Methods
+    //FXML Methods for Event Handling
     @FXML private void onCancelButtonClick(){
         exitDialog();
     }
+
     @FXML private void onSaveButtonClick(){
         command.setName(nameTextField.getText().trim());
         command.setDescription(descriptionTextField.getText().trim());
@@ -72,6 +78,7 @@ public class DetailedCommandDialog extends Dialog {
         }
         super.exitDialog();
     }
+
     @FXML private void onAddNewOptionButtonClick(){
         String opName = optionNameTextField.getText().trim();
         String opDesc = optionDescriptionTextField.getText().trim();
@@ -119,6 +126,9 @@ public class DetailedCommandDialog extends Dialog {
         }
     }
 
+    /**
+     * changes the cell factories of some of the listviews
+     */
     private void customizeLisviews(){
         optionsListView.setCellFactory(new Callback<ListView<Item>, ListCell<Item>>() {
             @Override
@@ -136,6 +146,9 @@ public class DetailedCommandDialog extends Dialog {
 
     }
 
+    /**
+     * Shows this dialog
+     */
     @Override
     public void showDialog(){
         this.nameTextField.setText(command.getName());
