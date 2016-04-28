@@ -41,6 +41,9 @@ public class Category {
         this.name.setValue(name);
     }
 
+    /**
+     * Initializes a new instance of this class
+     */
     private Category(){}
     //endregion
 
@@ -75,6 +78,10 @@ public class Category {
 
     //region Commands
 
+    /**
+     * Gets the commands ListProperty
+     * @return the List of commands property
+     */
     public ListProperty<Command> commandsProperty() {
         return commands;
     }
@@ -87,6 +94,10 @@ public class Category {
         return commands.get();
     }
 
+    /**
+     * Sets the value of the commands list property to a new value
+     * @param commands The new list value of commands
+     */
     @XmlElementWrapper(name = "Category_Commands")
     @XmlElement (name = "Category_Command")
     public void setCommands(ObservableList<Command> commands) {

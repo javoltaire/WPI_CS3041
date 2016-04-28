@@ -24,8 +24,8 @@
             <VBox fx:id="settingsMenuContentPane" minWidth="0.0" prefWidth="300.0">
                <children>
                   <Button maxWidth="1.7976931348623157E308" minWidth="0.0" mnemonicParsing="false" onAction="#onPersonalizationButtonClick" prefHeight="50.0" text="Personalization" />
-                  <Button maxWidth="1.7976931348623157E308" minWidth="0.0" mnemonicParsing="false" disable="true" onAction="#onHelpButtonClick" prefHeight="50.0" text="Help" />
-                  <Button maxWidth="1.7976931348623157E308" minWidth="0.0" mnemonicParsing="false" disable="true" onAction="#onAboutButtonClick" prefHeight="50.0" text="About" />
+                  <Button maxWidth="1.7976931348623157E308" minWidth="0.0" mnemonicParsing="false" onAction="#onHelpButtonClick" prefHeight="50.0" text="Help" />
+                  <Button maxWidth="1.7976931348623157E308" minWidth="0.0" mnemonicParsing="false" onAction="#onAboutButtonClick" prefHeight="50.0" text="About" />
                </children>
             </VBox>
             <VBox fx:id="personalizeContentPane" alignment="TOP_CENTER" prefWidth="300.0" spacing="15.0" visible="false">
@@ -66,14 +66,16 @@
                     <Button alignment="CENTER" mnemonicParsing="false" text="Clear Recent" onAction="#onClearRecentButtonClick" />
                 </children>
             </VBox>
-             <VBox fx:id="helpContentPage" visible="false">
+             <VBox fx:id="helpContentPage" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" alignment="CENTER" visible="false">
                 <children>
-                    <Label text="Help page" />
+                    <Label text="Shortcuts" />
+                    <Label text="Press Ctrl + f and start typing to fine a command" wrapText="true"/>
                 </children>
              </VBox>
-            <VBox fx:id="aboutContentPage" visible="false">
+            <VBox fx:id="aboutContentPage" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" alignment="CENTER" visible="false">
                <children>
-                  <Label text="About page" />
+                  <Label text="Version" />
+                   <Label text="1.0" wrapText="true"/>
                </children>
             </VBox>
          </children>

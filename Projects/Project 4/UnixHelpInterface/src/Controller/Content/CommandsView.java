@@ -52,6 +52,9 @@ public class CommandsView extends AnchorPane {
     //endregion
 
     //region Constructors
+    /**
+     * Initializes a new instance of this class
+     */
     public CommandsView(){
         loadFXMLFile();
         setProperties();
@@ -60,6 +63,11 @@ public class CommandsView extends AnchorPane {
     //endregion
 
     //region getters and setters
+
+    /**
+     * Gets the title of the pane
+     * @return The title
+     */
     public String getTitle(){
         return title;
     }
@@ -97,6 +105,9 @@ public class CommandsView extends AnchorPane {
         }
     }
 
+    /**
+     * Setting some propterties
+     */
     private void setProperties(){
         nameLabel.setPrefWidth(LABEL_WIDTH);
         descriptionLabel.setPrefWidth(LABEL_WIDTH);
@@ -108,6 +119,9 @@ public class CommandsView extends AnchorPane {
 
     }
 
+    /**
+     * Changes the cell factory of some of the listview
+     */
     private void customizeLisviews(){
         simpleCommandsListView.setCellFactory(new Callback<ListView<Command>, ListCell<Command>>() {
             @Override
@@ -131,29 +145,11 @@ public class CommandsView extends AnchorPane {
                 return new ItemListCell();
             }
         });
-
-//        optionsListView.setCellFactory(new Callback<ListView<Item>, ListCell<Item>>() {
-//            @Override
-//            public ListCell<Item> call(ListView<Item> list) {
-//                final ListCell<Item> cell = new ListCell<Item>() {
-//                    private Text text;
-//
-//                    @Override
-//                    public void updateItem(Item item, boolean empty) {
-//                        super.updateItem(item, empty);
-//                        if (!isEmpty()) {
-//                            text = new Text(item.getName() + ": " + item.getDescription());
-//                            text.setWrappingWidth(optionsListView.getPrefWidth());
-//                            setGraphic(text);
-//                        }
-//                    }
-//                };
-//
-//                return cell;
-//            }
-//        });
     }
 
+    /**
+     * Add Listeners to properties
+     */
     private void addListeners(){
         simpleCommandsListView.getSelectionModel().selectedItemProperty().addListener((v, oldValue, newValue) ->{
             updateContent(newValue);
@@ -161,11 +157,19 @@ public class CommandsView extends AnchorPane {
         });
     }
 
+    /**
+     * Sets the list value of the simpleCommandsListview list items
+     * @param commands
+     */
     public void setCommandsList(ObservableList<Command> commands){
         simpleCommandsListView.setItems(commands);
         customizeLisviews();
     }
 
+    /**
+     * Update the content of this pane
+     * @param command the context command for this commands view
+     */
     private void updateContent(Command command){
         title = command.getParentCategory().getName();
         commandNameLabel.setText(command.getName());
@@ -180,6 +184,10 @@ public class CommandsView extends AnchorPane {
         commandSourceLink.setText(command.getSourceLink());
     }
 
+    /**
+     * Selects a command
+     * @param command The command to be selected
+     */
     public void select(Command command){
         simpleCommandsListView.getSelectionModel().select(command);
     }

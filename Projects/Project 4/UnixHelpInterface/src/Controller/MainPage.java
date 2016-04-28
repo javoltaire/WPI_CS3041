@@ -128,6 +128,9 @@ public class MainPage extends AnchorPane {
         }
     }
 
+    /**
+     * Binds Properties
+     */
     private void bind(){
         backButton.visibleProperty().bind(canShowBackButton);
     }
@@ -148,17 +151,29 @@ public class MainPage extends AnchorPane {
         });
     }
 
+    /**
+     * Shows a dialog
+     * @param dialog the dialog to be shown
+     */
     public void showDialog(Dialog dialog){
         dialogRoot.getChildren().add(dialog);
         dialogRoot.setVisible(true);
 
     }
 
+    /**
+     * Hides the dialog
+     * @param dialog the dialog to be hidden
+     */
     public void exitDialog(Dialog dialog){
         dialogRoot.setVisible(false);
         dialogRoot.getChildren().remove(dialog);
     }
 
+    /**
+     * navigates to the categories view
+     * @param categories the context data to be displayed by categoies view
+     */
     public void navigateToCategoriesView(ObservableList<Category> categories){
         CategoriesView categoriesView = new CategoriesView();
         categoriesView.setCategoriesList(categories);
@@ -170,6 +185,10 @@ public class MainPage extends AnchorPane {
         navigate(categoriesView);
     }
 
+    /**
+     * navigates to the commands view pane
+     * @param command the context command to be displayed by the commands view
+     */
     public void navigateToCommandsView(Command command){
         CommandsView commandsView = new CommandsView();
         commandsView.setCommandsList(command.getParentCategory().getCommands());
@@ -183,6 +202,10 @@ public class MainPage extends AnchorPane {
 
     }
 
+    /**
+     * Shows the given pane on the main page
+     * @param pane the pane to be shown
+     */
     private void navigate(Pane pane){
         if(pane != null){
             if(currentPage != null) {
@@ -195,15 +218,20 @@ public class MainPage extends AnchorPane {
         }
     }
 
+    /**
+     * Uses the text input from the search text box and perform a search
+     * If an exact command is found full details about the command is displayed
+     * Otherwise find commands that starts with the given string in the textbox and display that list
+     */
     private void search(){
-        String searchInput = searchTextField.getText().trim();
-        if(!searchInput.isEmpty()){
-            if(CategoryManager.getInstance().containsCommandKey(searchInput)) {
-                Command command = CategoryManager.getInstance().getCommand(searchInput);
+        String searchInput = searchTextField.getText().trim();                                              // Get the text input
+        if(!searchInput.isEmpty()){                                                                         // If it is empty
+            if(CategoryManager.getInstance().containsCommandKey(searchInput)) {                                 // If there is an exact command
+                Command command = CategoryManager.getInstance().getCommand(searchInput);                            //Navigate and display the details of the command
                 navigateToCommandsView(command);
             }
             else{
-                ObservableList<Command> result = CategoryManager.getInstance().getSimilar(searchInput);
+                ObservableList<Command> result = CategoryManager.getInstance().getSimilar(searchInput);         // Other wise
                 SearchResultView searchResultView = new SearchResultView();
                 if(result.isEmpty()){
                     searchResultView.showNoResultError(searchInput);

@@ -19,11 +19,20 @@ public class MessageDialog extends Dialog{
     //endregion
 
     //region Contructors
+
+    /**
+     * Initializes a new instance of this class
+     */
     public MessageDialog(){
         super();
         loadFXMLFile();
     }
 
+    /**
+     * Initializes a new instance of this class with the given arguments
+     * @param title the title of the dialog
+     * @param message the message of the dialod
+     */
     public MessageDialog(String title, String message){
         super();
         loadFXMLFile();
@@ -54,15 +63,27 @@ public class MessageDialog extends Dialog{
         }
     }
 
+    /**
+     * Sets the Title of the dialog
+     * @param title the new title of the dialog
+     */
     @Override
     public void setTitle(String title){
         titleLabel.setText(title);
     }
 
+    /**
+     * Sets the message of the dialog
+     * @param message the new message of the dialog
+     */
     public void setMessage(String message){
         messageLabel.setText(message);
     }
 
+    /**
+     * Sets the text of the primary button
+     * @param buttonText the new text for the primary button
+     */
     public void setButtonText(String buttonText){
         okayButton.setText(buttonText);
     }

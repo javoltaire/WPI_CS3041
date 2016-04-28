@@ -25,6 +25,9 @@ public class Main extends Application {
         launch(args);
     }
 
+    /**
+     * Prints all the data for all the categories and commands etc
+     */
     private void printData(){
         System.out.println("All Categories");
         for(Category cat : CategoryManager.getInstance().getCategories()){
@@ -35,6 +38,10 @@ public class Main extends Application {
     }
 
  //region to be Helper Methods
+
+    /**
+     * Creates dummy data oobjects to be saved to the xml file.
+     */
     public void createDummyData(){
         Category category1 = new Category("Category 1");
         Category category2 = new Category("Category 2");

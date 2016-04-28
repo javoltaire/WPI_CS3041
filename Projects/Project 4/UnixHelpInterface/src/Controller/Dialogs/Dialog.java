@@ -15,6 +15,9 @@ public abstract class Dialog extends VBox{
     @FXML private Label titleLabel;
     //endregion
 
+    /**
+     * Initializes a new instance of this dialog
+     */
     protected Dialog(){
         this.getStyleClass().add("dialog");
     }
@@ -35,10 +38,17 @@ public abstract class Dialog extends VBox{
     //endregion
 
     //region Methods
+
+    /**
+     * Displays the dialog
+     */
     public void showDialog(){
         ControllerSingleton.getInstace().getMainPage().showDialog(this);
     }
 
+    /**
+     * Hides the dialog
+     */
     protected void exitDialog(){
         ControllerSingleton.getInstace().getMainPage().exitDialog(this);
     }
